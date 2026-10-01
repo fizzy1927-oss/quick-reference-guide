@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ABG Values &amp; Oxygen Delivery – Quick Reference</title>
+<meta name="description" content="Quick reference for normal arterial blood gas values and oxygen delivery devices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #5E7356;
+    --sage-deep: #2F3E2A;
+    --sage-text: #3F5238;
+    --sage-muted: #4A5E42;
+    --sage-tint: #DDE5D5;
+    --sage-border: #C9D4BF;
+    --row-alt: #F6F8F3;
+    --bg: #F3F5EF;
+    --card: #FFFFFF;
+    --ink: #26301F;
+    --muted: #4D5747;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    line-height: 1.45;
+  }
+  .page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--sage);
+  }
+  .eyebrow {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--sage-muted);
+  }
+  h1, h2 { font-family: 'Fraunces', Georgia, serif; color: var(--sage-deep); margin: 0; }
+  h1 { font-weight: 700; font-size: 44px; line-height: 1.05; margin-top: 6px; }
+  h2 { font-weight: 500; font-size: 28px; }
+  .header-note { font-size: 14px; color: var(--sage-muted); text-align: right; }
+  section { display: flex; flex-direction: column; gap: 16px; }
+
+  .abg-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--sage-border); border-radius: 12px;
+    padding: 18px 20px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .card .label { font-size: 16px; font-weight: 700; color: var(--sage-text); }
+  .card .label span { font-weight: 500; color: var(--muted); }
+  .card .value { font-family: 'Fraunces', Georgia, serif; font-size: 34px; font-weight: 700; }
+  .card .value small { font-family: 'Public Sans', sans-serif; font-size: 16px; font-weight: 500; }
+  .card .hint { font-size: 14px; color: var(--muted); }
+
+  .callout { background: var(--sage-tint); border-radius: 10px; padding: 14px 18px; font-size: 15px; }
+  .callout-title { font-weight: 700; color: var(--sage-deep); margin-bottom: 4px; }
+
+  .table-wrap {
+    border: 1px solid var(--sage-border); border-radius: 12px; background: var(--card);
+    overflow-x: auto;
+  }
+  table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 15px; line-height: 1.4; }
+  th { background: var(--sage); color: #fff; text-align: left; font-weight: 700; padding: 14px 12px; }
+  td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid #DCE3D5; }
+  tbody tr:nth-child(even) { background: var(--row-alt); }
+  tbody tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 700; color: var(--sage-deep); }
+  td .sub { display: block; font-size: 13px; color: var(--muted); }
+
+  .flow-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+
+  footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--sage-border); padding-top: 14px; }
+
+  @media (max-width: 760px) {
+    .page { padding: 28px 16px; gap: 24px; }
+    header { flex-direction: column; align-items: flex-start; }
+    .header-note { text-align: left; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 24px; }
+    .abg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .flow-grid { grid-template-columns: 1fr; }
+    .card .value { font-size: 28px; }
+  }
+  @media (max-width: 440px) {
+    .abg-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: #fff; }
+    .page { padding: 24px; }
+    .table-wrap { overflow: visible; }
+    th, .callout, tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header>
+    <div>
+      <div class="eyebrow">Quick Reference</div>
+      <h1>ABG Values &amp; Oxygen Delivery</h1>
+    </div>
+    <div class="header-note">Normal adult values<br>Room air, at sea level</div>
+  </header>
+
+  <section>
+    <h2>Normal ABG Values</h2>
+    <div class="abg-grid">
+      <div class="card">
+        <div class="label">pH</div>
+        <div class="value">7.35 – 7.45</div>
+        <div class="hint">&lt; 7.35 acidosis · &gt; 7.45 alkalosis</div>
+      </div>
+      <div class="card">
+        <div class="label">PaCO₂ <span>(respiratory · acid)</span></div>
+        <div class="value">35 – 45 <small>mmHg</small></div>
+        <div class="hint">&gt; 45 acidosis · &lt; 35 alkalosis</div>
+      </div>
+      <div class="card">
+        <div class="label">HCO₃⁻ <span>(metabolic · base)</span></div>
+        <div class="value">22 – 26 <small>mEq/L</small></div>
+        <div class="hint">&lt; 22 acidosis · &gt; 26 alkalosis</div>
+      </div>
+      <div class="card">
+        <div class="label">PaO₂</div>
+        <div class="value">80 – 100 <small>mmHg</small></div>
+        <div class="hint">&lt; 80 hypoxemia</div>
+      </div>
+      <div class="card">
+        <div class="label">SaO₂</div>
+        <div class="value">95 – 100 <small>%</small></div>
+        <div class="hint">Arterial hemoglobin saturation</div>
+      </div>
+      <div class="card">
+        <div class="label">Base Excess</div>
+        <div class="value">−2 to +2 <small>mEq/L</small></div>
+        <div class="hint">Negative = acidosis · Positive = alkalosis</div>
+      </div>
+    </div>
+    <div class="callout"><strong>ROME:</strong> Respiratory = Opposite (pH and PaCO₂ move in opposite directions) · Metabolic = Equal (pH and HCO₃⁻ move in the same direction)</div>
+  </section>
+
+  <section>
+    <h2>Oxygen Delivery Devices</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Device</th>
+            <th>Liter flow</th>
+            <th>FiO₂</th>
+            <th>Flow type</th>
+            <th>Humidification</th>
+            <th>FiO₂ changes with pt’s RR / VT?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nasal cannula</td>
+            <td><strong>1 – 6 L/min</strong></td>
+            <td><strong>24 – 44%</strong><span class="sub">≈ +4% per liter</span></td>
+            <td>Low</td>
+            <td>Yes, if &gt; 4 L/min</td>
+            <td><strong>Yes</strong> — varies</td>
+          </tr>
+          <tr>
+            <td>Simple face mask</td>
+            <td><strong>5 – 10 L/min</strong><span class="sub">Min 5 L to flush CO₂</span></td>
+            <td><strong>35 – 50%</strong></td>
+            <td>Low</td>
+            <td>Not routine; may add for comfort</td>
+            <td><strong>Yes</strong> — varies</td>
+          </tr>
+          <tr>
+            <td>Partial rebreather</td>
+            <td><strong>6 – 11 L/min</strong><span class="sub">Bag stays ⅓ – ½ full on inspiration</span></td>
+            <td><strong>40 – 70%</strong></td>
+            <td>Low</td>
+            <td>Not routine</td>
+            <td><strong>Yes</strong> — varies</td>
+          </tr>
+          <tr>
+            <td>Non-rebreather</td>
+            <td><strong>10 – 15 L/min</strong><span class="sub">Bag must never fully collapse</span></td>
+            <td><strong>60 – 80%</strong><span class="sub">Up to ~90%+ with a tight seal</span></td>
+            <td>Low <span class="sub">(reservoir)</span></td>
+            <td>Not routine</td>
+            <td><strong>Yes</strong> — varies</td>
+          </tr>
+          <tr>
+            <td>Venturi mask</td>
+            <td><strong>4 – 12 L/min</strong><span class="sub">Set by the color-coded adapter</span></td>
+            <td><strong>24 – 60%</strong><span class="sub">Precise, fixed FiO₂</span></td>
+            <td><strong>High</strong></td>
+            <td>Not routine; aerosol collar if needed</td>
+            <td><strong>No</strong> — stays constant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flow-grid">
+      <div class="callout">
+        <div class="callout-title">Low flow</div>
+        Doesn’t meet the patient’s full inspiratory demand, so room air mixes in. Faster RR or bigger VT pulls in more room air → lower FiO₂; slower, shallower breathing → higher FiO₂.
+      </div>
+      <div class="callout">
+        <div class="callout-title">High flow</div>
+        Supplies the patient’s entire inspiratory demand at a set O₂ concentration, so FiO₂ stays the same no matter how they breathe. Best choice for COPD / CO₂ retainers needing precise FiO₂.
+      </div>
+    </div>
+  </section>
+
+  <footer>Ranges vary slightly between textbooks and facilities — follow your program’s and facility’s references.</footer>
+</main>
+</body>
+</html>
