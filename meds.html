@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Medications · RT Quick Reference</title>
+<meta name="description" content="NBRC respiratory pharmacology chart with table, cards, flashcards and a practice quiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: calm sage study app. Segmented view switcher + quiet filter row over four views (table, cards, flashcards, quiz).
+   Drug classes are keyed by small muted color dots and a thin stripe, so sage stays the only strong color. */
+:root{
+  --bg:#F3F5F0; --surface:#FFFFFF; --ink:#1E2A22; --muted:#65725F; --line:#E0E6DA; --line-strong:#CBD5C4;
+  --accent:#4E6E52; --accent-ink:#FFFFFF; --accent-soft:#E4ECE1; --band:#EEF2EA; --shadow:0 1px 2px rgba(30,42,34,.05),0 4px 16px rgba(30,42,34,.05);
+  --c-beta:#4E729A; --c-anti:#7A62A0; --c-combo:#3F7D69; --c-xan:#9A6534; --c-bio:#9A5572; --c-masto:#5F7F3A; --c-ltm:#8A7432; --c-abx:#A4524A; --c-muco:#3F7F8A; --c-ster:#7E5E44; --c-dil:#66736C;
+  --good:#3C7A4E; --good-bg:#E4F1E6; --warn:#A4524A; --warn-bg:#F6E9E6;
+  --f-display:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:12px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14.5px;line-height:1.5;margin:0}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,.fcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.wrap{padding-inline:24px;padding-block:32px 56px;max-width:1440px;margin:0 auto}
+
+/* header */
+header.top{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-end;justify-content:space-between;margin-bottom:24px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.1;margin:0;letter-spacing:-.02em;text-wrap:balance}
+.sub{color:var(--muted);max-width:60ch;margin:10px 0 0;font-size:15px}
+.count{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;padding:6px 12px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
+
+/* view switcher */
+.tabs{display:inline-flex;gap:4px;padding:4px;background:var(--accent-soft);border-radius:999px;max-width:100%;overflow-x:auto}
+.tab{background:none;border:0;padding:8px 18px;border-radius:999px;font-family:var(--f-display);font-size:14.5px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+
+/* filter bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:16px 14px;display:flex;flex-direction:column;gap:12px}
+.bar.static{position:static}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search{flex:1 1 280px;min-width:0;font:inherit;padding:10px 16px;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);color:var(--ink)}
+.search::placeholder{color:var(--muted)}
+.btn{font-weight:600;font-size:13.5px;padding:9px 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer;transition:background .15s,border-color .15s}
+.btn:hover{border-color:var(--accent)}
+.btn[aria-pressed="true"],.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.45;cursor:default}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;font-weight:500;padding:5px 12px 5px 10px;border-radius:999px;border:1px solid transparent;background:var(--surface);cursor:pointer;display:inline-flex;align-items:center;gap:7px;color:var(--ink)}
+.chip:hover{border-color:var(--line-strong)}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--k)}
+.chip .n{color:var(--muted);font-size:12px}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink);font-weight:600}
+.hint{font-size:13px;color:var(--muted);margin:0}
+select{font:inherit;font-size:13.5px;padding:8px 12px;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);color:var(--ink)}
+label.inline{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+
+/* shared text bits */
+.gen{font-family:var(--f-display);font-weight:700;font-size:15px;display:block;letter-spacing:-.01em}
+.brand{color:var(--muted);font-size:13px;display:block}
+.cat{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:12px;font-weight:500;color:var(--muted)}
+.cat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--k);flex:none}
+ul.b{margin:0;padding-left:16px}
+ul.b li{padding-left:2px}
+ul.b li+li{margin-top:4px}
+ul.b li::marker{color:var(--line-strong)}
+.dev{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:12px;font-weight:500;padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.rel{display:inline-block;font-size:11px;font-weight:600;color:var(--muted);background:var(--band);border:1px solid var(--line);padding:0 7px;border-radius:999px;margin-right:5px}
+.flag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;color:var(--warn);background:var(--warn-bg);padding:1px 7px;border-radius:999px;margin-right:5px}
+.empty{padding:48px;text-align:center;color:var(--muted)}
+
+/* table view */
+.tablebox{overflow-x:auto;margin-top:8px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:2020px}
+thead th{position:sticky;top:0;background:var(--surface);text-align:left;font-size:12px;font-weight:600;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line-strong);vertical-align:bottom}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+td.name{position:sticky;left:0;background:var(--surface);min-width:200px;max-width:230px;z-index:1;box-shadow:inset 3px 0 0 var(--k)}
+td.mono{font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums;min-width:160px}
+td.w{min-width:230px}
+td.t{min-width:190px}
+.opd{margin:0;display:grid;gap:6px}
+.opd div{display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:baseline}
+.opd dt{font-size:11.5px;font-weight:600;color:var(--accent)}
+.opd dd{margin:0;font-variant-numeric:tabular-nums}
+td.wide{min-width:260px}
+tbody tr:not(.group):hover td{background:var(--band)}
+tr.group td{background:var(--band);padding:10px 16px;border-bottom:1px solid var(--line)}
+tr.group td{font-family:var(--f-display);font-size:14px;font-weight:700;color:var(--ink);box-shadow:inset 3px 0 0 var(--k)}
+tr.group td span{font-family:var(--f-body);font-size:12.5px;font-weight:400;color:var(--muted);margin-left:10px}
+.blur td.hideable{cursor:pointer;position:relative}
+.blur td.hideable > *{filter:blur(6px);opacity:.3;transition:filter .15s,opacity .15s}
+.blur td.hideable.shown > *{filter:none;opacity:1}
+.blur td.hideable::after{content:"Tap to reveal";position:absolute;top:14px;left:16px;font-size:12px;color:var(--muted)}
+.blur td.hideable.shown::after{content:none}
+
+/* cards view */
+.grouphead{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;font-family:var(--f-display);font-size:18px;font-weight:700;letter-spacing:-.01em;margin:32px 0 12px}
+.grouphead::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--k);align-self:center}
+.grouphead span{font-family:var(--f-body);font-size:13px;font-weight:400;color:var(--muted);letter-spacing:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;align-items:start}
+.dcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0;box-shadow:var(--shadow);transition:border-color .15s}
+.dcard:hover{border-color:var(--line-strong)}
+.dcard summary{list-style:none;cursor:pointer;padding:18px 20px;display:grid;gap:8px}
+.dcard summary::-webkit-details-marker{display:none}
+.dcard summary .cat{margin-top:2px}
+.dcard summary .more{font-size:12.5px;font-weight:600;color:var(--accent)}
+.dcard[open] summary .more::before{content:"Hide details"}
+.dcard:not([open]) summary .more::before{content:"Show details"}
+.dbody{padding:4px 20px 20px;display:grid;gap:14px;border-top:1px solid var(--line);margin-top:-4px;padding-top:16px}
+.field h4{margin:0 0 4px;font-size:12px;font-weight:600;color:var(--accent)}
+.field .mono{font-family:var(--f-mono);font-size:12.5px}
+
+/* flashcards */
+.study{max-width:720px;margin:12px auto 0;display:grid;gap:16px}
+.meter{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.progress{height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .25s}
+.fcard{perspective:1400px;cursor:pointer;min-height:340px;display:grid}
+.finner{position:relative;display:grid;transition:transform .5s cubic-bezier(.3,.7,.3,1);transform-style:preserve-3d}
+.fcard.flipped .finner{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:32px 36px;display:flex;flex-direction:column;gap:10px;min-width:0;box-shadow:var(--shadow)}
+.front{justify-content:center;align-items:flex-start}
+.back{transform:rotateY(180deg);overflow:auto}
+.front .cat{margin:0 0 6px}
+.front .gen{font-size:clamp(30px,5.5vw,44px);line-height:1.08;letter-spacing:-.025em}
+.front .brand{font-size:15px}
+.asking{margin-top:18px;font-size:13px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:4px 12px;border-radius:999px}
+.flip-hint{margin-top:auto;padding-top:16px;font-size:12.5px;color:var(--muted)}
+.back .gen{margin-bottom:4px}
+.back h4{margin:0 0 2px;font-size:12px;font-weight:600;color:var(--accent)}
+.back .field + .field{margin-top:8px}
+.back ul.b{font-size:15px}
+.known-badge{font-size:12px;font-weight:600;color:var(--good);background:var(--good-bg);padding:2px 10px;border-radius:999px}
+.fctrl{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+.fctrl .grp{display:flex;gap:8px;flex-wrap:wrap}
+.btn.good{background:var(--good-bg);border-color:transparent;color:var(--good)}
+.btn.bad{background:var(--warn-bg);border-color:transparent;color:var(--warn)}
+.btn.good:hover{border-color:var(--good)}
+.btn.bad:hover{border-color:var(--warn)}
+.kbd{font-size:12.5px;color:var(--muted);text-align:center;margin:0}
+
+/* quiz */
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px 32px;display:grid;gap:18px;box-shadow:var(--shadow)}
+.qnum{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.qnum::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--k)}
+.qtext{font-family:var(--f-display);font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.4;margin:0;text-wrap:pretty}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:13px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);cursor:pointer;display:flex;gap:12px;align-items:flex-start;font-size:15px;transition:border-color .15s,background .15s}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--band)}
+.opt b{display:inline-grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.right b{background:var(--good);color:var(--surface)}
+.opt.wrong{border-color:var(--warn);background:var(--warn-bg)}
+.opt.wrong b{background:var(--warn);color:var(--surface)}
+.explain{background:var(--band);border-radius:var(--r);padding:14px 16px;margin:0}
+.explain strong.ok{color:var(--good)}
+.explain strong.no{color:var(--warn)}
+.score{font-family:var(--f-display);font-size:60px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--accent)}
+.review{display:grid;gap:12px}
+.review .grouphead::before{background:var(--warn)}
+.review .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px}
+.review .item p{margin:3px 0}
+.review .item .a{color:var(--good);font-weight:600}
+#qAfter{display:grid;gap:14px}
+.setup{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;max-width:95ch;display:grid;gap:6px}
+footer p{margin:0}
+
+@media (prefers-reduced-motion:reduce){.finner,.progress i,.blur td.hideable > *,.tab,.btn,.opt,.dcard{transition:none}}
+@media (max-width:640px){
+  .wrap{padding-inline:16px;padding-block:28px 40px}
+  td.name{min-width:160px}
+  .face,.qbox{padding:22px}
+  .grid{grid-template-columns:1fr}
+  .tab{padding:8px 13px}
+}
+
+/* ---------- shared site nav (same on every page) ---------- */
+.site-nav{background:var(--surface);border-bottom:1px solid var(--line)}
+.site-nav .in{max-width:1440px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px}
+.site-brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.site-brand .mark{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:12.5px;font-weight:800;letter-spacing:.02em}
+.site-links{display:flex;gap:4px;padding:4px;background:var(--accent-soft);border-radius:999px;max-width:100%;overflow-x:auto}
+.site-links a{padding:8px 16px;border-radius:999px;font-family:var(--f-display);font-weight:600;font-size:14.5px;color:var(--muted);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.site-links a:hover{color:var(--ink)}
+.site-links a[aria-current]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.site-links a:focus-visible,.site-brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:640px){
+  .site-nav .in{padding:10px 16px}
+  .site-links{width:100%}
+  .site-links a{flex:1 1 auto;text-align:center;padding:8px 10px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){.site-links a{transition:none}}
+@media print{.site-nav{display:none}}
+
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Site">
+  <div class="in">
+    <a class="site-brand" href="index.html"><span class="mark" aria-hidden="true">RT</span>RT Quick Reference</a>
+    <div class="site-links">
+      <a id="nav-abg" href="index.html#abg">ABG Values</a>
+      <a id="nav-o2" href="index.html#o2">O₂ Devices</a>
+      <a id="nav-meds" href="meds.html" aria-current="page">Medications</a>
+    </div>
+  </div>
+</nav>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="eyebrow">TMC / CSE study reference</p>
+      <h1>Respiratory Pharmacology Chart</h1>
+      <p class="sub">Every drug on the list with category, strength, dose, onset, peak and duration, mode of action, effects, side effects, contraindications, hazards, delivery device, and exam pearls. Browse it, drill it with flashcards, or test yourself with the quiz.</p>
+    </div>
+    <div class="count" id="count"></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Study views">
+    <button class="tab" role="tab" id="tab-table" data-view="table" aria-selected="true">Table</button>
+    <button class="tab" role="tab" id="tab-cards" data-view="cards" aria-selected="false">Cards</button>
+    <button class="tab" role="tab" id="tab-flash" data-view="flash" aria-selected="false">Flashcards</button>
+    <button class="tab" role="tab" id="tab-quiz" data-view="quiz" aria-selected="false">Quiz</button>
+  </nav>
+
+  <div class="bar">
+    <div class="row" id="searchrow">
+      <input id="q" class="search" type="search" placeholder="Search a drug, brand, side effect, or device (e.g. thrush, Respimat, CF)" aria-label="Search medications">
+      <button id="blur" class="btn" type="button" aria-pressed="false">Hide answers</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by drug class"></div>
+    <p class="hint" id="hint"></p>
+  </div>
+
+  <!-- TABLE -->
+  <section id="view-table" role="tabpanel" aria-labelledby="tab-table">
+    <div class="tablebox">
+      <table id="tbl">
+        <thead><tr>
+          <th>Medication<br>Generic (Brand)</th>
+          <th>Strength</th>
+          <th>Dosage</th>
+          <th>Onset · Peak · Duration</th>
+          <th>Mode of action</th>
+          <th>Clinical effects &amp; indications</th>
+          <th>Adverse / side effects</th>
+          <th>Contraindications</th>
+          <th>Hazards / special considerations</th>
+          <th>Device</th>
+          <th>Notes / good to know</th>
+        </tr></thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section id="view-cards" role="tabpanel" aria-labelledby="tab-cards" hidden>
+    <div class="row" style="margin-top:14px">
+      <button class="btn" type="button" id="expandAll">Expand all</button>
+      <button class="btn" type="button" id="collapseAll">Collapse all</button>
+    </div>
+    <div id="cardsOut"></div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="view-flash" role="tabpanel" aria-labelledby="tab-flash" hidden>
+    <div class="study">
+      <div class="row">
+        <label class="inline" for="fField">Study
+          <select id="fField">
+            <option value="t">Drug class</option>
+            <option value="str">Strength</option>
+            <option value="dose">Dosage</option>
+            <option value="opd">Onset · Peak · Duration</option>
+            <option value="moa">Mode of action</option>
+            <option value="eff">Clinical effects &amp; indications</option>
+            <option value="adv">Adverse / side effects</option>
+            <option value="ci">Contraindications</option>
+            <option value="haz">Hazards / special considerations</option>
+            <option value="dev">Device</option>
+            <option value="note">Notes / good to know</option>
+            <option value="all" selected>Everything</option>
+          </select>
+        </label>
+        <button class="btn" type="button" id="fShuffle">Shuffle</button>
+        <button class="btn" type="button" id="fHideKnown" aria-pressed="false">Skip known cards</button>
+        <button class="btn" type="button" id="fReset">Reset progress</button>
+      </div>
+      <div class="meter"><span id="fPos"></span><span id="fKnown"></span></div>
+      <div class="progress"><i id="fBar" style="width:0"></i></div>
+      <div class="fcard" id="fCard" tabindex="0" role="button" aria-label="Flashcard. Press Space to flip.">
+        <div class="finner">
+          <div class="face front" id="fFront"></div>
+          <div class="face back" id="fBack"></div>
+        </div>
+      </div>
+      <div class="fctrl">
+        <div class="grp">
+          <button class="btn" type="button" id="fPrev">← Prev</button>
+          <button class="btn" type="button" id="fNext">Next →</button>
+        </div>
+        <div class="grp">
+          <button class="btn bad" type="button" id="fAgain">Still learning</button>
+          <button class="btn good" type="button" id="fGot">I know this</button>
+        </div>
+      </div>
+      <p class="kbd">Keyboard: Space flips · ← → move · K marks known · L marks still learning</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="view-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+    <div class="study" id="quizOut"></div>
+  </section>
+
+  <footer>
+    <p>Duplicates in the original list (indacaterol and ipratropium/albuterol) appear once. "Gentamycin" is listed under its standard spelling, gentamicin.</p>
+    <p>Doses are typical adult values from standard RT pharmacology texts, for exam study. Pediatric doses differ, and several brands listed here are discontinued in the US but still appear in textbooks and practice exams. Always follow the current order and package insert in clinical practice.</p>
+  </footer>
+</div>
+
+<script>
+/* NBRC Respiratory Pharmacology Chart — medication data
+   Edit this file to add or change drugs. Each entry:
+   c = class key (see CATS), g = generic, b = brand(s), t = category label,
+   opd = {on: onset, pk: peak, du: duration}, moa = mode of action, ci = contraindications (start with "Relative: " for relative ones),
+   str/dose/eff/adv/haz/dev/note = arrays of bullet points.
+   W("Label") adds a red warning flag in front of a bullet. */
+const CATS = {
+  beta:  {n:"Sympathomimetic (Adrenergic / Beta Agonist)", s:"Stimulate β2 receptors → ↑ cAMP → smooth muscle relaxation"},
+  anti:  {n:"Parasympatholytic (Anticholinergic)", s:"Block muscarinic receptors → ↓ cGMP → bronchodilation"},
+  combo: {n:"Combinations", s:"Two agents in one device for adherence and additive effect"},
+  xan:   {n:"Phosphodiesterase Inhibitors (Xanthines)", s:"Methylxanthines: bronchodilation + respiratory stimulation"},
+  bio:   {n:"Biologics", s:"Monoclonal antibodies for severe, uncontrolled asthma"},
+  masto: {n:"Anti-asthmatic (Mast Cell Stabilizer)", s:"Prevents mast cell degranulation; prophylactic only"},
+  ltm:   {n:"Leukotriene Modifiers", s:"Oral anti-inflammatory controllers"},
+  abx:   {n:"Anti-infectives", s:"Inhaled and systemic agents seen on the boards"},
+  muco:  {n:"Mucolytics", s:"Thin secretions to aid clearance"},
+  ster:  {n:"Corticosteroids", s:"Anti-inflammatory; inhaled (ICS) and systemic"},
+  dil:   {n:"Diluents / Bland Aerosol", s:"Humidification, dilution, sputum induction"}
+};
+const K = c => `var(--c-${c})`;
+const W = t => `<span class="flag">${t}</span>`;
+
+const D = [
+/* ---------- BETA AGONISTS ---------- */
+{c:"beta",g:"Albuterol",opd:{on:"5–15 min",pk:"30–60 min",du:"4–6 hr"},b:"Proventil HFA, Ventolin HFA, ProAir HFA / RespiClick, AccuNeb",t:"SABA (short-acting β2 agonist)",
+ str:["0.5% (5 mg/mL) concentrate","0.083% unit dose (2.5 mg/3 mL)","AccuNeb 0.021% & 0.042% (peds)","pMDI 90 mcg/puff","DPI 90 mcg/inh"],
+ dose:["SVN: 2.5 mg (0.5 mL of 0.5% in 2.5–3 mL NS) TID–QID or q4–6h","pMDI/DPI: 2 puffs q4–6h PRN","Continuous neb: 10–15 mg/hr (acute severe asthma)"],
+ moa:["Stimulates β2 receptors on airway smooth muscle","Activates adenylate cyclase → ↑ cAMP → smooth muscle relaxation (bronchodilation)","Some β1 stimulation at higher doses → tachycardia"],
+ eff:["Rapid, short-acting bronchodilation","Rescue for acute bronchospasm: asthma, COPD, EIB (2 puffs 15–30 min before exercise)","Also shifts K⁺ into cells (used for hyperkalemia)"],
+ adv:["Tachycardia, palpitations","Tremor, nervousness, headache","Hypokalemia, hyperglycemia","Transient ↓ PaO₂ (V/Q mismatch)","Paradoxical bronchospasm"],
+ ci:["Hypersensitivity to albuterol or any component","Relative: tachyarrhythmias, uncontrolled cardiac disease"],
+ haz:["Caution with cardiac disease, arrhythmias, HTN, hyperthyroid, diabetes","Stop treatment and notify physician if HR ↑ >20 beats/min or arrhythmia develops"],
+ dev:["Nebulizer","pMDI","DPI"],
+ note:["The go-to rescue inhaler and the most tested drug on the TMC","Assess breath sounds, HR, and peak flow before and after","Racemic mixture: R-isomer is active, S-isomer is not"]},
+{c:"beta",g:"Levalbuterol",opd:{on:"10–15 min",pk:"30–90 min",du:"5–8 hr"},b:"Xopenex, Xopenex HFA",t:"SABA (R-isomer of albuterol)",
+ str:["0.31 mg/3 mL, 0.63 mg/3 mL, 1.25 mg/3 mL unit dose","1.25 mg/0.5 mL concentrate","pMDI 45 mcg/puff"],
+ dose:["SVN: 0.63 mg TID (q6–8h); up to 1.25 mg TID","Peds 6–11 yrs: 0.31 mg TID","pMDI: 2 puffs q4–6h PRN"],
+ moa:["R-isomer only: stimulates β2 receptors → ↑ cAMP → bronchodilation","Leaves out the S-isomer, which does not bronchodilate and may ↑ airway reactivity"],
+ eff:["Same as albuterol: rapid, short-acting bronchodilation","Rescue for asthma / COPD bronchospasm"],
+ adv:["Same class effects as albuterol, possibly less tachycardia and tremor"],
+ ci:["Hypersensitivity to levalbuterol or racemic albuterol","Relative: tachyarrhythmias, uncontrolled cardiac disease"],
+ haz:["Same cardiac precautions as albuterol","Store unit doses in foil pouch, protected from light"],
+ dev:["Nebulizer","pMDI"],
+ note:["Exam pick when a patient has tachycardia or palpitations on albuterol","Only the active (R) isomer, so a lower dose gives similar effect"]},
+{c:"beta",g:"Racemic Epinephrine",opd:{on:"3–5 min",pk:"5–20 min",du:"0.5–2 hr"},b:"S2, AsthmaNefrin (racepinephrine)",t:"Adrenergic (α + β agonist)",
+ str:["2.25% solution"],
+ dose:["SVN: 0.25–0.5 mL of 2.25% in 3 mL NS, q3–4h PRN (up to QID)"],
+ moa:["Stimulates α1 receptors → vasoconstriction of mucosal blood vessels → ↓ airway swelling","Also stimulates β2 (bronchodilation) and β1 (↑ heart rate and contractility)"],
+ eff:["Decongests the upper airway by shrinking mucosal edema, with some bronchodilation","Post-extubation stridor, croup (laryngotracheobronchitis), upper airway edema"],
+ adv:["Tachycardia, HTN, arrhythmias","Tremor, anxiety, headache","Rebound mucosal edema"],
+ ci:["Hypersensitivity to epinephrine","Taking an MAO inhibitor (or within 2 weeks of stopping one)","Relative: severe HTN, coronary artery disease, arrhythmias, hyperthyroidism"],
+ haz:["Observe for rebound stridor for 2–4 hr after treatment (croup patients should stay under observation)","Monitor HR and BP"],
+ dev:["Nebulizer"],
+ note:["Know the reason: the α effect decongests the upper airway","Board answer for post-extubation stridor alongside cool mist and possibly steroids"]},
+{c:"beta",g:"Salmeterol",opd:{on:"~20 min",pk:"3–5 hr",du:"12 hr"},b:"Serevent Diskus",t:"LABA (long-acting β2 agonist)",
+ str:["50 mcg/inhalation"],
+ dose:["1 inhalation (50 mcg) BID, about 12 hr apart","EIB: 1 inh at least 30 min before exercise"],
+ moa:["Selective β2 agonist → ↑ cAMP → bronchodilation","Long side chain anchors next to the receptor (exosite), so it keeps stimulating it for 12 hr"],
+ eff:["Maintenance bronchodilation (12 hr)","Asthma maintenance (with ICS) and COPD maintenance","Prevention of EIB"],
+ adv:["Headache, tremor, tachycardia, palpitations","Throat irritation, cough"],
+ ci:["Asthma treated without an inhaled corticosteroid (LABA monotherapy)","Primary treatment of status asthmaticus or acute bronchospasm","Severe milk-protein allergy (lactose in Diskus)","Hypersensitivity to salmeterol"],
+ haz:[W("Boxed warning")+"Never use as monotherapy in asthma; must be paired with an ICS (↑ asthma-related death risk alone)","Not for rescue (slow onset)","Do not exceed BID dosing"],
+ dev:["DPI"],
+ note:["Slow onset is why it is never a rescue drug","Diskus: do not exhale into device; keep level and dry"]},
+{c:"beta",g:"Formoterol fumarate",opd:{on:"1–3 min",pk:"1–3 hr",du:"12 hr"},b:"Perforomist (neb); Foradil Aerolizer (discontinued)",t:"LABA",
+ str:["Perforomist 20 mcg/2 mL","Foradil 12 mcg capsule"],
+ dose:["SVN: 20 mcg BID (max 40 mcg/day)","DPI (Foradil): 12 mcg capsule BID"],
+ moa:["Selective β2 agonist → ↑ cAMP → bronchodilation","Enters the receptor quickly (fast onset) and is stored in the cell membrane, releasing slowly over 12 hr"],
+ eff:["Fast-onset, long-acting bronchodilation","COPD maintenance (Perforomist)"],
+ adv:["Tremor, tachycardia, headache, nausea","Hypokalemia, hyperglycemia"],
+ ci:["Asthma treated without an inhaled corticosteroid","Primary treatment of acute bronchospasm","Hypersensitivity to formoterol"],
+ haz:[W("Boxed warning")+"LABA monotherapy in asthma is contraindicated","Not labeled for rescue in the US despite fast onset","Refrigerate Perforomist until dispensed"],
+ dev:["Nebulizer","DPI"],
+ note:["Fast onset LABA: key difference from salmeterol","Foradil capsules are punctured in the device, never swallowed"]},
+{c:"beta",g:"Arformoterol",opd:{on:"7–20 min",pk:"1–3 hr",du:"12 hr"},b:"Brovana",t:"LABA (R,R-isomer of formoterol)",
+ str:["15 mcg/2 mL unit dose"],
+ dose:["SVN: 15 mcg BID (max 30 mcg/day)"],
+ moa:["(R,R)-isomer of formoterol: selective β2 stimulation → ↑ cAMP → bronchodilation"],
+ eff:["Long-acting bronchodilation, 12 hr","COPD maintenance (chronic bronchitis, emphysema)"],
+ adv:["Pain, chest pain, back pain, diarrhea, leg cramps","Tachycardia, tremor, nervousness"],
+ ci:["Asthma treated without an inhaled corticosteroid","Hypersensitivity to arformoterol or racemic formoterol"],
+ haz:["Not for acute bronchospasm","Not approved for asthma","Refrigerate; protect from light"],
+ dev:["Nebulizer"],
+ note:["Single-isomer version of formoterol, similar to levalbuterol vs albuterol","A nebulized LABA option for COPD patients who can't use a DPI"]},
+{c:"beta",g:"Indacaterol",opd:{on:"~5 min",pk:"1–4 hr",du:"24 hr"},b:"Arcapta Neohaler",t:"Ultra-LABA (24-hr β2 agonist)",
+ str:["75 mcg capsule for inhalation"],
+ dose:["DPI: 75 mcg once daily"],
+ moa:["Selective β2 agonist → ↑ cAMP → bronchodilation","Held in lipid rafts of the cell membrane → fast onset and 24-hr action"],
+ eff:["Once-daily bronchodilation","COPD maintenance"],
+ adv:["Cough right after inhalation (common)","Nasopharyngitis, headache, nausea","Tachycardia, tremor"],
+ ci:["Asthma treated without an inhaled corticosteroid","Hypersensitivity to indacaterol"],
+ haz:["Not for asthma or acute symptoms","Capsule is punctured in the Neohaler, never swallowed"],
+ dev:["DPI"],
+ note:["Know it as the once-daily ultra-LABA","US brand has been discontinued but it still appears in texts and exam prep"]},
+{c:"beta",g:"Olodaterol",opd:{on:"~5 min",pk:"1–3 hr",du:"24 hr"},b:"Striverdi Respimat",t:"Ultra-LABA (24-hr)",
+ str:["2.5 mcg/actuation"],
+ dose:["2 inhalations (5 mcg) once daily"],
+ moa:["Selective β2 agonist with high receptor affinity and slow release → 24-hr bronchodilation"],
+ eff:["24-hr bronchodilation","COPD maintenance"],
+ adv:["Nasopharyngitis, URI, cough","Back pain, dizziness","Tachycardia, tremor"],
+ ci:["Asthma treated without an inhaled corticosteroid","Hypersensitivity to olodaterol"],
+ haz:["Not for asthma or rescue","Cartridge must be inserted and device primed before first use"],
+ dev:["SMI (Respimat)"],
+ note:["Respimat is a soft mist inhaler: slow, long-lasting mist, no propellant","Pairs with tiotropium in Stiolto Respimat"]},
+
+/* ---------- ANTICHOLINERGICS ---------- */
+{c:"anti",g:"Ipratropium bromide",opd:{on:"~15 min",pk:"1–2 hr",du:"4–6 hr"},b:"Atrovent HFA",t:"SAMA (short-acting muscarinic antagonist)",
+ str:["0.02% solution (500 mcg/2.5 mL)","pMDI 17 mcg/puff"],
+ dose:["SVN: 500 mcg TID–QID (q6–8h)","pMDI: 2 puffs QID (max 12 puffs/day)"],
+ moa:["Blocks muscarinic receptors (M1–M3), stopping acetylcholine from the vagus nerve from constricting the airway","↓ cGMP → bronchodilation; also ↓ mucus gland secretion"],
+ eff:["Short-acting bronchodilation","COPD maintenance","Added to SABA in acute asthma in the ED","Can ↓ secretions; nasal form for rhinorrhea"],
+ adv:["Dry mouth, cough, headache","Blurred vision / pupil dilation if mist reaches eyes","Urinary retention, constipation"],
+ ci:["Hypersensitivity to ipratropium, atropine or its derivatives","Relative: narrow-angle glaucoma, BPH or bladder-neck obstruction"],
+ haz:["Caution with narrow-angle glaucoma, BPH / bladder neck obstruction","Use a mouthpiece rather than mask, or shield the eyes"],
+ dev:["Nebulizer","pMDI"],
+ note:["Quaternary ammonium compound: poorly absorbed, so fewer systemic effects than atropine","Slower onset than albuterol: not first-line rescue alone"]},
+{c:"anti",g:"Tiotropium bromide",opd:{on:"~30 min",pk:"~3 hr",du:"24 hr"},b:"Spiriva HandiHaler, Spiriva Respimat",t:"LAMA (long-acting muscarinic antagonist)",
+ str:["HandiHaler 18 mcg capsule","Respimat 2.5 mcg/puff (COPD), 1.25 mcg/puff (asthma)"],
+ dose:["HandiHaler: 18 mcg (1 capsule, 2 inhalations) once daily","Respimat: 2 puffs once daily (5 mcg COPD; 2.5 mcg asthma)"],
+ moa:["Long-acting muscarinic antagonist: blocks vagal (acetylcholine) bronchoconstriction","Releases slowly from M1 and M3 receptors but quickly from M2 (kinetic selectivity) → 24-hr action"],
+ eff:["24-hr bronchodilation","COPD maintenance; ↓ exacerbations","Respimat 1.25 mcg: add-on maintenance for asthma (≥6 yrs)"],
+ adv:["Dry mouth (most common), constipation","URI, sinusitis, pharyngitis","Urinary retention, tachycardia, blurred vision"],
+ ci:["Hypersensitivity to tiotropium, ipratropium or atropine derivatives","Relative: narrow-angle glaucoma, urinary retention / BPH"],
+ haz:["Not for rescue","Narrow-angle glaucoma, BPH, urinary retention","Never swallow capsules; keep powder out of eyes"],
+ dev:["DPI","SMI (Respimat)"],
+ note:["The classic once-daily COPD maintenance drug","HandiHaler: inhale twice from each capsule to empty it"]},
+{c:"anti",g:"Glycopyrrolate",opd:{on:"Inhaled: 5–15 min · IV: ~1 min",pk:"Inhaled: 1–2 hr",du:"Inhaled: 12 hr · IV: 2–7 hr"},b:"Lonhala Magnair (neb), Seebri Neohaler (DPI), Robinul (IV)",t:"LAMA",
+ str:["Lonhala 25 mcg/1 mL vial","Seebri 15.6 mcg capsule","IV 0.2 mg/mL"],
+ dose:["Neb: 25 mcg BID (Magnair only)","DPI: 15.6 mcg BID","IV: 0.1–0.2 mg for secretion reduction"],
+ moa:["Muscarinic antagonist (mainly M3): blocks acetylcholine-driven bronchoconstriction and gland secretions","Quaternary amine, so it stays out of the brain"],
+ eff:["Maintenance bronchodilation in COPD","IV/IM: dries oral and airway secretions (pre-op, end of life, drooling)"],
+ adv:["Dry mouth, UTI, cough, sinusitis","Urinary retention, blurred vision, tachycardia"],
+ ci:["Hypersensitivity to glycopyrrolate","IV form: glaucoma, obstructive uropathy, GI obstruction or paralytic ileus, myasthenia gravis, unstable cardiovascular status in acute hemorrhage"],
+ haz:["Not for rescue","Narrow-angle glaucoma, BPH","Lonhala is used only with the Magnair vibrating-mesh nebulizer"],
+ dev:["Nebulizer","DPI","Injection"],
+ note:["Quaternary amine: doesn't cross the blood-brain barrier","Appears in Bevespi and Breztri combos"]},
+{c:"anti",g:"Umeclidinium bromide",opd:{on:"~15 min",pk:"~3 hr",du:"24 hr"},b:"Incruse Ellipta",t:"LAMA",
+ str:["62.5 mcg/inhalation"],
+ dose:["DPI: 1 inhalation (62.5 mcg) once daily"],
+ moa:["Long-acting muscarinic antagonist: blocks M3 receptors on airway smooth muscle → 24-hr bronchodilation"],
+ eff:["24-hr bronchodilation","COPD maintenance"],
+ adv:["Nasopharyngitis, URI, cough","Arthralgia, tachycardia","Dry mouth, urinary retention"],
+ ci:["Severe milk-protein allergy (lactose carrier)","Hypersensitivity to umeclidinium","Relative: narrow-angle glaucoma, urinary retention"],
+ haz:["Not for asthma or rescue","Narrow-angle glaucoma, BPH"],
+ dev:["DPI"],
+ note:["Ellipta: slide the cover open to load; don't shake; don't block the vent","Component of Anoro and Trelegy Ellipta"]},
+
+{c:"anti",g:"Aclidinium bromide",opd:{on:"~30 min",pk:"1–3 hr",du:"12 hr"},b:"Tudorza Pressair (Eklira Genuair outside the US)",t:"LAMA",
+ str:["400 mcg/actuation"],
+ dose:["DPI: 1 inhalation (400 mcg) BID"],
+ moa:["Long-acting muscarinic antagonist: blocks M3 receptors (slow release) → bronchodilation","Quickly broken down in the blood to inactive metabolites → few systemic effects"],
+ eff:["Long-acting bronchodilation","COPD maintenance (chronic bronchitis, emphysema)"],
+ adv:["Headache, nasopharyngitis, cough","Diarrhea","Dry mouth, urinary retention, blurred vision (less common)"],
+ ci:["Hypersensitivity to aclidinium or any component","Severe milk-protein allergy (lactose carrier)","Relative: narrow-angle glaucoma, urinary retention"],
+ haz:["Not for rescue or acute bronchospasm","Paradoxical bronchospasm: stop and treat","Narrow-angle glaucoma, BPH / urinary retention"],
+ dev:["DPI"],
+ note:["The twice-daily LAMA (tiotropium and umeclidinium are once daily)","Rapidly broken down in the blood, so few systemic anticholinergic effects","Pressair: press and release the button; the window turns green when ready and red after a correct inhalation","Combined with formoterol in Duaklir Pressair (COPD)"]},
+
+/* ---------- COMBINATIONS ---------- */
+{c:"combo",g:"Ipratropium bromide + Albuterol",opd:{on:"~15 min",pk:"1–2 hr",du:"4–6 hr"},b:"DuoNeb (neb), Combivent Respimat",t:"SAMA + SABA",
+ str:["DuoNeb: 0.5 mg ipratropium bromide + 3 mg albuterol sulfate (= 2.5 mg albuterol base) per 3 mL vial","As percentages: ipratropium 0.017% + albuterol 0.083%","Combivent: 20 mcg ipratropium / 100 mcg albuterol per actuation"],
+ dose:["DuoNeb: 3 mL QID, up to 2 extra doses/day","Combivent Respimat: 1 inhalation QID (max 6/day)"],
+ moa:["Albuterol: β2 stimulation → ↑ cAMP","Ipratropium: muscarinic blockade → ↓ cGMP","Two different pathways give more bronchodilation than either drug alone"],
+ eff:["Additive bronchodilation from two mechanisms","COPD with bronchospasm needing a second bronchodilator"],
+ adv:["Combined: tachycardia, tremor, nervousness, dry mouth, headache, cough"],
+ ci:["Hypersensitivity to ipratropium, albuterol, or atropine derivatives","Old CFC Combivent: soy lecithin or peanut allergy","Relative: glaucoma, BPH, tachyarrhythmias"],
+ haz:["Same as each component: cardiac disease, glaucoma, BPH","Soy/peanut allergy with the old CFC Combivent (discontinued)"],
+ dev:["Nebulizer","SMI (Respimat)"],
+ note:["DuoNeb is the classic 'give ipratropium and albuterol together' answer","Combines the fast onset of albuterol with the longer action of ipratropium"]},
+{c:"combo",g:"Umeclidinium + Vilanterol",opd:{on:"~15 min",pk:"1–3 hr",du:"24 hr"},b:"Anoro Ellipta",t:"LAMA + LABA",
+ str:["62.5 mcg umeclidinium / 25 mcg vilanterol"],
+ dose:["DPI: 1 inhalation once daily"],
+ moa:["Umeclidinium: M3 blockade (anticholinergic)","Vilanterol: 24-hr β2 stimulation","Two pathways for dual bronchodilation"],
+ eff:["24-hr dual bronchodilation","COPD maintenance"],
+ adv:["Pharyngitis, sinusitis, URI","Constipation, diarrhea, pain in extremities","Tachycardia, urinary retention"],
+ ci:["Asthma (contains a LABA without an ICS)","Severe milk-protein allergy","Hypersensitivity to umeclidinium or vilanterol"],
+ haz:["COPD only: not for asthma (contains LABA without ICS)","Not for rescue","Severe milk-protein allergy"],
+ dev:["DPI"],
+ note:["Dual bronchodilator, no steroid","Adding fluticasone furoate makes Trelegy (triple therapy)"]},
+{c:"combo",g:"Mometasone + Formoterol",opd:{on:"Minutes (formoterol); ICS effect builds over 1–2 wk",pk:"1–3 hr",du:"12 hr"},b:"Dulera",t:"ICS + LABA",
+ str:["50/5, 100/5, 200/5 mcg per puff"],
+ dose:["pMDI: 2 puffs BID"],
+ moa:["Mometasone: corticosteroid that ↓ airway inflammation through glucocorticoid receptors","Formoterol: fast, long-acting β2 stimulation → bronchodilation","The steroid also up-regulates β2 receptors"],
+ eff:["Anti-inflammatory control plus 12-hr bronchodilation","Asthma maintenance (≥5 yrs)"],
+ adv:["Oral thrush, dysphonia","Nasopharyngitis, sinusitis, headache"],
+ ci:["Primary treatment of status asthmaticus or acute bronchospasm","Hypersensitivity to mometasone or formoterol"],
+ haz:["Not for acute bronchospasm","Rinse mouth and spit after use","Shake well; prime before first use"],
+ dev:["pMDI"],
+ note:["Asthma-labeled combo; not approved for COPD in the US","Use with a spacer to ↓ oral deposition"]},
+{c:"combo",g:"Fluticasone propionate + Salmeterol",opd:{on:"30–60 min (salmeterol); ICS effect builds over 1–2 wk",pk:"~3 hr",du:"12 hr"},b:"Advair Diskus, Advair HFA, Wixela Inhub (generic)",t:"ICS + LABA",
+ str:["Diskus: 100/50, 250/50, 500/50 mcg","HFA: 45/21, 115/21, 230/21 mcg per puff"],
+ dose:["Diskus: 1 inhalation BID","HFA: 2 puffs BID","COPD: 250/50 Diskus BID"],
+ moa:["Fluticasone: corticosteroid that ↓ airway inflammation through glucocorticoid receptors","Salmeterol: long-acting β2 stimulation → bronchodilation"],
+ eff:["Asthma maintenance","COPD maintenance and ↓ exacerbations (250/50)"],
+ adv:["Oral candidiasis (thrush), hoarseness","URI, headache","↑ pneumonia risk in COPD"],
+ ci:["Primary treatment of status asthmaticus or acute bronchospasm","Severe milk-protein allergy (Diskus)","Hypersensitivity to fluticasone or salmeterol"],
+ haz:["Not for rescue","Rinse mouth and spit","High doses: adrenal suppression, bone loss, cataracts/glaucoma"],
+ dev:["DPI","pMDI"],
+ note:["The classic ICS/LABA board answer","Salmeterol's slow onset means it never replaces albuterol for rescue"]},
+{c:"combo",g:"Budesonide + Formoterol",opd:{on:"~15 min (formoterol); ICS effect builds over 1–2 wk",pk:"~2 hr",du:"12 hr"},b:"Symbicort, Breyna (generic)",t:"ICS + LABA",
+ str:["80/4.5, 160/4.5 mcg per puff"],
+ dose:["pMDI: 2 puffs BID (COPD: 160/4.5)","As maintenance + reliever (SMART): extra puffs PRN per current asthma guidelines"],
+ moa:["Budesonide: corticosteroid that ↓ airway inflammation","Formoterol: fast, long-acting β2 stimulation → bronchodilation"],
+ eff:["Asthma maintenance (≥6 yrs)","COPD maintenance"],
+ adv:["Oral thrush, dysphonia","Nasopharyngitis, headache, URI","↑ pneumonia risk in COPD"],
+ ci:["Primary treatment of status asthmaticus or acute episodes needing intensive measures","Hypersensitivity to budesonide or formoterol"],
+ haz:["Rinse mouth and spit","Shake before use; prime if unused 7+ days"],
+ dev:["pMDI"],
+ note:["Formoterol's fast onset allows single maintenance-and-reliever therapy (SMART) in asthma","Know it as the ICS/LABA combo that can double as reliever"]},
+
+/* ---------- XANTHINES ---------- */
+{c:"xan",g:"Theophylline",opd:{on:"IV: immediate · Oral IR: ~30 min",pk:"Oral IR: 1–2 hr · ER: 4–8 hr",du:"IR: 6–8 hr · ER: 12–24 hr"},b:"Theo-24, Elixophyllin, Uniphyl; Aminophylline (IV salt)",t:"Methylxanthine (PDE inhibitor)",
+ str:["Oral tabs/caps 100–600 mg (IR and ER)","Therapeutic serum level: 10–20 mcg/mL (many now target 5–15)"],
+ dose:["Oral: individualized by serum level; adults often start 300 mg/day in divided doses","IV aminophylline for acute use (rare today)"],
+ moa:["Nonselective phosphodiesterase inhibitor → stops cAMP from being broken down → bronchodilation","Blocks adenosine receptors → bronchodilation, CNS and respiratory stimulation","↑ diaphragm contractility; mild anti-inflammatory effect at low doses"],
+ eff:["Mild bronchodilation","↑ diaphragm contractility, CNS respiratory stimulation, mild diuresis","Add-on for COPD or asthma not controlled on other therapy"],
+ adv:["Nausea, vomiting, GI upset","Headache, insomnia, restlessness","Tachycardia, arrhythmias","Seizures (toxicity)"],
+ ci:["Hypersensitivity to theophylline or other xanthines","Relative: uncontrolled seizure disorder, active peptic ulcer, uncontrolled tachyarrhythmias"],
+ haz:[W("Narrow window")+"Toxic above 20 mcg/mL; monitor serum levels","Levels ↑ with CHF, liver disease, cimetidine, ciprofloxacin, erythromycin, zileuton","Levels ↓ with smoking, phenytoin"],
+ dev:["Oral","Injection"],
+ note:["Boards test the therapeutic range and signs of toxicity","Largely replaced by inhaled drugs"]},
+{c:"xan",g:"Caffeine citrate",opd:{on:"IV: minutes · Oral: ~30 min",pk:"IV: end of infusion · Oral: 30 min–2 hr",du:"~24 hr (neonatal half-life 3–4 days)"},b:"Cafcit",t:"Methylxanthine",
+ str:["20 mg/mL caffeine citrate (= 10 mg/mL caffeine base)"],
+ dose:["Loading: 20 mg/kg caffeine citrate IV or PO","Maintenance: 5 mg/kg/day (range 5–10) once daily"],
+ moa:["Blocks adenosine receptors → stimulates the brainstem respiratory center and ↑ sensitivity to CO₂","↑ diaphragm contractility; weak phosphodiesterase inhibition"],
+ eff:["Central respiratory stimulant","Apnea of prematurity; aids weaning neonates off the ventilator"],
+ adv:["Tachycardia, jitteriness, irritability","Feeding intolerance, vomiting","Watch for necrotizing enterocolitis (NEC)"],
+ ci:["Hypersensitivity to caffeine or any component","Relative: seizure disorders, cardiac disease, renal or hepatic impairment","Rule out other causes of apnea (sepsis, hypoglycemia, seizures) before starting"],
+ haz:["Hold or reassess if HR > ~180 in neonates","Caution with seizure disorders, cardiac, renal or hepatic impairment","Therapeutic level ~5–25 mcg/mL"],
+ dev:["Injection","Oral"],
+ note:["Preferred over theophylline in neonates: wider therapeutic range, once-daily dosing, fewer side effects","Dose on the citrate: 2 mg citrate = 1 mg base"]},
+
+/* ---------- BIOLOGICS ---------- */
+{c:"bio",g:"Dupilumab",opd:{on:"FEV₁ improves within ~2 wk",pk:"Serum peak 3–7 days",du:"Dosed every 2 wk"},b:"Dupixent",t:"Monoclonal antibody (anti-IL-4Rα; blocks IL-4 and IL-13)",
+ str:["Prefilled syringe/pen: 200 mg/1.14 mL, 300 mg/2 mL"],
+ dose:["SC: 400 mg loading then 200 mg every 2 weeks, or 600 mg loading then 300 mg every 2 weeks"],
+ moa:["Monoclonal antibody against the IL-4 receptor α subunit","Blocks IL-4 and IL-13 signaling → ↓ type 2 inflammation (eosinophils, IgE, mucus, FeNO)"],
+ eff:["Add-on maintenance for moderate–severe eosinophilic asthma or oral-steroid-dependent asthma (≥6 yrs)","Also COPD with eosinophilia, atopic dermatitis, nasal polyps"],
+ adv:["Injection site reactions","Conjunctivitis, keratitis","Transient blood eosinophilia","Oropharyngeal pain, hypersensitivity"],
+ ci:["Hypersensitivity to dupilumab or any component","Relative: active helminth (worm) infection until treated; avoid live vaccines"],
+ haz:["Not for acute bronchospasm","Don't stop systemic or inhaled steroids abruptly when starting","Treat helminth (worm) infections first"],
+ dev:["Injection"],
+ note:["Targets type 2 (eosinophilic) inflammation","Can be self-injected at home after training"]},
+{c:"bio",g:"Omalizumab",opd:{on:"Free IgE drops within hours; clinical benefit by 12–16 wk",pk:"Serum peak 7–8 days",du:"Dosed every 2–4 wk"},b:"Xolair",t:"Monoclonal antibody (anti-IgE)",
+ str:["75 mg and 150 mg vials / prefilled syringes"],
+ dose:["SC: 75–375 mg every 2 or 4 weeks, based on serum IgE level and body weight"],
+ moa:["Monoclonal antibody that binds free IgE in the blood","IgE can no longer attach to mast cells and basophils → allergens can't trigger mediator release; IgE receptors decrease over time"],
+ eff:["Moderate–severe persistent allergic asthma (≥6 yrs) with positive skin test to a perennial allergen, poorly controlled on ICS","Also chronic urticaria, nasal polyps, food allergy"],
+ adv:["Injection site reactions","URI, sinusitis, headache","Arthralgia"],
+ ci:["Prior severe hypersensitivity reaction to omalizumab","Not for acute bronchospasm or status asthmaticus"],
+ haz:[W("Boxed warning")+"Anaphylaxis: give in a setting ready to treat it; observe after injection; patient carries epinephrine","Not for acute bronchospasm"],
+ dev:["Injection"],
+ note:["Binds free IgE so it can't trigger mast cells","Dose table uses the pre-treatment IgE level and weight"]},
+
+/* ---------- MAST CELL STABILIZER ---------- */
+{c:"masto",g:"Cromolyn sodium",opd:{on:"Protects if given 10–60 min before exposure; full effect 2–4 wk",pk:"~15 min",du:"4–6 hr"},b:"Intal (inhaler discontinued); generic neb; NasalCrom",t:"Mast cell stabilizer (non-steroidal anti-inflammatory)",
+ str:["1% solution: 20 mg/2 mL ampule"],
+ dose:["SVN: 20 mg QID","Exercise/allergen: 20 mg 10–60 min before exposure"],
+ moa:["Stabilizes mast cell membranes → prevents degranulation and release of histamine and leukotrienes","Has no bronchodilating or antihistamine effect"],
+ eff:["Prevents mast cell degranulation and mediator release","Prophylaxis of mild persistent asthma, EIB, allergen-triggered asthma"],
+ adv:["Cough, throat irritation, wheezing","Unpleasant taste, nasal congestion"],
+ ci:["Hypersensitivity to cromolyn","Acute asthma attack or status asthmaticus (no effect)"],
+ haz:["No value in acute attacks","Full benefit takes 2–4 weeks of regular use"],
+ dev:["Nebulizer"],
+ note:["Very safe: few side effects","Can be mixed with albuterol in the same neb"]},
+
+/* ---------- LEUKOTRIENE MODIFIERS ---------- */
+{c:"ltm",g:"Zafirlukast",opd:{on:"Symptoms improve within ~1 wk",pk:"Serum peak ~3 hr",du:"12 hr"},b:"Accolate",t:"Leukotriene receptor antagonist (LTRA)",
+ str:["10 mg and 20 mg tablets"],
+ dose:["Adults & ≥12 yrs: 20 mg BID","Ages 5–11: 10 mg BID","Take 1 hr before or 2 hr after meals"],
+ moa:["Blocks the cysteinyl leukotriene receptor (CysLT1) for LTC4, LTD4 and LTE4","↓ bronchoconstriction, airway edema, mucus and eosinophil recruitment"],
+ eff:["Blocks leukotriene receptors: ↓ bronchoconstriction, edema, mucus","Long-term control of mild persistent asthma"],
+ adv:["Headache, GI upset, infection","Hepatotoxicity"],
+ ci:["Hepatic impairment, including cirrhosis","Hypersensitivity to zafirlukast"],
+ haz:["Monitor liver function","Interacts with warfarin (↑ PT/INR)","Not for acute attacks","Neuropsychiatric events possible"],
+ dev:["Oral"],
+ note:["Food ↓ absorption, so take on an empty stomach","Alternative to low-dose ICS"]},
+{c:"ltm",g:"Montelukast",opd:{on:"Within 1 day",pk:"Serum peak 3–4 hr",du:"24 hr"},b:"Singulair",t:"Leukotriene receptor antagonist (LTRA)",
+ str:["10 mg tablet; 4 mg and 5 mg chewables; 4 mg granules"],
+ dose:["≥15 yrs: 10 mg once daily in the evening","6–14 yrs: 5 mg; 2–5 yrs: 4 mg","EIB: dose 2 hr before exercise"],
+ moa:["Blocks the cysteinyl leukotriene receptor (CysLT1) for LTC4, LTD4 and LTE4","↓ bronchoconstriction, airway edema, mucus and eosinophil recruitment"],
+ eff:["Long-term control of asthma","Prevention of EIB","Allergic rhinitis"],
+ adv:["Headache, abdominal pain, URI","Agitation, sleep disturbance, depression"],
+ ci:["Hypersensitivity to montelukast","Relative: history of psychiatric illness (weigh benefit vs risk)","Chewables: phenylketonuria (contain phenylalanine)"],
+ haz:[W("Boxed warning")+"Serious neuropsychiatric events, including suicidal thoughts; watch for mood or behavior changes","Not for acute attacks"],
+ dev:["Oral"],
+ note:["Most-prescribed leukotriene drug; once daily with no food restriction","Chewables contain phenylalanine (PKU caution)"]},
+{c:"ltm",g:"Zileuton",opd:{on:"Within 2 hr",pk:"Serum peak ~2 hr (IR)",du:"IR: 6 hr · CR: 12 hr"},b:"Zyflo, Zyflo CR",t:"5-lipoxygenase inhibitor",
+ str:["Zyflo 600 mg tab","Zyflo CR 600 mg ER tab"],
+ dose:["IR: 600 mg QID","CR: 1200 mg BID within 1 hr after morning and evening meals","Age ≥12"],
+ moa:["Inhibits the enzyme 5-lipoxygenase → stops leukotrienes (LTB4, LTC4, LTD4, LTE4) from being made from arachidonic acid"],
+ eff:["Blocks leukotriene synthesis","Long-term control of asthma"],
+ adv:["Headache, dyspepsia, nausea","Elevated liver enzymes (ALT)"],
+ ci:["Active liver disease or liver enzymes ≥3× upper limit of normal","Hypersensitivity to zileuton"],
+ haz:["Hepatotoxicity: check LFTs before and during therapy","↑ theophylline and warfarin levels","Not for acute attacks"],
+ dev:["Oral"],
+ note:["Different mechanism from the '-lukasts': stops leukotrienes from being made","QID dosing hurts adherence"]},
+
+/* ---------- ANTI-INFECTIVES ---------- */
+{c:"abx",g:"Tobramycin sulfate",opd:{on:"Bactericidal once in the airway",pk:"Sputum ~10 min after neb · serum ~1 hr",du:"12 hr (BID); 28-day on/off cycle"},b:"TOBI, Bethkis, Kitabis Pak, TOBI Podhaler",t:"Aminoglycoside antibiotic",
+ str:["TOBI 300 mg/5 mL","Bethkis 300 mg/4 mL","Podhaler 28 mg capsules"],
+ dose:["Neb: 300 mg BID for 28 days on, 28 days off","Podhaler: 4 capsules (112 mg) BID, same cycle"],
+ moa:["Aminoglycoside: binds the bacterial 30S ribosomal subunit → misreading of mRNA and stopped protein synthesis (bactericidal)","Kills more at higher concentrations, so inhaled delivery puts high levels where the bacteria are"],
+ eff:["Kills gram-negative bacteria","CF patients colonized with Pseudomonas aeruginosa"],
+ adv:["Voice alteration, cough, bronchospasm","Tinnitus, hearing loss (ototoxic)","Nephrotoxicity"],
+ ci:["Hypersensitivity to any aminoglycoside","Relative: renal impairment, hearing loss, myasthenia gravis or other neuromuscular disease, pregnancy"],
+ haz:["Give a bronchodilator first","Do not mix with other drugs (especially dornase) in the neb","Caution with renal impairment or other ototoxic drugs"],
+ dev:["Nebulizer","DPI"],
+ note:["CF sequence: bronchodilator → hypertonic saline → dornase → airway clearance → inhaled antibiotic → ICS","Delivered with a PARI LC Plus jet nebulizer"]},
+{c:"abx",g:"Pentamidine isethionate",opd:{on:"Protection builds with monthly doses",pk:"Lung level highest right after treatment",du:"4 wk per dose (monthly)"},b:"NebuPent (inhaled), Pentam (IV)",t:"Antiprotozoal / antifungal",
+ str:["300 mg vial (powder)"],
+ dose:["Neb: 300 mg in 6 mL sterile water every 4 weeks"],
+ moa:["Antiprotozoal: interferes with DNA, RNA, phospholipid and protein synthesis in Pneumocystis (exact mechanism not fully known)"],
+ eff:["Prevention of Pneumocystis jirovecii pneumonia (PCP) in HIV and other immunocompromised patients"],
+ adv:["Cough, bronchospasm, wheezing","Metallic / bitter taste","Conjunctivitis, fatigue, dizziness","Pneumothorax (rare)"],
+ ci:["History of anaphylaxis to inhaled or IV pentamidine"],
+ haz:[W("Caregiver")+"Negative-pressure room or booth; HEPA / expiratory filter; RT wears PPE","Pregnant staff should avoid exposure","Screen patient for TB first","Pre-treat with a bronchodilator"],
+ dev:["Nebulizer"],
+ note:["Mix with sterile water only: saline makes it precipitate","Delivered via Respirgard II nebulizer (one-way valves + expiratory filter)"]},
+{c:"abx",g:"Ribavirin",opd:{on:"Given continuously; slows viral replication",pk:"N/A (continuous aerosol)",du:"12–18 hr/day for 3–7 days"},b:"Virazole",t:"Antiviral",
+ str:["6 g vial reconstituted in 300 mL sterile water = 20 mg/mL"],
+ dose:["Aerosol via SPAG-2: 12–18 hr/day for 3–7 days"],
+ moa:["Synthetic nucleoside (guanosine) analog → inhibits viral RNA synthesis and mRNA capping, slowing viral replication"],
+ eff:["Severe RSV lower respiratory infection in high-risk infants"],
+ adv:["Worsening respiratory function, bronchospasm","Conjunctivitis, rash","Anemia (systemic)"],
+ ci:["Women who are or may become pregnant (including caregivers exposed to the aerosol)","Hypersensitivity to ribavirin"],
+ haz:[W("Teratogenic")+"Pregnant caregivers and visitors must avoid exposure","Scavenging tent or negative-pressure room","Drug crystallizes in ventilator circuits and valves: use filters and change them often"],
+ dev:["Nebulizer (SPAG-2)"],
+ note:["SPAG = small particle aerosol generator","Rarely used now; RSV prevention (palivizumab, nirsevimab) is more common"]},
+{c:"abx",g:"Aztreonam lysine",opd:{on:"Bactericidal once in the airway",pk:"Sputum ~10 min after neb · serum ~1 hr",du:"8 hr (TID); 28-day on/off cycle"},b:"Cayston",t:"Monobactam antibiotic",
+ str:["75 mg vial + 1 mL diluent"],
+ dose:["Neb: 75 mg TID (doses at least 4 hr apart) for 28 days on, 28 days off"],
+ moa:["Monobactam: binds penicillin-binding protein 3 → blocks bacterial cell-wall synthesis (bactericidal)","Works only against gram-negative aerobes such as Pseudomonas"],
+ eff:["Improves respiratory symptoms in CF patients (≥7 yrs) with Pseudomonas aeruginosa"],
+ adv:["Cough, nasal congestion, wheezing","Pharyngolaryngeal pain, fever","Bronchospasm, chest discomfort"],
+ ci:["Known allergy to aztreonam","Relative: β-lactam allergy, especially ceftazidime (shared side chain)"],
+ haz:["Give a bronchodilator 15 min–4 hr before","Allergic reactions (caution with ceftazidime allergy)","Refrigerate; reconstitute just before use"],
+ dev:["Nebulizer (Altera)"],
+ note:["Only given with the Altera vibrating-mesh nebulizer","Often alternated month-to-month with tobramycin"]},
+{c:"abx",g:"Colistin (colistimethate sodium)",opd:{on:"Bactericidal once in the airway",pk:"Sputum within ~1 hr of neb",du:"12 hr (BID)"},b:"Coly-Mycin M",t:"Polymyxin antibiotic",
+ str:["150 mg colistin base activity per vial"],
+ dose:["Inhaled (off-label): 75–150 mg BID via neb","IV: 2.5–5 mg/kg/day in divided doses"],
+ moa:["Polymyxin: acts like a detergent, binding lipopolysaccharide in the gram-negative outer membrane → membrane breaks down and the cell dies","Colistimethate is an inactive prodrug that converts to colistin"],
+ eff:["Multidrug-resistant gram-negative infections: Pseudomonas, Acinetobacter, Klebsiella","CF Pseudomonas; ventilator-associated pneumonia"],
+ adv:["Bronchospasm, chest tightness, cough","Nephrotoxicity, neurotoxicity (systemic)","Paresthesias, neuromuscular blockade"],
+ ci:["Hypersensitivity to colistimethate or polymyxin B","Relative: renal impairment, myasthenia gravis, use with neuromuscular blockers"],
+ haz:["Mix immediately before use: premixed solution breaks down into a form toxic to the lungs","Pre-treat with a bronchodilator","Monitor renal function"],
+ dev:["Nebulizer","Injection"],
+ note:["A 'last-resort' antibiotic for resistant organisms","Neuromuscular blockade risk: watch ventilation"]},
+{c:"abx",g:"Nafcillin",opd:{on:"IV: immediate",pk:"End of infusion (IM: 30–60 min)",du:"4–6 hr (half-life 0.5–1 hr)"},b:"Nallpen (generic nafcillin)",t:"Penicillinase-resistant penicillin",
+ str:["1 g and 2 g vials / premixed bags"],
+ dose:["IV: 1–2 g every 4–6 hr"],
+ moa:["Penicillin: binds penicillin-binding proteins → blocks cell-wall cross-linking (bactericidal)","Bulky side chain resists staph penicillinase (β-lactamase)"],
+ eff:["Infections from methicillin-sensitive Staphylococcus aureus (MSSA): staph pneumonia, endocarditis, osteomyelitis, bacteremia"],
+ adv:["Hypersensitivity / anaphylaxis","Phlebitis; tissue necrosis if extravasated","Neutropenia, hypokalemia, interstitial nephritis"],
+ ci:["Hypersensitivity to any penicillin","Relative: cephalosporin allergy (cross-reactivity)"],
+ haz:["Not effective against MRSA","Check IV site often"],
+ dev:["Injection"],
+ note:["Systemic only; not inhaled","Know it as the anti-staph penicillin"]},
+{c:"abx",g:"Gentamicin",opd:{on:"IV: immediate",pk:"~30 min after a 30-min infusion (IM: 30–90 min)",du:"8 hr traditional · 24 hr extended-interval"},b:"Garamycin (generic gentamicin)",t:"Aminoglycoside antibiotic",
+ str:["40 mg/mL injection (10 mg/mL pediatric)"],
+ dose:["IV/IM: 5–7 mg/kg once daily (extended interval), or 1–1.7 mg/kg q8h","Aerosolized (off-label) in some protocols"],
+ moa:["Aminoglycoside: binds the bacterial 30S ribosomal subunit → stops protein synthesis (bactericidal)","Concentration-dependent killing with a post-antibiotic effect, which allows once-daily dosing"],
+ eff:["Serious gram-negative infections (Pseudomonas, E. coli, Klebsiella)","Synergy with β-lactams for gram-positive infections"],
+ adv:["Ototoxicity (hearing loss, vertigo)","Nephrotoxicity","Neuromuscular blockade"],
+ ci:["Hypersensitivity to gentamicin or other aminoglycosides","Relative: pregnancy, myasthenia gravis, renal impairment, existing hearing loss"],
+ haz:["Monitor peak and trough levels plus renal function","Can potentiate paralytics → respiratory depression; caution in myasthenia gravis","Avoid other nephrotoxic / ototoxic drugs"],
+ dev:["Injection"],
+ note:["Same class and toxicities as tobramycin","'Mycin' spelling is used for Streptomyces-derived drugs; gentamicin comes from Micromonospora"]},
+
+/* ---------- MUCOLYTICS ---------- */
+{c:"muco",g:"Acetylcysteine",opd:{on:"~1 min",pk:"5–10 min",du:"Short; repeat TID–QID"},b:"Mucomyst; Acetadote (IV)",t:"Mucolytic",
+ str:["10% and 20% solution"],
+ dose:["Neb: 3–5 mL of 20% or 6–10 mL of 10%, TID–QID","Direct instillation: 1–2 mL of 10–20% every 1–4 hr"],
+ moa:["Free sulfhydryl (–SH) group breaks disulfide bonds that link mucoproteins → ↓ mucus viscosity","Restores glutathione in the liver (acetaminophen antidote)"],
+ eff:["Breaks disulfide bonds in mucoproteins → thinner mucus","Thick, tenacious secretions (bronchitis, pneumonia, atelectasis from mucus plugs)","Antidote for acetaminophen overdose (oral/IV)"],
+ adv:["Bronchospasm (most important)","Rotten-egg (sulfur) odor, nausea, vomiting","Stomatitis, rhinorrhea, hemoptysis"],
+ ci:["Hypersensitivity to acetylcysteine","Relative: asthma or hyperreactive airways (bronchospasm); weak cough without suction available"],
+ haz:[W("Bronchospasm")+"Always give with or after a bronchodilator","Have suction ready: secretions can increase quickly","Opened vials: refrigerate and discard after 96 hr"],
+ dev:["Nebulizer","Direct instillation"],
+ note:["Light purple color change in the vial is harmless","Reacts with rubber and some metals"]},
+{c:"muco",g:"Dornase alfa",opd:{on:"Sputum thins within hours; lung function improves in 3–7 days",pk:"Sputum level ~15 min after neb",du:"24 hr (once daily)"},b:"Pulmozyme",t:"Mucolytic enzyme (recombinant DNase)",
+ str:["2.5 mg/2.5 mL (1 mg/mL) ampule"],
+ dose:["Neb: 2.5 mg once daily (some patients BID)"],
+ moa:["Recombinant human DNase I: cuts long strands of extracellular DNA released by dead neutrophils in purulent sputum → ↓ viscosity"],
+ eff:["Cleaves extracellular DNA from dead neutrophils in purulent sputum","Cystic fibrosis: improves lung function and ↓ infections"],
+ adv:["Voice alteration, pharyngitis, laryngitis","Chest pain, rash, conjunctivitis"],
+ ci:["Hypersensitivity to dornase alfa or Chinese hamster ovary cell products"],
+ haz:["Do not mix or dilute with other drugs in the nebulizer","Refrigerate and protect from light","Use an approved jet neb, not an ultrasonic nebulizer"],
+ dev:["Nebulizer"],
+ note:["CF-specific; not shown to help non-CF bronchiectasis","Given before airway clearance so it has time to work"]},
+
+/* ---------- CORTICOSTEROIDS ---------- */
+{c:"ster",g:"Flunisolide",opd:{on:"Days (24 hr–1 wk)",pk:"1–4 wk",du:"12 hr (BID)"},b:"AeroBid, Aerospan (discontinued); nasal spray",t:"Inhaled corticosteroid (ICS)",
+ str:["Aerospan 80 mcg/puff","AeroBid 250 mcg/puff","Nasal 25 mcg/spray"],
+ dose:["Aerospan: 2 puffs (160 mcg) BID","AeroBid: 2 puffs BID"],
+ moa:["Binds glucocorticoid receptors inside airway cells and changes gene transcription","↓ inflammatory cells (eosinophils, mast cells, T cells) and cytokines; ↓ mucus and airway hyperresponsiveness","Up-regulates β2 receptors, so β-agonists work better"],
+ eff:["Long-term control of persistent asthma (anti-inflammatory)"],
+ adv:["Oral thrush, dysphonia, cough","Unpleasant taste, headache"],
+ ci:["Primary treatment of status asthmaticus or acute bronchospasm","Hypersensitivity to flunisolide","Relative: untreated systemic fungal infection, active TB"],
+ haz:["Not for acute bronchospasm","Rinse mouth and spit"],
+ dev:["pMDI"],
+ note:["Aerospan had a built-in spacer","Oral inhalers discontinued in US; still appears in study guides"]},
+{c:"ster",g:"Triamcinolone acetonide",opd:{on:"Days (~1 wk)",pk:"1–2 wk",du:"6–12 hr (TID–QID dosing)"},b:"Azmacort (discontinued); Kenalog (inj.), Nasacort (nasal)",t:"Corticosteroid (ICS / systemic)",
+ str:["Azmacort 75 mcg/puff (100 mcg from valve)","Kenalog 10 & 40 mg/mL"],
+ dose:["Azmacort: 2 puffs TID–QID or 4 puffs BID"],
+ moa:["Binds glucocorticoid receptors inside airway cells and changes gene transcription","↓ inflammatory cells (eosinophils, mast cells, T cells) and cytokines; ↓ mucus and airway hyperresponsiveness","Up-regulates β2 receptors, so β-agonists work better"],
+ eff:["Long-term control of persistent asthma","Injectable: anti-inflammatory for many conditions"],
+ adv:["Oral thrush, dysphonia, cough","Systemic: hyperglycemia, fluid retention"],
+ ci:["Inhaled: primary treatment of status asthmaticus or acute bronchospasm","Systemic: systemic fungal infection; IM use in idiopathic thrombocytopenic purpura","Hypersensitivity to triamcinolone"],
+ haz:["Not for acute attacks","Rinse and spit after inhaled use"],
+ dev:["pMDI","Injection"],
+ note:["Azmacort had a built-in spacer tube","Inhaled form discontinued in US (2010)"]},
+{c:"ster",g:"Budesonide",opd:{on:"Flexhaler: ~24 hr · Respules: 2–8 days",pk:"1–2 wk (Respules up to 4–6 wk)",du:"12–24 hr"},b:"Pulmicort Respules, Pulmicort Flexhaler",t:"Inhaled corticosteroid (ICS)",
+ str:["Respules 0.25, 0.5, 1 mg/2 mL suspension","Flexhaler 90 and 180 mcg/inh"],
+ dose:["Respules: 0.25–1 mg once daily or BID (ages 12 mo–8 yrs)","Flexhaler: 180–360 mcg BID (max 720 mcg BID)"],
+ moa:["Binds glucocorticoid receptors inside airway cells and changes gene transcription","↓ inflammatory cells (eosinophils, mast cells, T cells) and cytokines; ↓ mucus and airway hyperresponsiveness","Up-regulates β2 receptors, so β-agonists work better","High first-pass liver metabolism limits systemic effects of the swallowed portion"],
+ eff:["Long-term control of persistent asthma","Respules are used for young children who can't use inhalers"],
+ adv:["Oral thrush, dysphonia, cough","Respiratory infection, otitis media (peds)"],
+ ci:["Primary treatment of status asthmaticus or acute bronchospasm","Flexhaler: severe milk-protein allergy","Hypersensitivity to budesonide"],
+ haz:["Not for acute bronchospasm","Wash face and rinse mouth after a mask treatment","Suspension: don't use an ultrasonic nebulizer"],
+ dev:["Nebulizer","DPI"],
+ note:["The only nebulized ICS in the US","Mask treatments leave steroid on the face; wipe it off"]},
+{c:"ster",g:"Beclomethasone dipropionate",opd:{on:"1–2 days",pk:"1–4 wk",du:"12 hr (BID)"},b:"QVAR RediHaler",t:"Inhaled corticosteroid (ICS)",
+ str:["40 and 80 mcg/actuation"],
+ dose:["40–320 mcg BID (age-based)"],
+ moa:["Prodrug activated in the lung to beclomethasone-17-monopropionate","Binds glucocorticoid receptors inside airway cells and changes gene transcription","↓ inflammatory cells (eosinophils, mast cells, T cells) and cytokines; ↓ mucus and airway hyperresponsiveness","Up-regulates β2 receptors, so β-agonists work better"],
+ eff:["Long-term control of persistent asthma (≥4 yrs)"],
+ adv:["Oral thrush, dysphonia","Headache, URI, pharyngitis"],
+ ci:["Primary treatment of status asthmaticus or acute bronchospasm","Hypersensitivity to beclomethasone"],
+ haz:["Not for acute attacks","Rinse and spit","High doses: adrenal suppression, growth slowing in children"],
+ dev:["pMDI (breath-actuated)"],
+ note:["RediHaler is breath-actuated: do NOT shake and do NOT use with a spacer","HFA propellant gives fine particles with good lung deposition"]},
+{c:"ster",g:"Fluticasone",opd:{on:"~24 hr",pk:"1–2 wk",du:"Propionate: 12 hr · Furoate: 24 hr"},b:"Flovent HFA / Diskus (propionate); Arnuity Ellipta (furoate); ArmonAir Digihaler",t:"Inhaled corticosteroid (ICS)",
+ str:["HFA 44, 110, 220 mcg/puff","Diskus 50, 100, 250 mcg","Arnuity 50, 100, 200 mcg"],
+ dose:["HFA: 88–880 mcg BID","Diskus: 100–1000 mcg BID","Arnuity: 1 inhalation once daily"],
+ moa:["Binds glucocorticoid receptors inside airway cells and changes gene transcription","↓ inflammatory cells (eosinophils, mast cells, T cells) and cytokines; ↓ mucus and airway hyperresponsiveness","Up-regulates β2 receptors, so β-agonists work better","Very high receptor affinity; almost none of the swallowed drug reaches the blood"],
+ eff:["Long-term control of persistent asthma","Anti-inflammatory; ↓ airway hyperresponsiveness"],
+ adv:["Oral thrush, dysphonia, cough","Headache, URI","Pneumonia risk in COPD"],
+ ci:["Primary treatment of status asthmaticus or acute bronchospasm","Diskus / Ellipta: severe milk-protein allergy","Hypersensitivity to fluticasone"],
+ haz:["Not for acute bronchospasm","Rinse and spit; use a spacer with the pMDI","High doses: adrenal suppression, bone loss, cataracts"],
+ dev:["pMDI","DPI"],
+ note:["One of the most potent ICSs","Flovent HFA brand ended in 2024; authorized generics remain"]},
+{c:"ster",g:"Methylprednisolone",opd:{on:"IV: ~1 hr; clinical effect 4–6 hr",pk:"IV: 30 min–1 hr · Oral: 1–2 hr",du:"12–36 hr"},b:"Solu-Medrol (IV), Medrol (oral), Depo-Medrol (IM)",t:"Systemic corticosteroid",
+ str:["Solu-Medrol 40, 125, 500, 1000 mg vials","Medrol 2–32 mg tablets"],
+ dose:["Acute asthma: 40–80 mg/day IV or PO in 1–2 doses (peds 1–2 mg/kg/day)","COPD exacerbation: often 40–125 mg IV, then switch to oral"],
+ moa:["Systemic glucocorticoid: binds glucocorticoid receptors and switches off inflammatory genes","↓ airway inflammation, edema and mucus; restores β2-receptor response"],
+ eff:["Powerful anti-inflammatory","Acute asthma and COPD exacerbations, status asthmaticus, airway edema"],
+ adv:["Hyperglycemia, fluid retention, HTN","Insomnia, mood changes, ↑ appetite","Immunosuppression"],
+ ci:["Systemic fungal infection","Hypersensitivity to methylprednisolone","Solu-Medrol 40 mg: cow's-milk protein allergy (contains lactose)","Intrathecal use; benzyl-alcohol formulations in premature infants","Relative: live vaccines during immunosuppressive doses"],
+ haz:["Taper if used longer than about 2 weeks (adrenal suppression)","Monitor glucose, especially in diabetics","Long-term: osteoporosis, cataracts, muscle weakness, Cushingoid features, GI ulcers"],
+ dev:["Injection","Oral"],
+ note:["Onset takes 4–6 hr, so give early in the exacerbation","IV and oral routes work equally well if the patient can swallow"]},
+{c:"ster",g:"Prednisone",opd:{on:"1–2 hr; clinical effect 4–6 hr",pk:"1–2 hr",du:"12–36 hr"},b:"Deltasone (discontinued), Rayos; generic",t:"Systemic corticosteroid",
+ str:["1, 2.5, 5, 10, 20, 50 mg tablets; oral solution"],
+ dose:["COPD exacerbation: 40 mg daily for 5 days","Asthma burst: 40–60 mg/day for 5–10 days"],
+ moa:["Prodrug converted by the liver to prednisolone","Systemic glucocorticoid: switches off inflammatory genes → ↓ airway inflammation, edema and mucus"],
+ eff:["Oral anti-inflammatory","Asthma and COPD exacerbations; steroid-dependent severe asthma"],
+ adv:["Same as methylprednisolone: hyperglycemia, fluid retention, mood changes, insomnia, immunosuppression"],
+ ci:["Systemic fungal infection","Hypersensitivity to prednisone","Relative: live vaccines during immunosuppressive doses, untreated active infection"],
+ haz:["Taper after long courses","Take with food to limit GI upset","Long-term: osteoporosis, cataracts, adrenal suppression"],
+ dev:["Oral"],
+ note:["Short bursts (≤ ~10 days) usually don't need a taper","Prodrug converted to prednisolone in the liver"]},
+
+/* ---------- DILUENTS ---------- */
+{c:"dil",g:"Normal saline solution",opd:{on:"Immediate",pk:"N/A",du:"Only while aerosol is delivered"},b:"0.9% NaCl (isotonic)",t:"Diluent / bland aerosol",
+ str:["0.9%"],
+ dose:["Diluent: 2–5 mL with nebulized meds","Bland aerosol or instillation: 3–5 mL"],
+ moa:["Isotonic: adds water to secretions and humidifies without changing airway osmolarity","No pharmacologic action; acts as a carrier for nebulized drugs"],
+ eff:["Dilutes medications for nebulization","Humidifies and thins secretions","Sputum induction (with hypertonic preferred)"],
+ adv:["Minimal; rare bronchospasm","Contamination risk with multi-dose containers"],
+ ci:["No absolute contraindications"],
+ haz:["Use sterile unit doses","Overhydration with prolonged continuous aerosol in infants"],
+ dev:["Nebulizer","Direct instillation"],
+ note:["Isotonic: matches body fluid, so the least irritating diluent","Routine instillation before suctioning is no longer recommended"]},
+{c:"dil",g:"Hypertonic saline solution",opd:{on:"Immediate",pk:"Within 1 hr",du:"Clearance effect lasts up to ~8 hr"},b:"3%, 3.5%, 7% NaCl (Hyper-Sal, PulmoSal)",t:"Bland aerosol / airway hydration",
+ str:["3%, 3.5%, 7%"],
+ dose:["Sputum induction: 3–5 mL of 3%","CF: 4 mL of 7% BID"],
+ moa:["Osmotic: draws water from airway cells into the airway surface liquid → rehydrates mucus and improves mucociliary clearance","Mild irritation stimulates cough (sputum induction)"],
+ eff:["Draws water into the airway surface liquid → better mucociliary clearance","Sputum induction (TB, PCP, cytology)","Airway clearance in CF"],
+ adv:["Bronchospasm (asthma, COPD)","Cough, throat irritation, salty taste"],
+ ci:["Relative: severe airway obstruction (e.g., FEV₁ < 1 L) or uncontrolled asthma without pretreatment","Acute hemoptysis; patient unable to clear secretions"],
+ haz:["Pre-treat with albuterol","Monitor for wheezing; stop if bronchospasm develops","Sputum induction for TB: isolation room, N95"],
+ dev:["Nebulizer"],
+ note:["Hypertonic = more than 0.9% salt","Given before dornase and airway clearance in CF"]},
+{c:"dil",g:"Sterile water",opd:{on:"Immediate",pk:"N/A",du:"Only while aerosol is delivered"},b:"USP sterile water for inhalation",t:"Bland aerosol / humidifier fluid",
+ str:["Hypotonic (0% NaCl)"],
+ dose:["Large-volume nebulizers and heated humidifiers: continuous","Diluent for pentamidine and ribavirin"],
+ moa:["Hypotonic: adds water to the airway to humidify and hydrate secretions","Hypotonic aerosol can irritate the airway and trigger bronchospasm"],
+ eff:["Humidification for artificial airways, oxygen therapy, and bypassed upper airways","Helps thin secretions"],
+ adv:["Airway irritation and bronchospasm (hypotonic)","Overhydration (especially infants)"],
+ ci:["No absolute contraindications","Relative: hyperreactive airways (hypotonic aerosol can cause bronchospasm)"],
+ haz:["Caution in reactive airways","Contamination risk: keep the system closed","Watch for condensation in tubing (drain away from the patient)"],
+ dev:["Nebulizer","Humidifier"],
+ note:["The required diluent when saline would precipitate a drug (pentamidine)","Sterile = free of microorganisms"]},
+{c:"dil",g:"Distilled water",opd:{on:"Immediate",pk:"N/A",du:"Only while humidifier runs"},b:"(Not a drug product)",t:"Humidifier fluid",
+ str:["Hypotonic (0% NaCl)"],
+ dose:["Fills home humidifiers and home CPAP humidifier chambers"],
+ moa:["Mineral-free water vapor for humidification; no pharmacologic action"],
+ eff:["Mineral-free water that won't leave scale in equipment","Home humidification"],
+ adv:["Airway irritation if aerosolized"],
+ ci:["Never use to dilute inhaled medications or in hospital nebulizers or humidifiers (not sterile)"],
+ haz:["Not sterile: never use to dilute inhaled medications","Infection risk if reservoir is not cleaned and refilled daily"],
+ dev:["Humidifier"],
+ note:["Exam distinction: distilled = minerals removed; sterile = microorganisms removed","Hospital equipment uses sterile water"]}
+];
+
+/* NBRC-style practice questions.
+   c = class key (so class filters apply), q = question, a = correct answer,
+   o = three wrong answers, x = explanation shown after answering.
+   The quiz also auto-generates "which class?" and "brand → generic" questions from data.js. */
+const QUIZ = [
+{c:"beta",q:"During an albuterol treatment, a patient's heart rate rises from 88 to 116/min. What should the RT do?",a:"Stop the treatment and notify the physician",o:["Continue and recheck HR afterward","Double the dose to finish faster","Switch the patient to a mask"],x:"A rise of more than 20 beats/min is the classic threshold to stop a β-agonist treatment and contact the physician."},
+{c:"beta",q:"A patient becomes tachycardic every time albuterol is given. Which bronchodilator is the best substitute?",a:"Levalbuterol",o:["Racemic epinephrine","Salmeterol","Theophylline"],x:"Levalbuterol (Xopenex) is the R-isomer of albuterol and may cause less tachycardia at an equivalent dose."},
+{c:"beta",q:"A patient develops inspiratory stridor 30 minutes after extubation. Which aerosol is most appropriate?",a:"Racemic epinephrine 2.25%",o:["Acetylcysteine 20%","Ipratropium 0.02%","Cromolyn sodium 1%"],x:"Racemic epinephrine's α1 vasoconstriction shrinks upper-airway mucosal edema. Watch for rebound stridor for 2–4 hours."},
+{c:"beta",q:"What strength of racemic epinephrine is used by nebulizer?",a:"2.25%",o:["0.5%","1%","0.083%"],x:"Racemic epinephrine comes as a 2.25% solution; the usual dose is 0.25–0.5 mL in about 3 mL of saline."},
+{c:"beta",q:"How many mg of albuterol are in 0.5 mL of a 0.5% solution?",a:"2.5 mg",o:["5 mg","0.25 mg","25 mg"],x:"0.5% = 5 mg/mL, so 0.5 mL × 5 mg/mL = 2.5 mg, the standard nebulized dose."},
+{c:"beta",q:"Why must salmeterol never be used alone to treat asthma?",a:"LABA monotherapy increases the risk of asthma-related death",o:["It has no bronchodilating effect","It causes severe oral thrush","It is only available by injection"],x:"LABAs such as salmeterol must be paired with an inhaled corticosteroid in asthma. Its slow onset also rules it out as a rescue drug."},
+{c:"beta",q:"Which long-acting β2 agonist has the fastest onset of action?",a:"Formoterol",o:["Salmeterol","Tiotropium","Umeclidinium"],x:"Formoterol starts working in 1–3 minutes; salmeterol takes about 20 minutes. Tiotropium and umeclidinium are anticholinergics."},
+{c:"beta",q:"Which of these is a once-daily (24-hour) β2 agonist delivered by soft mist inhaler?",a:"Olodaterol (Striverdi Respimat)",o:["Arformoterol (Brovana)","Levalbuterol (Xopenex)","Salmeterol (Serevent)"],x:"Olodaterol is an ultra-LABA given as 2 puffs once daily from a Respimat. Arformoterol and salmeterol are twice daily."},
+{c:"anti",q:"A patient receiving ipratropium by mask complains of blurred vision. What is the most likely cause?",a:"Aerosol deposited in the eyes, dilating the pupils",o:["Hypokalemia","Oral candidiasis","Theophylline toxicity"],x:"Anticholinergic aerosol in the eyes causes pupil dilation and blurred vision. Use a mouthpiece or shield the eyes, and use caution with narrow-angle glaucoma."},
+{c:"anti",q:"Which is the most common side effect of tiotropium?",a:"Dry mouth",o:["Tremor","Oral thrush","Hypoglycemia"],x:"Anticholinergics dry secretions; dry mouth is the classic complaint. Tremor is a β-agonist effect; thrush is an ICS effect."},
+{c:"anti",q:"Which condition is a caution for inhaled anticholinergics?",a:"Narrow-angle glaucoma",o:["Hypothyroidism","Asthma","Hypertension"],x:"Anticholinergics can raise intraocular pressure and cause urinary retention, so narrow-angle glaucoma and BPH are cautions."},
+{c:"anti",q:"Why does ipratropium cause fewer systemic side effects than atropine?",a:"It is a quaternary ammonium compound that is poorly absorbed",o:["It is given only by injection","It is a β2 agonist","It is metabolized in the lungs into saline"],x:"Quaternary compounds (ipratropium, tiotropium, glycopyrrolate) cross membranes poorly, so little reaches the bloodstream or brain."},
+{c:"combo",q:"A COPD patient's order reads 'DuoNeb q6h.' What two drugs does this contain?",a:"Ipratropium and albuterol",o:["Budesonide and formoterol","Fluticasone and salmeterol","Umeclidinium and vilanterol"],x:"DuoNeb = 0.5 mg ipratropium + 2.5 mg albuterol (3 mg albuterol sulfate) in 3 mL."},
+{c:"combo",q:"Why is Anoro Ellipta (umeclidinium/vilanterol) not used for asthma?",a:"It contains a LABA without an inhaled corticosteroid",o:["It is too short-acting","It must be nebulized","It contains a xanthine"],x:"Anoro is a LAMA + LABA with no steroid. In asthma a LABA must be paired with an ICS, so Anoro is labeled for COPD only."},
+{c:"combo",q:"Which ICS/LABA combination can be used as both maintenance and reliever therapy (SMART) in asthma?",a:"Budesonide/formoterol (Symbicort)",o:["Fluticasone/salmeterol (Advair)","Umeclidinium/vilanterol (Anoro)","Ipratropium/albuterol (DuoNeb)"],x:"Formoterol's rapid onset allows budesonide/formoterol to be used as needed for symptoms as well as twice daily."},
+{c:"combo",q:"After using Advair Diskus, what should the patient be taught to do?",a:"Rinse the mouth with water and spit",o:["Hold their breath for 60 seconds","Shake the device and repeat","Exhale forcefully into the device"],x:"Rinsing and spitting removes steroid from the mouth and throat to reduce thrush and hoarseness. Never exhale into a DPI."},
+{c:"xan",q:"What is the traditional therapeutic serum range for theophylline?",a:"10–20 mcg/mL",o:["1–5 mcg/mL","25–40 mcg/mL","50–100 mcg/mL"],x:"The classic range is 10–20 mcg/mL (many clinicians now target 5–15). Toxicity above 20 causes nausea, tachyarrhythmias and seizures."},
+{c:"xan",q:"Which factor lowers a patient's theophylline level?",a:"Cigarette smoking",o:["Congestive heart failure","Liver disease","Taking ciprofloxacin"],x:"Smoking speeds theophylline clearance. CHF, liver disease, ciprofloxacin, erythromycin and cimetidine all raise levels."},
+{c:"xan",q:"Which drug is preferred for apnea of prematurity?",a:"Caffeine citrate",o:["Theophylline","Albuterol","Dornase alfa"],x:"Caffeine citrate has a wider therapeutic range and once-daily dosing, with fewer side effects than theophylline."},
+{c:"bio",q:"Which biologic binds free IgE and carries a boxed warning for anaphylaxis?",a:"Omalizumab (Xolair)",o:["Dupilumab (Dupixent)","Montelukast (Singulair)","Cromolyn sodium"],x:"Omalizumab is anti-IgE. Patients are observed after each injection and should carry epinephrine."},
+{c:"bio",q:"Dupilumab works by blocking which pathway?",a:"The IL-4 receptor (IL-4 and IL-13 signaling)",o:["Immunoglobulin E","5-lipoxygenase","Muscarinic receptors"],x:"Dupilumab targets IL-4Rα, reducing type 2 (eosinophilic) inflammation."},
+{c:"masto",q:"A parent asks why cromolyn doesn't help during their child's asthma attack. What is the best explanation?",a:"It only prevents mast cell release and has no bronchodilating effect",o:["The dose is too low","It needs to be given by injection","It only works for COPD"],x:"Cromolyn is purely prophylactic. It must be used regularly (full effect in 2–4 weeks) or before exposure."},
+{c:"ltm",q:"Which leukotriene modifier inhibits 5-lipoxygenase and requires liver function monitoring?",a:"Zileuton",o:["Montelukast","Zafirlukast","Cromolyn"],x:"Zileuton (Zyflo) blocks leukotriene synthesis. It can raise liver enzymes and theophylline levels."},
+{c:"ltm",q:"Montelukast carries a boxed warning for which adverse effect?",a:"Neuropsychiatric events such as depression and suicidal thoughts",o:["Anaphylaxis","Hepatic failure","Bronchospasm"],x:"In 2020 the FDA added a boxed warning for serious mood and behavior changes with montelukast."},
+{c:"ltm",q:"How should zafirlukast be taken?",a:"On an empty stomach, 1 hour before or 2 hours after meals",o:["With a high-fat meal","Only at the onset of wheezing","By nebulizer once daily"],x:"Food reduces zafirlukast absorption. It also interacts with warfarin."},
+{c:"abx",q:"What diluent must be used to prepare nebulized pentamidine?",a:"Sterile water",o:["Normal saline","Hypertonic saline","Distilled water"],x:"Saline causes pentamidine to precipitate. It is mixed as 300 mg in 6 mL sterile water and given via Respirgard II."},
+{c:"abx",q:"What is inhaled pentamidine used for?",a:"Prevention of Pneumocystis jirovecii pneumonia",o:["Treatment of RSV","CF Pseudomonas infection","Tuberculosis"],x:"It is given every 4 weeks as PCP prophylaxis in HIV and other immunocompromised patients. Protect caregivers from exposure."},
+{c:"abx",q:"Which inhaled drug is teratogenic and delivered by a SPAG-2 unit?",a:"Ribavirin",o:["Tobramycin","Pentamidine","Aztreonam"],x:"Ribavirin treats severe RSV. Pregnant caregivers should avoid exposure, and it can crystallize in ventilator circuits."},
+{c:"abx",q:"A CF patient with Pseudomonas is started on inhaled tobramycin. What is the typical regimen?",a:"300 mg BID for 28 days on, 28 days off",o:["75 mg TID continuously","2.5 mg once daily","20 mg QID"],x:"TOBI 300 mg BID in alternating 28-day cycles limits resistance. Give a bronchodilator first and never mix with dornase."},
+{c:"abx",q:"Aztreonam lysine (Cayston) must be given with which nebulizer?",a:"Altera",o:["SPAG-2","Respirgard II","Ultrasonic nebulizer"],x:"Cayston is only approved with the Altera vibrating-mesh system, 75 mg TID, doses at least 4 hours apart."},
+{c:"abx",q:"Why must colistimethate be mixed immediately before nebulization?",a:"Premixed solution breaks down into a form that is toxic to the lungs",o:["It loses its color","It becomes too thick to nebulize","It turns into sterile water"],x:"Colistimethate converts to polymyxin E1 in solution, which has caused severe lung injury."},
+{c:"abx",q:"Which aminoglycoside effect can prolong paralysis in a patient on neuromuscular blockers?",a:"Neuromuscular blockade",o:["Hypoglycemia","Bronchodilation","Hypernatremia"],x:"Gentamicin and tobramycin can potentiate paralytics, causing respiratory depression. Use caution in myasthenia gravis."},
+{c:"abx",q:"Nafcillin would NOT be effective against which organism?",a:"MRSA",o:["MSSA","Penicillinase-producing S. aureus","Streptococcus pyogenes"],x:"Nafcillin is a penicillinase-resistant penicillin for MSSA. Methicillin-resistant staph requires other agents such as vancomycin."},
+{c:"muco",q:"What is the most important adverse effect of nebulized acetylcysteine?",a:"Bronchospasm",o:["Oral thrush","Hypokalemia","Ototoxicity"],x:"Acetylcysteine is irritating to the airway, so it is given with or after a bronchodilator. It also smells like rotten eggs."},
+{c:"muco",q:"How does acetylcysteine thin mucus?",a:"It breaks disulfide bonds in mucoproteins",o:["It cleaves extracellular DNA","It blocks leukotrienes","It stimulates β2 receptors"],x:"Breaking disulfide bonds lowers mucus viscosity. Dornase alfa is the drug that cleaves DNA."},
+{c:"muco",q:"Dornase alfa is most useful in which patients?",a:"Cystic fibrosis",o:["Asthma","Post-extubation stridor","Apnea of prematurity"],x:"Dornase cleaves DNA from dead neutrophils in purulent CF sputum. It has not been shown to help non-CF bronchiectasis."},
+{c:"muco",q:"Which handling instruction applies to dornase alfa?",a:"Refrigerate it and don't mix it with other drugs",o:["Dilute it with sterile water","Give it through an ultrasonic nebulizer","Shake the ampule vigorously"],x:"Pulmozyme is a protein: keep it cold, protected from light, and in its own nebulizer."},
+{c:"ster",q:"Which inhaled corticosteroid is available as a nebulizer suspension for young children?",a:"Budesonide (Pulmicort Respules)",o:["Fluticasone (Flovent HFA)","Beclomethasone (QVAR)","Flunisolide (Aerospan)"],x:"Budesonide Respules are the only nebulized ICS in the US, labeled for ages 12 months to 8 years."},
+{c:"ster",q:"Which instruction is correct for QVAR RediHaler?",a:"Do not shake it and do not use a spacer",o:["Shake well and always use a spacer","Puncture the capsule before use","Mix it with saline first"],x:"RediHaler is a breath-actuated MDI, so a spacer won't work with it and it doesn't need shaking."},
+{c:"ster",q:"What is the most common local side effect of inhaled corticosteroids?",a:"Oral candidiasis (thrush)",o:["Tachycardia","Hypokalemia","Tinnitus"],x:"Steroid deposited in the mouth allows yeast overgrowth. A spacer and rinsing and spitting reduce it; hoarseness is also common."},
+{c:"ster",q:"A COPD patient is discharged after an exacerbation. What systemic steroid regimen do guidelines typically recommend?",a:"Prednisone 40 mg daily for 5 days",o:["Prednisone 5 mg weekly","Methylprednisolone 1 g daily for 30 days","No systemic steroids"],x:"A short 5-day course of 40 mg prednisone works as well as longer courses with fewer side effects."},
+{c:"ster",q:"Which is a hazard of long-term systemic corticosteroids?",a:"Adrenal suppression and osteoporosis",o:["Ototoxicity","Hypoglycemia","Bronchospasm"],x:"Long courses need a taper to avoid adrenal crisis. They also cause hyperglycemia, bone loss, cataracts and muscle weakness."},
+{c:"dil",q:"Before giving 7% hypertonic saline to a CF patient, what should the RT do?",a:"Pre-treat with a bronchodilator",o:["Pre-treat with acetylcysteine","Warm it to body temperature","Dilute it with distilled water"],x:"Hypertonic saline can trigger bronchospasm, so albuterol is given first."},
+{c:"dil",q:"What is the key difference between sterile water and distilled water?",a:"Sterile water is free of microorganisms; distilled water has had minerals removed",o:["They are identical","Distilled water is isotonic","Sterile water contains 0.9% NaCl"],x:"Only sterile water is used for inhaled medications and hospital humidifiers. Distilled water is for home humidifier reservoirs."},
+{c:"dil",q:"Which solution is isotonic?",a:"0.9% NaCl",o:["3% NaCl","7% NaCl","Sterile water"],x:"Normal saline (0.9%) matches body fluid. Hypertonic saline is above 0.9%; sterile water is hypotonic."},
+{c:"dil",q:"Which bland aerosol is most likely to cause bronchospasm in a patient with reactive airways?",a:"Sterile water (hypotonic)",o:["Normal saline","Albuterol","Budesonide"],x:"Hypotonic solutions like sterile water irritate reactive airways. Normal saline is the least irritating."},
+{c:"beta",q:"What is the typical duration of action of albuterol?",a:"4–6 hours",o:["12 hours","24 hours","30 minutes"],x:"Albuterol starts working in 5–15 minutes, peaks at 30–60 minutes, and lasts about 4–6 hours."},
+{c:"beta",q:"Which bronchodilator has the fastest onset of action?",a:"Racemic epinephrine",o:["Salmeterol","Tiotropium","Ipratropium"],x:"Racemic epinephrine works in 3–5 minutes but lasts only 0.5–2 hours, which is why rebound stridor must be watched for."},
+{c:"beta",q:"What is the onset of action of salmeterol?",a:"About 20 minutes",o:["1–3 minutes","About 2 hours","3–5 days"],x:"Salmeterol's ~20-minute onset (peak 3–5 hours) is why it is never used for rescue, even though it lasts 12 hours."},
+{c:"beta",q:"How long does formoterol's bronchodilation last?",a:"12 hours",o:["4–6 hours","24 hours","30 minutes"],x:"Formoterol combines a fast 1–3 minute onset with a 12-hour duration, so it is dosed twice daily."},
+{c:"anti",q:"When does ipratropium reach its peak bronchodilating effect?",a:"1–2 hours",o:["5 minutes","12 hours","3–5 days"],x:"Ipratropium starts in about 15 minutes, peaks at 1–2 hours, and lasts 4–6 hours: slower than albuterol, which is why they are often combined."},
+{c:"anti",q:"How often is tiotropium dosed, based on its duration of action?",a:"Once daily (24-hour duration)",o:["Every 4–6 hours","Twice daily","Once weekly"],x:"Tiotropium's onset is about 30 minutes, it peaks near 3 hours, and it lasts 24 hours."},
+{c:"ster",q:"A patient asks why their new inhaled steroid hasn't helped after 2 days. What is the best response?",a:"Full benefit takes 1–2 weeks or more of regular use",o:["It works within 5 minutes, so the dose is wrong","It only works during an asthma attack","It should be stopped and replaced with albuterol"],x:"Inhaled corticosteroids start acting within days but take 1–4 weeks to reach full effect. They must be used daily."},
+{c:"ster",q:"How long after a dose of systemic corticosteroid does clinical improvement usually begin?",a:"About 4–6 hours",o:["Within 1 minute","About 20 minutes","2–3 weeks"],x:"That delay is why systemic steroids are given early in an asthma or COPD exacerbation."},
+{c:"masto",q:"How long does cromolyn take to reach its full protective effect with regular use?",a:"2–4 weeks",o:["5 minutes","12 hours","6 months"],x:"Cromolyn protects if given before exposure, but the full effect of scheduled use takes 2–4 weeks."},
+{c:"muco",q:"What is the onset of action of nebulized acetylcysteine?",a:"About 1 minute",o:["About 1 hour","3–7 days","2–4 weeks"],x:"Acetylcysteine acts within about a minute and peaks at 5–10 minutes, so have suction ready."},
+{c:"anti",q:"Which LAMA is dosed twice daily from a Pressair inhaler?",a:"Aclidinium (Tudorza Pressair)",o:["Tiotropium (Spiriva)","Umeclidinium (Incruse Ellipta)","Olodaterol (Striverdi Respimat)"],x:"Aclidinium 400 mcg is given BID. Tiotropium and umeclidinium are once daily, and olodaterol is a LABA."},
+{c:"beta",q:"Which situation is a contraindication for salmeterol?",a:"Asthma treated without an inhaled corticosteroid",o:["COPD maintenance therapy","Use together with an inhaled corticosteroid","Prevention of exercise-induced bronchospasm"],x:"LABA monotherapy in asthma is contraindicated because it increases the risk of asthma-related death."},
+{c:"combo",q:"A patient with a severe milk-protein allergy should avoid which inhaler?",a:"Advair Diskus",o:["Symbicort pMDI","DuoNeb","Atrovent HFA"],x:"Many DPIs use a lactose carrier (Diskus, Ellipta, Flexhaler, Pressair), so severe milk-protein allergy is a contraindication."},
+{c:"ster",q:"Inhaled corticosteroids are contraindicated as the primary treatment of which condition?",a:"Status asthmaticus",o:["Persistent asthma","COPD with frequent exacerbations","Allergic asthma maintenance"],x:"ICSs are controllers. Acute severe asthma needs bronchodilators and systemic steroids."},
+{c:"xan",q:"Which is a relative contraindication for theophylline?",a:"Uncontrolled seizure disorder",o:["COPD","Cigarette smoking","Nocturnal asthma"],x:"Theophylline lowers the seizure threshold. Active peptic ulcer and uncontrolled arrhythmias are also relative contraindications."},
+{c:"ltm",q:"Zafirlukast is contraindicated in which patients?",a:"Patients with hepatic impairment, including cirrhosis",o:["Patients with asthma","Patients with hypertension","Patients with allergic rhinitis"],x:"Zafirlukast can cause liver injury. Zileuton is likewise contraindicated in active liver disease."},
+{c:"abx",q:"Inhaled ribavirin is contraindicated for whom?",a:"Women who are or may become pregnant, including exposed caregivers",o:["Infants with severe RSV","Patients on supplemental oxygen","Patients with cystic fibrosis"],x:"Ribavirin is teratogenic, so pregnant caregivers and visitors must avoid exposure to the aerosol."},
+{c:"abx",q:"Inhaled pentamidine should NOT be given to a patient with which history?",a:"A previous anaphylactic reaction to pentamidine",o:["HIV infection","A CD4 count below 200","A prior episode of PCP"],x:"Prior anaphylaxis to pentamidine is the only listed contraindication. The other choices are reasons to give it."},
+{c:"muco",q:"Dornase alfa is contraindicated in patients hypersensitive to which product?",a:"Chinese hamster ovary cell products",o:["Penicillin","Soy lecithin","Sulfites"],x:"Pulmozyme is made in Chinese hamster ovary cells."},
+{c:"beta",q:"β2 agonists relax airway smooth muscle by increasing which messenger inside the cell?",a:"Cyclic AMP (cAMP)",o:["Cyclic GMP (cGMP)","Acetylcholine","Histamine"],x:"β2 stimulation activates adenylate cyclase, which raises cAMP and relaxes smooth muscle. Anticholinergics work by lowering cGMP."},
+{c:"beta",q:"Racemic epinephrine reduces post-extubation airway swelling mainly by stimulating which receptor?",a:"α1",o:["β2","M3 muscarinic","H1 histamine"],x:"α1 stimulation constricts mucosal blood vessels, shrinking the swollen tissue. Its β2 effect adds some bronchodilation."},
+{c:"xan",q:"How does theophylline cause bronchodilation?",a:"It inhibits phosphodiesterase, so cAMP is not broken down",o:["It stimulates β2 receptors directly","It blocks muscarinic receptors","It binds free IgE"],x:"Theophylline is a phosphodiesterase inhibitor and adenosine receptor blocker, which keeps cAMP levels high."},
+{c:"masto",q:"How does cromolyn sodium prevent asthma symptoms?",a:"It stabilizes mast cells so they don't release mediators",o:["It relaxes smooth muscle by raising cAMP","It blocks leukotriene receptors","It breaks down mucus"],x:"Cromolyn prevents mast cell degranulation. It has no bronchodilating effect, so it is only preventive."},
+{c:"ster",q:"Besides reducing inflammation, how do corticosteroids help β-agonists work better?",a:"They increase the number of β2 receptors",o:["They block muscarinic receptors","They inhibit phosphodiesterase","They thin mucus"],x:"Steroids up-regulate β2 receptors, one reason ICS/LABA combinations work well together."},
+{c:"abx",q:"How do aminoglycosides such as tobramycin kill bacteria?",a:"They bind the 30S ribosome and stop protein synthesis",o:["They block cell-wall synthesis","They disrupt the outer membrane like a detergent","They inhibit viral RNA synthesis"],x:"Cell-wall blockers are penicillins and aztreonam; the detergent action is colistin; viral RNA inhibition is ribavirin."},
+{c:"dil",q:"How does hypertonic saline improve mucus clearance?",a:"It draws water into the airway surface liquid by osmosis",o:["It breaks disulfide bonds in mucus","It cuts extracellular DNA","It stimulates β2 receptors"],x:"Rehydrating the airway surface liquid helps cilia move mucus. Breaking disulfide bonds is acetylcysteine; cutting DNA is dornase alfa."}
+];
+
+/* NBRC Respiratory Pharmacology Chart — app logic (table, cards, flashcards, quiz).
+   Data comes from data.js (CATS, D, W, K) and quiz.js (QUIZ). No build step needed. */
+(function () {
+  "use strict";
+
+  const FIELDS = [
+    ["str", "Strength", true],
+    ["dose", "Dosage", true],
+    ["opd", "Onset · Peak · Duration"],
+    ["moa", "Mode of action"],
+    ["eff", "Clinical effects & indications"],
+    ["adv", "Adverse / side effects"],
+    ["ci", "Contraindications"],
+    ["haz", "Hazards / special considerations"],
+    ["dev", "Device"],
+    ["note", "Notes / good to know"]
+  ];
+  const LABEL = Object.fromEntries(FIELDS.map(f => [f[0], f[1]]));
+  LABEL.t = "Drug class";
+  LABEL.all = "Everything";
+
+  const $ = id => document.getElementById(id);
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem("nbrc:" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem("nbrc:" + k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
+  };
+  const strip = s => String(s).replace(/<[^>]+>/g, "");
+  const escapeHTML = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const list = a => `<ul class="b">${a.map(x => `<li>${x}</li>`).join("")}</ul>`;
+  const opd = o => `<dl class="opd"><div><dt>Onset</dt><dd>${o.on}</dd></div><div><dt>Peak</dt><dd>${o.pk}</dd></div><div><dt>Duration</dt><dd>${o.du}</dd></div></dl>`;
+  const cis = a => list(a.map(x => x.startsWith("Relative: ") ? `<span class="rel">Relative</span>${x.slice(10)}` : x));
+  const devs = a => `<div class="dev">${a.map(x => `<span class="tag">${x}</span>`).join("")}</div>`;
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const firstBrand = b => b.split(/[,;(]/)[0].trim();
+  const catKeys = Object.keys(CATS);
+
+  D.forEach((d, i) => {
+    d.id = i;
+    d._s = strip([d.g, d.b, d.t, CATS[d.c].n, ...FIELDS.flatMap(f => f[0] === "opd" ? Object.values(d.opd) : d[f[0]])].join(" ")).toLowerCase();
+  });
+
+  /* ---------- shared state ---------- */
+  const active = new Set(store.get("classes", []).filter(k => CATS[k]));
+  let view = "table";
+  const pool = () => D.filter(d => !active.size || active.has(d.c));
+  const hints = {
+    table: "Filter by class, search any term, or turn on Hide answers and tap a cell to check yourself.",
+    cards: "Tap a card to open its details. Class filters and search apply here too.",
+    flash: "Flashcards follow the class filter. Pick what to study, then tap the card (or press Space) to flip it.",
+    quiz: "The quiz draws from the classes you select. With no class selected it covers every class."
+  };
+
+  /* ---------- class chips ---------- */
+  const chipsEl = $("chips");
+  const allChip = document.createElement("button");
+  allChip.type = "button"; allChip.className = "chip"; allChip.id = "chip-all";
+  allChip.style.setProperty("--k", "var(--accent)");
+  allChip.innerHTML = `<span class="dot"></span>All classes <span class="n">${D.length}</span>`;
+  allChip.onclick = () => { active.clear(); syncChips(); onFilter(); };
+  chipsEl.appendChild(allChip);
+  catKeys.forEach(k => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.id = "chip-" + k; b.dataset.k = k;
+    b.style.setProperty("--k", K(k));
+    b.innerHTML = `<span class="dot"></span>${CATS[k].n.replace(/ \(.*\)/, "")} <span class="n">${D.filter(d => d.c === k).length}</span>`;
+    b.onclick = () => { active.has(k) ? active.delete(k) : active.add(k); syncChips(); onFilter(); };
+    chipsEl.appendChild(b);
+  });
+  function syncChips() {
+    allChip.setAttribute("aria-pressed", String(!active.size));
+    chipsEl.querySelectorAll("[data-k]").forEach(c => c.setAttribute("aria-pressed", String(active.has(c.dataset.k))));
+    store.set("classes", [...active]);
+  }
+
+  const q = $("q");
+  q.addEventListener("input", () => { renderTable(); renderCards(); updateCount(); });
+
+  function onFilter() {
+    renderTable(); renderCards(); buildDeck(false); renderFlash();
+    if (quiz.stage !== "question") renderQuizSetup();
+    updateCount();
+  }
+
+  function updateCount() {
+    const term = q.value.trim().toLowerCase();
+    const n = pool().filter(d => !term || d._s.includes(term)).length;
+    let t;
+    if (view === "flash") t = `${deck.length} card${deck.length === 1 ? "" : "s"} in this set`;
+    else if (view === "quiz") t = `${buildQuestionPool().length} questions available`;
+    else t = `${n} of ${D.length} medications`;
+    $("count").textContent = t;
+  }
+
+  /* ---------- views ---------- */
+  function setView(v) {
+    view = v;
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.view === v)));
+    ["table", "cards", "flash", "quiz"].forEach(n => { $("view-" + n).hidden = n !== v; });
+    $("searchrow").hidden = !(v === "table" || v === "cards");
+    $("blur").hidden = v !== "table";
+    document.querySelector(".bar").classList.toggle("static", v === "flash" || v === "quiz");
+    $("hint").textContent = hints[v];
+    store.set("view", v);
+    try { if (location.hash !== "#" + v) history.replaceState(null, "", "#" + v); } catch (e) { /* not allowed in some embeds */ }
+    updateCount();
+  }
+  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => setView(t.dataset.view)));
+
+  /* ---------- table ---------- */
+  const tb = $("tb");
+  let blur = false;
+  $("blur").onclick = () => {
+    blur = !blur;
+    $("blur").setAttribute("aria-pressed", String(blur));
+    $("tbl").classList.toggle("blur", blur);
+    tb.querySelectorAll(".shown").forEach(c => c.classList.remove("shown"));
+  };
+  tb.addEventListener("click", e => { if (!blur) return; const td = e.target.closest("td.hideable"); if (td) td.classList.toggle("shown"); });
+
+  function grouped() {
+    const term = q.value.trim().toLowerCase();
+    return catKeys
+      .filter(k => !active.size || active.has(k))
+      .map(k => [k, D.filter(d => d.c === k && (!term || d._s.includes(term)))])
+      .filter(([, rows]) => rows.length);
+  }
+  const nameCell = d => `<span class="gen">${d.g}</span><span class="brand">${d.b}</span><span class="cat">${d.t}</span>`;
+
+  function renderTable() {
+    const groups = grouped();
+    tb.innerHTML = groups.map(([k, rows]) =>
+      `<tr class="group" style="--k:${K(k)}"><td colspan="11">${CATS[k].n}<span>${CATS[k].s}</span></td></tr>` +
+      rows.map(d => `<tr style="--k:${K(k)}">
+        <td class="name">${nameCell(d)}</td>
+        <td class="mono hideable"><div>${list(d.str)}</div></td>
+        <td class="mono hideable"><div>${list(d.dose)}</div></td>
+        <td class="t hideable"><div>${opd(d.opd)}</div></td>
+        <td class="wide hideable"><div>${list(d.moa)}</div></td>
+        <td class="wide hideable"><div>${list(d.eff)}</div></td>
+        <td class="w hideable"><div>${list(d.adv)}</div></td>
+        <td class="w hideable"><div>${cis(d.ci)}</div></td>
+        <td class="wide hideable"><div>${list(d.haz)}</div></td>
+        <td class="hideable">${devs(d.dev)}</td>
+        <td class="wide hideable"><div>${list(d.note)}</div></td>
+      </tr>`).join("")
+    ).join("") || `<tr><td colspan="11" class="empty">No medications match "${escapeHTML(q.value)}". Try a generic name, brand, or side effect.</td></tr>`;
+  }
+
+  /* ---------- cards ---------- */
+  function renderCards() {
+    const groups = grouped();
+    $("cardsOut").innerHTML = groups.map(([k, rows]) =>
+      `<h2 class="grouphead" style="--k:${K(k)}">${CATS[k].n}<span>${CATS[k].s}</span></h2>
+       <div class="grid">${rows.map(d => `
+        <details class="dcard" style="--k:${K(k)}">
+          <summary>${nameCell(d)}${devs(d.dev)}<span class="more"></span></summary>
+          <div class="dbody">${FIELDS.filter(f => f[0] !== "dev").map(([f, label, mono]) =>
+            `<div class="field"><h4>${label}</h4><div class="${mono ? "mono" : ""}">${f === "opd" ? opd(d.opd) : f === "ci" ? cis(d.ci) : list(d[f])}</div></div>`).join("")}
+          </div>
+        </details>`).join("")}</div>`
+    ).join("") || `<p class="empty">No medications match "${escapeHTML(q.value)}".</p>`;
+  }
+  $("expandAll").onclick = () => document.querySelectorAll(".dcard").forEach(d => d.open = true);
+  $("collapseAll").onclick = () => document.querySelectorAll(".dcard").forEach(d => d.open = false);
+
+  /* ---------- flashcards ---------- */
+  const known = new Set(store.get("known", []));
+  let deck = [], pos = 0, skipKnown = store.get("skipKnown", false), shuffled = false;
+  const fCard = $("fCard"), fField = $("fField");
+  fField.value = store.get("field", "all");
+  $("fHideKnown").setAttribute("aria-pressed", String(skipKnown));
+
+  function buildDeck(doShuffle) {
+    if (doShuffle !== undefined) shuffled = doShuffle || shuffled;
+    let ids = pool().filter(d => !skipKnown || !known.has(d.g)).map(d => d.id);
+    deck = shuffled ? shuffle(ids) : ids;
+    pos = Math.min(pos, Math.max(0, deck.length - 1));
+  }
+  function unflipInstantly() {
+    const inner = fCard.querySelector(".finner");
+    inner.style.transition = "none";
+    fCard.classList.remove("flipped");
+    void inner.offsetWidth;
+    inner.style.transition = "";
+  }
+  function backContent(d, f) {
+    if (f === "t") return `<div class="field"><h4>Drug class</h4><ul class="b"><li>${d.t}</li><li>${CATS[d.c].n}</li></ul></div>`;
+    if (f === "dev") return `<div class="field"><h4>Device</h4>${devs(d.dev)}</div>`;
+    const fs = f === "all" ? FIELDS.map(x => x[0]) : [f];
+    return fs.map(x => `<div class="field"><h4>${LABEL[x]}</h4>${x === "dev" ? devs(d.dev) : x === "opd" ? opd(d.opd) : x === "ci" ? cis(d.ci) : list(d[x])}</div>`).join("");
+  }
+  function renderFlash() {
+    const f = fField.value;
+    const total = pool().length;
+    const knownHere = pool().filter(d => known.has(d.g)).length;
+    $("fKnown").textContent = `${knownHere} of ${total} known`;
+    $("fBar").style.width = total ? (knownHere / total * 100) + "%" : "0";
+    unflipInstantly();
+    if (!deck.length) {
+      fCard.style.setProperty("--k", "var(--good)");
+      $("fPos").textContent = "Set complete";
+      $("fFront").innerHTML = `<span class="gen">Nice work.</span><span class="brand">Every card in this set is marked known. Turn off "Skip known cards" or reset progress to go again.</span>`;
+      $("fBack").innerHTML = "";
+      return;
+    }
+    const d = D[deck[pos]];
+    fCard.style.setProperty("--k", K(d.c));
+    $("fPos").textContent = `Card ${pos + 1} of ${deck.length}`;
+    $("fFront").innerHTML =
+      `${f === "t" ? "" : `<span class="cat" style="--k:${K(d.c)}">${d.t}</span>`}
+       <span class="gen">${d.g}</span><span class="brand">${d.b}</span>
+       ${known.has(d.g) ? `<span class="known-badge">Known</span>` : ""}
+       <span class="asking">Recall: ${LABEL[f]}</span>
+       <span class="flip-hint">Tap or press Space to flip</span>`;
+    $("fBack").innerHTML = `<span class="gen" style="font-size:18px">${d.g}</span>${backContent(d, f)}`;
+  }
+  function flip() { if (deck.length) fCard.classList.toggle("flipped"); }
+  function move(step) { if (!deck.length) return; pos = (pos + step + deck.length) % deck.length; renderFlash(); }
+  function mark(isKnown) {
+    if (!deck.length) return;
+    const d = D[deck[pos]];
+    isKnown ? known.add(d.g) : known.delete(d.g);
+    store.set("known", [...known]);
+    if (skipKnown && isKnown) { deck.splice(pos, 1); if (pos >= deck.length) pos = 0; renderFlash(); updateCount(); }
+    else move(1);
+  }
+  fCard.addEventListener("click", flip);
+  $("fPrev").onclick = () => move(-1);
+  $("fNext").onclick = () => move(1);
+  $("fGot").onclick = () => mark(true);
+  $("fAgain").onclick = () => mark(false);
+  $("fShuffle").onclick = () => { shuffled = true; pos = 0; buildDeck(true); renderFlash(); };
+  $("fHideKnown").onclick = () => {
+    skipKnown = !skipKnown; store.set("skipKnown", skipKnown);
+    $("fHideKnown").setAttribute("aria-pressed", String(skipKnown));
+    pos = 0; buildDeck(); renderFlash(); updateCount();
+  };
+  $("fReset").onclick = () => { known.clear(); store.set("known", []); pos = 0; buildDeck(); renderFlash(); updateCount(); };
+  fField.onchange = () => { store.set("field", fField.value); renderFlash(); };
+
+  /* ---------- quiz ---------- */
+  const quiz = { stage: "setup", qs: [], i: 0, score: 0, misses: [], size: store.get("quizSize", 10) };
+  const LETTERS = ["A", "B", "C", "D"];
+
+  function autoQuestions() {
+    const out = [];
+    pool().forEach(d => {
+      const others = catKeys.filter(k => k !== d.c);
+      out.push({
+        c: d.c, q: `Which drug class does ${d.g} belong to?`, a: CATS[d.c].n,
+        o: shuffle(others).slice(0, 3).map(k => CATS[k].n),
+        x: `${d.g} (${firstBrand(d.b)}) is a ${d.t}.`
+      });
+      if (d.c !== "dil") {
+        const same = D.filter(x => x.id !== d.id && x.c === d.c);
+        const rest = D.filter(x => x.id !== d.id && x.c !== d.c && x.c !== "dil");
+        const distract = shuffle(same).concat(shuffle(rest)).slice(0, 3).map(x => x.g);
+        out.push({
+          c: d.c, q: `${firstBrand(d.b)} is the brand name for which drug?`, a: d.g, o: distract,
+          x: `${firstBrand(d.b)} is ${d.g}, a ${d.t}.`
+        });
+      }
+    });
+    return out;
+  }
+  function buildQuestionPool() {
+    const curated = QUIZ.filter(x => !active.size || active.has(x.c));
+    return curated.concat(autoQuestions());
+  }
+  function makeRound(n) {
+    const curated = shuffle(QUIZ.filter(x => !active.size || active.has(x.c)));
+    const auto = shuffle(autoQuestions());
+    // Favor the hand-written NBRC-style questions: about 2 of every 3.
+    const round = [];
+    while (round.length < n && (curated.length || auto.length)) {
+      const pickCurated = curated.length && (!auto.length || round.length % 3 !== 2);
+      round.push(pickCurated ? curated.pop() : auto.pop());
+    }
+    return shuffle(round).map(x => ({ ...x, opts: shuffle([x.a, ...x.o]) }));
+  }
+
+  const out = $("quizOut");
+  function renderQuizSetup() {
+    quiz.stage = "setup";
+    const avail = buildQuestionPool().length;
+    const scope = active.size ? [...active].map(k => CATS[k].n.replace(/ \(.*\)/, "")).join(", ") : "all classes";
+    out.innerHTML = `
+      <div class="qbox" style="--k:var(--accent)">
+        <span class="qnum">Practice quiz</span>
+        <p class="qtext">Test yourself with NBRC-style multiple-choice questions on ${escapeHTML(scope)}.</p>
+        <p class="hint">${avail} questions available. Scenario questions are mixed with drug-class and brand-name recall. Use the class chips above to focus on one area.</p>
+        <div class="setup">
+          <label class="inline" for="qSize">Questions
+            <select id="qSize">
+              ${[10, 20, 30].filter(n => n < avail).map(n => `<option value="${n}"${quiz.size == n ? " selected" : ""}>${n}</option>`).join("")}
+              <option value="${avail}"${quiz.size >= avail ? " selected" : ""}>All ${avail}</option>
+            </select>
+          </label>
+          <button class="btn primary" type="button" id="qStart"${avail ? "" : " disabled"}>Start quiz</button>
+        </div>
+      </div>`;
+    $("qSize").onchange = e => { quiz.size = +e.target.value; store.set("quizSize", quiz.size); };
+    $("qStart").onclick = () => startQuiz(makeRound(+$("qSize").value));
+  }
+  function startQuiz(qs) {
+    Object.assign(quiz, { stage: "question", qs, i: 0, score: 0, misses: [] });
+    renderQuestion();
+  }
+  function renderQuestion() {
+    const x = quiz.qs[quiz.i];
+    quiz.answered = false;
+    out.innerHTML = `
+      <div class="meter"><span>Question ${quiz.i + 1} of ${quiz.qs.length}</span><span>Score ${quiz.score}</span></div>
+      <div class="progress"><i style="width:${quiz.i / quiz.qs.length * 100}%"></i></div>
+      <div class="qbox" style="--k:${K(x.c)}">
+        <span class="qnum">${CATS[x.c].n.replace(/ \(.*\)/, "")}</span>
+        <p class="qtext">${x.q}</p>
+        <div class="opts">${x.opts.map((o, j) => `<button class="opt" type="button" data-j="${j}"><b>${LETTERS[j]}</b><span>${o}</span></button>`).join("")}</div>
+        <div id="qAfter"></div>
+      </div>
+      <div class="row"><button class="btn" type="button" id="qQuit">End quiz</button></div>`;
+    out.querySelectorAll(".opt").forEach(b => b.onclick = () => answer(+b.dataset.j));
+    $("qQuit").onclick = showResults;
+  }
+  function answer(j) {
+    if (quiz.answered) return;
+    quiz.answered = true;
+    const x = quiz.qs[quiz.i];
+    const chosen = x.opts[j], right = chosen === x.a;
+    if (right) quiz.score++; else quiz.misses.push({ ...x, chosen });
+    out.querySelectorAll(".opt").forEach(b => {
+      const o = x.opts[+b.dataset.j];
+      b.disabled = true;
+      if (o === x.a) b.classList.add("right");
+      else if (+b.dataset.j === j) b.classList.add("wrong");
+    });
+    const last = quiz.i === quiz.qs.length - 1;
+    $("qAfter").innerHTML = `
+      <p class="explain"><strong class="${right ? "ok" : "no"}">${right ? "Correct." : "Not quite."}</strong> ${x.x}</p>
+      <div class="row"><button class="btn primary" type="button" id="qNext">${last ? "See results" : "Next question →"}</button></div>`;
+    $("qNext").onclick = () => { if (last) showResults(); else { quiz.i++; renderQuestion(); } };
+    $("qNext").focus();
+  }
+  function showResults() {
+    quiz.stage = "results";
+    const done = quiz.answered ? quiz.i + 1 : quiz.i;
+    const pct = done ? Math.round(quiz.score / done * 100) : 0;
+    const msg = pct >= 90 ? "Exam-ready on this set." : pct >= 75 ? "Solid. Review the misses below." : pct >= 60 ? "Getting there. Drill the misses with flashcards." : "Keep studying this set, then try again.";
+    out.innerHTML = `
+      <div class="qbox" style="--k:${pct >= 75 ? "var(--good)" : "var(--warn)"}">
+        <span class="qnum">Results</span>
+        <div class="score">${quiz.score}/${done}</div>
+        <p class="qtext">${pct}% · ${msg}</p>
+        <div class="row">
+          <button class="btn primary" type="button" id="qAgain">New quiz</button>
+          ${quiz.misses.length ? `<button class="btn" type="button" id="qRetry">Retry the ${quiz.misses.length} missed</button>` : ""}
+        </div>
+      </div>
+      ${quiz.misses.length ? `<div class="review"><h2 class="grouphead" style="--k:var(--warn)">Review what you missed</h2>
+        ${quiz.misses.map(m => `<div class="item"><p><strong>${m.q}</strong></p><p>You chose: ${m.chosen}</p><p class="a">Answer: ${m.a}</p><p class="hint">${m.x}</p></div>`).join("")}</div>` : ""}`;
+    $("qAgain").onclick = renderQuizSetup;
+    if ($("qRetry")) $("qRetry").onclick = () => startQuiz(shuffle(quiz.misses).map(m => ({ ...m, opts: shuffle([m.a, ...m.o]) })));
+  }
+
+  /* ---------- keyboard ---------- */
+  document.addEventListener("keydown", e => {
+    if (e.target.closest("input,select,textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (view === "flash") {
+      if (e.key === " " || e.key === "Enter") { if (e.target.closest("button") && e.target !== fCard) return; e.preventDefault(); flip(); }
+      else if (e.key === "ArrowRight") move(1);
+      else if (e.key === "ArrowLeft") move(-1);
+      else if (e.key.toLowerCase() === "k") mark(true);
+      else if (e.key.toLowerCase() === "l") mark(false);
+    } else if (view === "quiz" && quiz.stage === "question" && !quiz.answered) {
+      const idx = "abcd".indexOf(e.key.toLowerCase()) >= 0 ? "abcd".indexOf(e.key.toLowerCase()) : "1234".indexOf(e.key);
+      if (idx >= 0 && idx < quiz.qs[quiz.i].opts.length) answer(idx);
+    }
+  });
+
+  /* ---------- start ---------- */
+  syncChips();
+  renderTable(); renderCards(); buildDeck(false); renderFlash(); renderQuizSetup();
+  const start = (location.hash || "").slice(1);
+  setView(["table", "cards", "flash", "quiz"].includes(start) ? start : store.get("view", "table"));
+})();
+
+</script>
+</body>
+</html>
