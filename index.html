@@ -45,8 +45,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1
 .site-links a:focus-visible,.site-brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:640px){
   .site-nav .in{padding:10px 16px}
-  .site-links{width:100%}
-  .site-links a{flex:1 1 auto;text-align:center;padding:8px 10px;font-size:14px}
+  .site-links{width:100%;gap:2px}
+  .site-links a{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:13.5px}
 }
 @media (prefers-reduced-motion:reduce){.site-links a{transition:none}}
 @media print{.site-nav{display:none}}
@@ -124,9 +124,10 @@ footer p{margin:0}
   <div class="in">
     <a class="site-brand" href="index.html"><span class="mark" aria-hidden="true">RT</span>RT Quick Reference</a>
     <div class="site-links">
-      <a id="nav-abg" href="#abg">ABG Values</a>
+      <a id="nav-abg" href="#abg">ABG</a>
       <a id="nav-o2" href="#o2">O₂ Devices</a>
-      <a id="nav-meds" href="meds.html">Medications</a>
+      <a id="nav-meds" href="meds.html#table">Medications</a>
+      <a id="nav-mem" href="meds.html#mem">Mnemonics</a>
     </div>
   </div>
 </nav>

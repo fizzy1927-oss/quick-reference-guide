@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Medications · RT Quick Reference</title>
-<meta name="description" content="NBRC respiratory pharmacology chart with table, cards, flashcards and a practice quiz.">
+<title>Medications &amp; Mnemonics · RT Quick Reference</title>
+<meta name="description" content="NBRC respiratory pharmacology chart with table, cards, flashcards, a practice quiz and memory aids.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -186,6 +186,29 @@ tr.group td span{font-family:var(--f-body);font-size:12.5px;font-weight:400;colo
 #qAfter{display:grid;gap:14px}
 .setup{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 
+/* memory aids */
+.memgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;align-items:start}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;gap:8px;align-content:start;box-shadow:var(--shadow);min-width:0}
+.mtype{justify-self:start;font-size:11.5px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.mtype[data-type="Name clue"]{background:var(--band);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-strong)}
+.mtype[data-type="Rule of thumb"]{background:var(--warn-bg);color:var(--warn)}
+.mtype[data-type="Compare"]{background:var(--good-bg);color:var(--good)}
+.mhead{margin:0;font-family:var(--f-display);font-size:17px;font-weight:700;line-height:1.3;letter-spacing:-.01em;text-wrap:balance}
+.mbody{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+.acro{margin:4px 0 0;display:grid;gap:4px}
+.acro div{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:baseline}
+.acro dt{font-family:var(--f-display);font-size:18px;font-weight:800;color:var(--accent);text-align:center}
+.acro dd{margin:0}
+.suffixcard{grid-column:1/-1}
+@media (min-width:1000px){.suffixcard{grid-column:span 3}}
+.suffixbox{overflow-x:auto}
+.suffix{border-collapse:collapse;width:100%;min-width:0}
+.suffix th,.suffix td{text-align:left;vertical-align:baseline;padding:8px 12px 8px 0;border-top:1px solid var(--line)}
+.suffix tr:first-child th,.suffix tr:first-child td{border-top:0}
+.suffix th{font-family:var(--f-mono);font-size:13.5px;font-weight:500;color:var(--accent);white-space:nowrap;width:1%}
+.suffix td strong{display:block;font-weight:600}
+.suffix td span{color:var(--muted);font-size:13px}
+
 footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;max-width:95ch;display:grid;gap:6px}
 footer p{margin:0}
 
@@ -195,7 +218,8 @@ footer p{margin:0}
   td.name{min-width:160px}
   .face,.qbox{padding:22px}
   .grid{grid-template-columns:1fr}
-  .tab{padding:8px 13px}
+  .tabs{display:flex;width:100%;gap:2px}
+  .tab{flex:1 1 auto;padding:8px 6px;font-size:13.5px}
 }
 
 /* ---------- shared site nav (same on every page) ---------- */
@@ -210,8 +234,8 @@ footer p{margin:0}
 .site-links a:focus-visible,.site-brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 @media (max-width:640px){
   .site-nav .in{padding:10px 16px}
-  .site-links{width:100%}
-  .site-links a{flex:1 1 auto;text-align:center;padding:8px 10px;font-size:14px}
+  .site-links{width:100%;gap:2px}
+  .site-links a{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:13.5px}
 }
 @media (prefers-reduced-motion:reduce){.site-links a{transition:none}}
 @media print{.site-nav{display:none}}
@@ -223,9 +247,10 @@ footer p{margin:0}
   <div class="in">
     <a class="site-brand" href="index.html"><span class="mark" aria-hidden="true">RT</span>RT Quick Reference</a>
     <div class="site-links">
-      <a id="nav-abg" href="index.html#abg">ABG Values</a>
+      <a id="nav-abg" href="index.html#abg">ABG</a>
       <a id="nav-o2" href="index.html#o2">O₂ Devices</a>
-      <a id="nav-meds" href="meds.html" aria-current="page">Medications</a>
+      <a id="nav-meds" href="meds.html#table">Medications</a>
+      <a id="nav-mem" href="meds.html#mem">Mnemonics</a>
     </div>
   </div>
 </nav>
@@ -234,7 +259,7 @@ footer p{margin:0}
     <div>
       <p class="eyebrow">TMC / CSE study reference</p>
       <h1>Respiratory Pharmacology Chart</h1>
-      <p class="sub">Every drug on the list with category, strength, dose, onset, peak and duration, mode of action, effects, side effects, contraindications, hazards, delivery device, and exam pearls. Browse it, drill it with flashcards, or test yourself with the quiz.</p>
+      <p class="sub">Every drug on the list with category, strength, dose, onset, peak and duration, mode of action, effects, side effects, contraindications, hazards, delivery device, and exam pearls. Browse it, drill it with flashcards, test yourself with the quiz, or use the memory aids.</p>
     </div>
     <div class="count" id="count"></div>
   </header>
@@ -244,6 +269,7 @@ footer p{margin:0}
     <button class="tab" role="tab" id="tab-cards" data-view="cards" aria-selected="false">Cards</button>
     <button class="tab" role="tab" id="tab-flash" data-view="flash" aria-selected="false">Flashcards</button>
     <button class="tab" role="tab" id="tab-quiz" data-view="quiz" aria-selected="false">Quiz</button>
+    <button class="tab" role="tab" id="tab-mem" data-view="mem" aria-selected="false">Memory aids</button>
   </nav>
 
   <div class="bar">
@@ -330,6 +356,11 @@ footer p{margin:0}
       </div>
       <p class="kbd">Keyboard: Space flips · ← → move · K marks known · L marks still learning</p>
     </div>
+  </section>
+
+  <!-- MEMORY AIDS -->
+  <section id="view-mem" role="tabpanel" aria-labelledby="tab-mem" hidden>
+    <div id="memOut"></div>
   </section>
 
   <!-- QUIZ -->
@@ -927,8 +958,171 @@ const QUIZ = [
 {c:"masto",q:"How does cromolyn sodium prevent asthma symptoms?",a:"It stabilizes mast cells so they don't release mediators",o:["It relaxes smooth muscle by raising cAMP","It blocks leukotriene receptors","It breaks down mucus"],x:"Cromolyn prevents mast cell degranulation. It has no bronchodilating effect, so it is only preventive."},
 {c:"ster",q:"Besides reducing inflammation, how do corticosteroids help β-agonists work better?",a:"They increase the number of β2 receptors",o:["They block muscarinic receptors","They inhibit phosphodiesterase","They thin mucus"],x:"Steroids up-regulate β2 receptors, one reason ICS/LABA combinations work well together."},
 {c:"abx",q:"How do aminoglycosides such as tobramycin kill bacteria?",a:"They bind the 30S ribosome and stop protein synthesis",o:["They block cell-wall synthesis","They disrupt the outer membrane like a detergent","They inhibit viral RNA synthesis"],x:"Cell-wall blockers are penicillins and aztreonam; the detergent action is colistin; viral RNA inhibition is ribavirin."},
-{c:"dil",q:"How does hypertonic saline improve mucus clearance?",a:"It draws water into the airway surface liquid by osmosis",o:["It breaks disulfide bonds in mucus","It cuts extracellular DNA","It stimulates β2 receptors"],x:"Rehydrating the airway surface liquid helps cilia move mucus. Breaking disulfide bonds is acetylcysteine; cutting DNA is dornase alfa."}
+{c:"dil",q:"How does hypertonic saline improve mucus clearance?",a:"It draws water into the airway surface liquid by osmosis",o:["It breaks disulfide bonds in mucus","It cuts extracellular DNA","It stimulates β2 receptors"],x:"Rehydrating the airway surface liquid helps cilia move mucus. Breaking disulfide bonds is acetylcysteine; cutting DNA is dornase alfa."},
+{c:"beta",q:"Based only on its name, which class does vilanterol belong to?",a:"β2 agonist",o:["Anticholinergic","Corticosteroid","Leukotriene modifier"],x:"Names ending in -terol are β2 agonists. Vilanterol is the 24-hour LABA in Anoro, Breo and Trelegy."},
+{c:"anti",q:"A drug name ending in -clidinium is most likely which kind of drug?",a:"Long-acting anticholinergic (LAMA)",o:["Long-acting β2 agonist","Inhaled corticosteroid","Monoclonal antibody"],x:"Aclidinium and umeclidinium are LAMAs, like the -tropium drugs."},
+{c:"anti",q:"The phrase 'can't see, can't pee' describes the side effects of which drug class?",a:"Anticholinergics",o:["β2 agonists","Corticosteroids","Xanthines"],x:"Anticholinergics can blur vision, worsen narrow-angle glaucoma, and cause urinary retention."},
+{c:"beta",q:"What does '1 heart, 2 lungs' help you remember?",a:"β1 receptors are mainly in the heart and β2 receptors in the lungs",o:["Give 1 puff for the heart and 2 for the lungs","Albuterol lasts 1–2 hours","Use 1 bronchodilator before 2 steroids"],x:"That's why a β2 agonist that spills onto β1 receptors causes tachycardia."},
+{c:"muco",q:"In the CF sequence 'Big Happy Dogs Chase After Squirrels', what does D stand for?",a:"Dornase alfa",o:["DuoNeb","Dexamethasone","Distilled water"],x:"Bronchodilator, Hypertonic saline, Dornase, airway Clearance, Antibiotic, Steroid."},
+{c:"combo",q:"Which inhaler has no steroid, which you can remember as 'A-NO-roid'?",a:"Anoro Ellipta",o:["Advair Diskus","Symbicort","Dulera"],x:"Anoro is umeclidinium + vilanterol (LAMA + LABA), so it's for COPD only."}
 ];
+
+/* Memory aids: mnemonics, name clues and rules of thumb.
+   MEM_BIG = big-picture cards shown above every class.
+   MEM[classKey] = cards for that class.
+   Card: {type, h (headline), b (explanation), ac (optional acrostic: [[letter, meaning], ...])}
+   type is one of "Mnemonic", "Name clue", "Rule of thumb", "Compare". */
+
+const MEM_SUFFIX = [
+  ["-terol", "β2 agonist (bronchodilator)", "albuterol, salmeterol, formoterol, olodaterol, vilanterol"],
+  ["-tropium / -clidinium", "Anticholinergic (SAMA / LAMA)", "ipratropium, tiotropium, aclidinium, umeclidinium"],
+  ["-sone / -nide / -olone", "Corticosteroid", "fluticasone, mometasone, budesonide, flunisolide, methylprednisolone"],
+  ["-lukast", "Leukotriene receptor blocker", "montelukast, zafirlukast"],
+  ["-phylline", "Xanthine (PDE inhibitor)", "theophylline, aminophylline"],
+  ["-mab", "Monoclonal antibody (biologic)", "omalizumab, dupilumab"],
+  ["-mycin / -micin", "Aminoglycoside antibiotic", "tobramycin, gentamicin"],
+  ["-cillin", "Penicillin antibiotic", "nafcillin"]
+];
+
+const MEM_BIG = [
+  {type:"Compare", h:"Sympathetic = fight or flight. Parasympathetic = rest and digest.",
+   b:"In a fight you need open airways and a fast heart, so sympathetic stimulation dilates the bronchi. At rest, the vagus nerve (parasympathetic) keeps the airways slightly constricted."},
+  {type:"Name clue", h:"Mimetic mimics. Lytic lyses (breaks).",
+   b:"Sympathomimetics copy fight-or-flight. Parasympatholytics block rest-and-digest. Two different roads to the same open airway."},
+  {type:"Mnemonic", h:"1 heart, 2 lungs",
+   b:"β1 receptors are mainly in the heart, β2 receptors mainly in the lungs. When a β2 agonist spills onto β1, the heart speeds up."},
+  {type:"Mnemonic", h:"cAMP = Airways open. cGMP = Gets tight.",
+   b:"β2 agonists raise cAMP and relax airway muscle; theophylline keeps cAMP from breaking down. Acetylcholine raises cGMP and tightens the airway, so anticholinergics block it."},
+  {type:"Rule of thumb", h:"Slow or long-acting is never the rescue answer",
+   b:"Rescue (relievers): albuterol, levalbuterol, ipratropium, racemic epinephrine. Everything long-acting or preventive (LABAs, LAMAs, ICS, leukotriene drugs, cromolyn, biologics, theophylline) is a controller."}
+];
+
+const MEM = {
+beta: [
+  {type:"Name clue", h:"-terol = β2 agonist",
+   b:"If the name ends in -terol, it opens the airway through β2 receptors: albuterol, levalbuterol, salmeterol, formoterol, arformoterol, indacaterol, olodaterol, vilanterol."},
+  {type:"Mnemonic", h:"Shaky, racy, low K",
+   b:"β-agonist side effects: tremor (shaky), tachycardia and palpitations (racy), hypokalemia (low K⁺). Blood sugar goes up too."},
+  {type:"Rule of thumb", h:"20 beats? Stop the treat.",
+   b:"If heart rate rises more than 20 beats/min during a β-agonist treatment, stop and notify the physician."},
+  {type:"Mnemonic", h:"Lev = Less",
+   b:"Levalbuterol is the pure R-isomer: a smaller dose and less tachycardia. It's the exam answer when albuterol makes the heart race."},
+  {type:"Mnemonic", h:"S is Slow, F is Fast",
+   b:"Salmeterol takes about 20 minutes to start working; formoterol starts in 1–3 minutes. Both last 12 hours."},
+  {type:"Rule of thumb", h:"The 12-hour shift and the 24-hour shift",
+   b:"Twice daily (12 hr): salmeterol, formoterol, arformoterol. Once daily (24 hr): indacaterol, olodaterol, vilanterol."},
+  {type:"Rule of thumb", h:"No LABA flies solo in asthma",
+   b:"A LABA without an inhaled steroid raises the risk of asthma death. In asthma, a LABA always comes with an ICS."},
+  {type:"Mnemonic", h:"Racemic epi Reduces swelling",
+   b:"Its α1 effect shrinks swollen mucosa, which is why it's used for post-extubation stridor and croup. It wears off in 0.5–2 hours, so watch for rebound stridor."}
+],
+anti: [
+  {type:"Name clue", h:"-tropium and -clidinium = anticholinergic",
+   b:"Ipratropium, tiotropium, aclidinium, umeclidinium. Glycopyrrolate is the one that breaks the pattern."},
+  {type:"Mnemonic", h:"Can't see, can't pee, can't spit, can't poop",
+   b:"Anticholinergic side effects: blurred vision and glaucoma risk, urinary retention, dry mouth, constipation. Narrow-angle glaucoma and BPH are the cautions."},
+  {type:"Mnemonic", h:"Dry as a bone, red as a beet, blind as a bat, mad as a hatter, hot as a hare, full as a flask",
+   b:"Full anticholinergic toxicity (systemic atropine). Inhaled quaternary drugs like ipratropium rarely cause it because so little is absorbed."},
+  {type:"Mnemonic", h:"Ipra = In and out. Tio = Twenty-four hours.",
+   b:"Ipratropium is short-acting (4–6 hr, given QID). Tiotropium lasts 24 hours and is given once daily."},
+  {type:"Rule of thumb", h:"Tio and Umec: once a day. Aclid and Glyco: twice a day.",
+   b:"Tiotropium and umeclidinium are the once-daily LAMAs. Aclidinium and inhaled glycopyrrolate are given BID."},
+  {type:"Rule of thumb", h:"Mist in the eyes = big pupils",
+   b:"Anticholinergic aerosol that reaches the eyes dilates the pupils and blurs vision. Use a mouthpiece, or shield the eyes when using a mask."}
+],
+combo: [
+  {type:"Rule of thumb", h:"Read the two halves",
+   b:"Every combo is two classes. Use the name endings: fluticasone (-sone, ICS) + salmeterol (-terol, LABA); umeclidinium (-clidinium, LAMA) + vilanterol (-terol, LABA)."},
+  {type:"Mnemonic", h:"Anoro = A-NO-roid",
+   b:"Anoro Ellipta has no steroid (LAMA + LABA), so it's for COPD only, never asthma."},
+  {type:"Rule of thumb", h:"Steroid + LABA = asthma OK. LAMA + LABA = COPD only.",
+   b:"Advair, Symbicort and Dulera contain an ICS, so they can be used in asthma. Combos without a steroid can't."},
+  {type:"Mnemonic", h:"Symbicort can Save you",
+   b:"Its formoterol is fast, so budesonide/formoterol can be both the maintenance and the reliever inhaler (SMART)."},
+  {type:"Mnemonic", h:"DuoNeb = a duo of short-actings",
+   b:"0.5 mg ipratropium + 2.5 mg albuterol in 3 mL: a SAMA and a SABA in one nebulizer treatment."},
+  {type:"Mnemonic", h:"Trelegy: Tre = three",
+   b:"Triple therapy: ICS + LAMA + LABA in one inhaler (fluticasone furoate, umeclidinium, vilanterol)."}
+],
+xan: [
+  {type:"Mnemonic", h:"Theophylline is a teen: 10 to 20",
+   b:"The classic therapeutic range is 10–20 mcg/mL. Above 20 is toxic."},
+  {type:"Mnemonic", h:"Toxicity climbs: gut, heart, brain",
+   b:"Nausea and vomiting come first, then tachycardia and arrhythmias, then seizures."},
+  {type:"Mnemonic", h:"Smoke burns it off",
+   b:"Smoking lowers theophylline levels. A sick heart (CHF), a sick liver, ciprofloxacin, erythromycin and cimetidine push levels up."},
+  {type:"Mnemonic", h:"Coffee for preemies",
+   b:"Caffeine citrate treats apnea of prematurity: once-daily dosing and a wider safety range than theophylline."}
+],
+bio: [
+  {type:"Name clue", h:"-mab = monoclonal antibody",
+   b:"Omalizumab and dupilumab are injected biologics for severe asthma. They are never rescue drugs."},
+  {type:"Mnemonic", h:"Omalizumab = Oh My, Allergies",
+   b:"Anti-IgE for allergic asthma. Its boxed warning is anaphylaxis, so watch the patient after each injection and make sure they carry epinephrine."},
+  {type:"Mnemonic", h:"Dupilumab dupes two",
+   b:"It blocks the shared IL-4 receptor, shutting down both IL-4 and IL-13. Watch for conjunctivitis."}
+],
+masto: [
+  {type:"Mnemonic", h:"Cromolyn = Calm before the storm",
+   b:"It stabilizes mast cells before exposure, so it only prevents symptoms. It does nothing in an acute attack and takes 2–4 weeks for full effect."},
+  {type:"Rule of thumb", h:"Crazy safe",
+   b:"Cromolyn has very few side effects (mainly cough and throat irritation), which is why it was once a go-to for children."}
+],
+ltm: [
+  {type:"Name clue", h:"-lukast blocks the Leukotriene receptor",
+   b:"Montelukast and zafirlukast block the receptor. Zileuton works one step earlier and stops leukotrienes from being made."},
+  {type:"Mnemonic", h:"Zileuton Zaps lipoxygenase and Zings the liver",
+   b:"It inhibits 5-lipoxygenase and can raise liver enzymes, so check LFTs. It also raises theophylline levels."},
+  {type:"Mnemonic", h:"ZAFIR: Zero food, Avoid in liver disease, Fix the warfarin",
+   b:"Take zafirlukast on an empty stomach. It's contraindicated in hepatic impairment and raises warfarin's effect."},
+  {type:"Mnemonic", h:"Montelukast's 3 M's: Moon, Mood, Mild",
+   b:"Dosed in the evening (moon), boxed warning for mood and behavior changes, used for mild persistent asthma and EIB."}
+],
+abx: [
+  {type:"Mnemonic", h:"Matching letters: P & P, R & R, A & A",
+   b:"Pentamidine for PCP. Ribavirin for RSV. Aztreonam through the Altera nebulizer."},
+  {type:"Mnemonic", h:"Mean GNATS caNNOT kill anaerobes",
+   b:"Aminoglycosides: Gentamicin, Neomycin, Amikacin, Tobramycin, Streptomycin. Toxicities: Nephrotoxic, Neuromuscular blockade, Ototoxic, Teratogenic. They don't cover anaerobes."},
+  {type:"Mnemonic", h:"TOBI: 28 on, 28 off",
+   b:"Inhaled tobramycin for CF Pseudomonas: 300 mg BID for 28 days, then 28 days off to limit resistance."},
+  {type:"Mnemonic", h:"Pentamidine likes Pure water",
+   b:"Mix it with sterile water only. Saline makes it precipitate."},
+  {type:"Rule of thumb", h:"Protect the caregiver",
+   b:"Pentamidine and ribavirin need negative-pressure rooms or booths and PPE. Ribavirin is teratogenic, so pregnant staff and visitors stay out."},
+  {type:"Mnemonic", h:"Naf for staph",
+   b:"Nafcillin kills methicillin-sensitive Staph aureus (MSSA). It does not work on MRSA."}
+],
+muco: [
+  {type:"Mnemonic", h:"Mucomyst: Must have a bronchodilator. Smells like eggs.",
+   b:"Acetylcysteine can cause bronchospasm, so give a bronchodilator with it. The sulfur gives the rotten-egg smell. Have suction ready."},
+  {type:"Name clue", h:"Dornase = DNA-ase",
+   b:"It chops up DNA from dead neutrophils in purulent CF sputum. Never mix it with other drugs in the nebulizer."},
+  {type:"Mnemonic", h:"Big Happy Dogs Chase After Squirrels",
+   b:"CF treatment order:",
+   ac:[["B","Bronchodilator"],["H","Hypertonic saline"],["D","Dornase alfa"],["C","airway Clearance"],["A","Antibiotic (inhaled)"],["S","Steroid (ICS)"]]}
+],
+ster: [
+  {type:"Name clue", h:"-sone, -nide, -olone = steroid",
+   b:"Fluticasone, mometasone, beclomethasone, prednisone, budesonide, flunisolide, triamcinolone, methylprednisolone."},
+  {type:"Mnemonic", h:"The 3 S's of inhaled steroids: Slow, Spacer, Swish & Spit",
+   b:"Days to weeks for full effect, so never rescue. A spacer and rinsing the mouth prevent thrush and a hoarse voice."},
+  {type:"Mnemonic", h:"STEROIDS: long-term systemic side effects",
+   b:"Why long courses need a taper and close monitoring:",
+   ac:[["S","Stomach ulcers"],["T","Thin skin, easy bruising"],["E","Edema (fluid retention)"],["R","Rise in blood sugar"],["O","Osteoporosis"],["I","Infection risk"],["D","Delayed wound healing"],["S","Suppressed adrenals (taper)"]]},
+  {type:"Rule of thumb", h:"QVAR: no shake, no spacer",
+   b:"The RediHaler is breath-actuated, so a spacer won't work and it doesn't need shaking."},
+  {type:"Mnemonic", h:"Respules for really young",
+   b:"Budesonide Respules are the only nebulized steroid in the US, used for children about 1–8 years old."}
+],
+dil: [
+  {type:"Mnemonic", h:"Hypo irritates, iso soothes, hyper induces",
+   b:"Sterile water is hypotonic and can trigger bronchospasm. Normal saline is isotonic and gentle. Hypertonic saline draws water in and induces sputum."},
+  {type:"Mnemonic", h:"Sterile = no bugs. Distilled = no minerals.",
+   b:"Only sterile water goes into hospital nebulizers and humidifiers. Distilled water is for home humidifier tanks."},
+  {type:"Rule of thumb", h:"0.9 is the magic number",
+   b:"0.9% NaCl is isotonic. Anything above it is hypertonic (3%, 7%); plain water is hypotonic."}
+]
+};
 
 /* NBRC Respiratory Pharmacology Chart — app logic (table, cards, flashcards, quiz).
    Data comes from data.js (CATS, D, W, K) and quiz.js (QUIZ). No build step needed. */
@@ -979,7 +1173,8 @@ const QUIZ = [
     table: "Filter by class, search any term, or turn on Hide answers and tap a cell to check yourself.",
     cards: "Tap a card to open its details. Class filters and search apply here too.",
     flash: "Flashcards follow the class filter. Pick what to study, then tap the card (or press Space) to flip it.",
-    quiz: "The quiz draws from the classes you select. With no class selected it covers every class."
+    quiz: "The quiz draws from the classes you select. With no class selected it covers every class.",
+    mem: "Mnemonics, name-ending clues and rules of thumb. Pick a class to focus on it."
   };
 
   /* ---------- class chips ---------- */
@@ -1010,6 +1205,7 @@ const QUIZ = [
   function onFilter() {
     renderTable(); renderCards(); buildDeck(false); renderFlash();
     if (quiz.stage !== "question") renderQuizSetup();
+    renderMem();
     updateCount();
   }
 
@@ -1019,6 +1215,7 @@ const QUIZ = [
     let t;
     if (view === "flash") t = `${deck.length} card${deck.length === 1 ? "" : "s"} in this set`;
     else if (view === "quiz") t = `${buildQuestionPool().length} questions available`;
+    else if (view === "mem") t = `${memCount()} memory aids`;
     else t = `${n} of ${D.length} medications`;
     $("count").textContent = t;
   }
@@ -1027,16 +1224,44 @@ const QUIZ = [
   function setView(v) {
     view = v;
     document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.view === v)));
-    ["table", "cards", "flash", "quiz"].forEach(n => { $("view-" + n).hidden = n !== v; });
+    ["table", "cards", "flash", "quiz", "mem"].forEach(n => { $("view-" + n).hidden = n !== v; });
     $("searchrow").hidden = !(v === "table" || v === "cards");
     $("blur").hidden = v !== "table";
-    document.querySelector(".bar").classList.toggle("static", v === "flash" || v === "quiz");
+    document.querySelector(".bar").classList.toggle("static", v === "flash" || v === "quiz" || v === "mem");
     $("hint").textContent = hints[v];
     store.set("view", v);
     try { if (location.hash !== "#" + v) history.replaceState(null, "", "#" + v); } catch (e) { /* not allowed in some embeds */ }
     updateCount();
   }
   document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => setView(t.dataset.view)));
+
+  /* ---------- memory aids ---------- */
+  const memClasses = () => catKeys.filter(k => MEM[k] && (!active.size || active.has(k)));
+  const memCount = () => memClasses().reduce((n, k) => n + MEM[k].length, 0) + (active.size ? 0 : MEM_BIG.length + 1);
+  const memCard = (m, k) => `
+    <article class="mcard"${k ? ` style="--k:${K(k)}"` : ""}>
+      <span class="mtype" data-type="${m.type}">${m.type}</span>
+      <h3 class="mhead">${m.h}</h3>
+      <p class="mbody">${m.b}</p>
+      ${m.ac ? `<dl class="acro">${m.ac.map(([l, t]) => `<div><dt>${l}</dt><dd>${t}</dd></div>`).join("")}</dl>` : ""}
+    </article>`;
+  function renderMem() {
+    const big = active.size ? "" : `
+      <h2 class="grouphead" style="--k:var(--accent)">The big picture<span>How the classes fit together</span></h2>
+      <div class="memgrid">
+        ${MEM_BIG.map(m => memCard(m)).join("")}
+        <article class="mcard suffixcard">
+          <span class="mtype" data-type="Name clue">Name clue</span>
+          <h3 class="mhead">Read the ending, know the class</h3>
+          <div class="suffixbox"><table class="suffix"><tbody>
+            ${MEM_SUFFIX.map(([s, c, e]) => `<tr><th>${s}</th><td><strong>${c}</strong><span>${e}</span></td></tr>`).join("")}
+          </tbody></table></div>
+        </article>
+      </div>`;
+    $("memOut").innerHTML = big + memClasses().map(k => `
+      <h2 class="grouphead" style="--k:${K(k)}">${CATS[k].n}<span>${CATS[k].s}</span></h2>
+      <div class="memgrid">${MEM[k].map(m => memCard(m, k)).join("")}</div>`).join("");
+  }
 
   /* ---------- table ---------- */
   const tb = $("tb");
@@ -1311,11 +1536,34 @@ const QUIZ = [
 
   /* ---------- start ---------- */
   syncChips();
-  renderTable(); renderCards(); buildDeck(false); renderFlash(); renderQuizSetup();
+  renderTable(); renderCards(); buildDeck(false); renderFlash(); renderQuizSetup(); renderMem();
   const start = (location.hash || "").slice(1);
-  setView(["table", "cards", "flash", "quiz"].includes(start) ? start : store.get("view", "table"));
+  setView(["table", "cards", "flash", "quiz", "mem"].includes(start) ? start : store.get("view", "table"));
 })();
 
+</script>
+<script>
+/* Site nav on this page: highlight Medications or Mnemonics, and let the nav links switch tabs */
+(function () {
+  var meds = document.getElementById("nav-meds"), mem = document.getElementById("nav-mem");
+  function sync() {
+    var onMem = document.getElementById("tab-mem").getAttribute("aria-selected") === "true";
+    if (onMem) { mem.setAttribute("aria-current", "page"); meds.removeAttribute("aria-current"); }
+    else { meds.setAttribute("aria-current", "page"); mem.removeAttribute("aria-current"); }
+  }
+  window.addEventListener("hashchange", function () {
+    var t = document.querySelector('.tab[data-view="' + location.hash.slice(1) + '"]');
+    if (t) t.click();
+  });
+  [meds, mem].forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var t = document.querySelector('.tab[data-view="' + a.hash.slice(1) + '"]');
+      if (t) { e.preventDefault(); t.click(); window.scrollTo(0, 0); }
+    });
+  });
+  document.querySelectorAll(".tab").forEach(function (t) { t.addEventListener("click", sync); });
+  sync();
+})();
 </script>
 </body>
 </html>

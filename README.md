@@ -5,9 +5,9 @@ A sage-green study site for respiratory therapy students, built for quick lookup
 | Page | What's on it |
 | --- | --- |
 | `index.html` | **ABG values** (pH, PaCO₂, HCO₃⁻, PaO₂, SaO₂, base excess, ROME) and **O₂ delivery devices** (nasal cannula, simple mask, partial rebreather, non-rebreather, Venturi): liter flow, FiO₂, low vs. high flow, humidification, and whether FiO₂ changes with the patient's RR/VT |
-| `meds.html` | **NBRC respiratory medication chart**: table, cards, flashcards, and an NBRC-style practice quiz, with search and drug-class filters |
+| `meds.html` | **NBRC respiratory medication chart**: table, cards, flashcards, an NBRC-style practice quiz, and **memory aids** (mnemonics, drug-name endings, rules of thumb), with search and drug-class filters |
 
-Both pages share one navigation bar (ABG Values · O₂ Devices · Medications), follow your phone's light/dark setting, and need no build step or installs.
+Both pages share one navigation bar (ABG · O₂ Devices · Medications · Mnemonics), follow your phone's light/dark setting, and need no build step or installs.
 
 ## Put it online with GitHub Pages
 
@@ -23,6 +23,7 @@ Tip: on your phone, open the site and use **Add to Home Screen** so it opens lik
 
 - **ABG / O₂ values:** edit the text directly in `index.html`.
 - **Medications:** in `meds.html`, the drug list is the `D = [ ... ]` array and the practice questions are the `QUIZ = [ ... ]` array inside the `<script>` near the bottom. Each entry's fields are explained in the comment above it.
+- **Mnemonics:** also in `meds.html` — `MEM_BIG` (big-picture cards), `MEM_SUFFIX` (name endings), and `MEM` (cards for each drug class).
 
 Flashcard progress and filters are saved in your browser (per device).
 
