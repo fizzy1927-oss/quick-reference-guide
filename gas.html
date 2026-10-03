@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O₂ Math &amp; Medical Gases · RT Quick Reference</title>
+<meta name="description" content="Total flow and cylinder duration formulas with calculators and practice problems, plus medical gas cylinder colors and uses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F3F5F0; --surface:#FFFFFF; --ink:#1E2A22; --muted:#65725F; --line:#E0E6DA; --line-strong:#CBD5C4;
+  --accent:#4E6E52; --accent-ink:#FFFFFF; --accent-soft:#E4ECE1; --band:#EEF2EA; --shadow:0 1px 2px rgba(30,42,34,.05),0 4px 16px rgba(30,42,34,.05);
+  --c-beta:#4E729A; --c-anti:#7A62A0; --c-combo:#3F7D69; --c-xan:#9A6534; --c-bio:#9A5572; --c-masto:#5F7F3A; --c-ltm:#8A7432; --c-abx:#A4524A; --c-muco:#3F7F8A; --c-ster:#7E5E44; --c-dil:#66736C;
+  --good:#3C7A4E; --good-bg:#E4F1E6; --warn:#A4524A; --warn-bg:#F6E9E6;
+  --f-display:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:12px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:16px}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;margin:0}
+button{font:inherit;color:inherit}
+/* ---------- shared site nav (same on every page) ---------- */
+.site-nav{background:var(--surface);border-bottom:1px solid var(--line)}
+.site-nav .in{max-width:1440px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px}
+.site-brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.site-brand .mark{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:12.5px;font-weight:800;letter-spacing:.02em}
+.site-links{display:flex;gap:4px;padding:4px;background:var(--accent-soft);border-radius:999px;max-width:100%;overflow-x:auto}
+.site-links a{padding:8px 16px;border-radius:999px;font-family:var(--f-display);font-weight:600;font-size:14.5px;color:var(--muted);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.site-links a:hover{color:var(--ink)}
+.site-links a[aria-current]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.site-links a:focus-visible,.site-brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.site-links .sm{display:none}
+@media (max-width:760px){
+  .site-nav .in{padding:10px 16px}
+  .site-links{width:100%;gap:2px}
+  .site-links a{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:13.5px}
+  .site-links .lg{display:none}
+  .site-links .sm{display:inline}
+}
+@media (prefers-reduced-motion:reduce){.site-links a{transition:none}}
+@media print{.site-nav{display:none}}
+
+
+.wrap{max-width:1040px;margin:0 auto;padding:36px 24px 56px;display:flex;flex-direction:column;gap:44px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h1,h2,h3{font-family:var(--f-display);letter-spacing:-.02em;margin:0;color:var(--ink)}
+h1{font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.1;text-wrap:balance}
+h2{font-weight:700;font-size:24px;line-height:1.2}
+h3{font-weight:700;font-size:17px;letter-spacing:-.01em;line-height:1.3}
+.sub{color:var(--muted);margin:10px 0 0;font-size:15px;max-width:62ch}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.jump a{font-size:13.5px;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);text-decoration:none}
+.jump a:hover{border-color:var(--accent)}
+section{display:flex;flex-direction:column;gap:16px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px}
+.sec-head p{margin:0;font-size:13.5px;color:var(--muted)}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow);min-width:0}
+.card p{margin:0}
+.muted{color:var(--muted);font-size:14px}
+.formula{background:var(--accent-soft);border-radius:10px;padding:14px 16px;font-family:var(--f-display);font-weight:700;font-size:17px;line-height:1.45;color:var(--ink)}
+.formula small{display:block;font-family:var(--f-body);font-weight:500;font-size:13px;color:var(--muted);margin-top:4px}
+.steps{margin:0;padding-left:20px;display:grid;gap:6px}
+.steps li::marker{color:var(--accent);font-weight:700}
+.callout{background:var(--accent-soft);border-radius:var(--r);padding:14px 18px;font-size:15px}
+.callout-title{font-family:var(--f-display);font-weight:700;color:var(--ink);margin-bottom:4px}
+.callout.warn{background:var(--warn-bg)}
+.callout.warn .callout-title{color:var(--warn)}
+
+/* small data tables */
+.tbox{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow);overflow-x:auto}
+.t{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.4}
+.t th{background:var(--accent);color:var(--accent-ink);text-align:left;font-weight:700;font-size:13px;padding:11px 14px;white-space:nowrap}
+.t td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums}
+.t tbody tr:nth-child(even) td{background:var(--band)}
+.t td.k{font-family:var(--f-display);font-weight:700}
+.t .sub2{display:block;font-size:12.5px;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-size:13.5px}
+
+/* calculators */
+.calc{background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r);padding:20px 22px;display:grid;gap:14px;box-shadow:var(--shadow)}
+.calc-head{display:flex;align-items:center;gap:10px}
+.calc-head .ico{width:30px;height:30px;border-radius:8px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;flex:none}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.field{display:grid;gap:5px;font-size:13px;font-weight:600;color:var(--muted)}
+.field input,.field select{font:inherit;font-size:16px;font-weight:500;color:var(--ink);background:var(--bg);border:1px solid var(--line-strong);border-radius:10px;padding:10px 12px;width:100%;min-width:0}
+.field small{font-weight:400}
+.result{border-radius:10px;background:var(--band);padding:14px 16px;display:grid;gap:4px}
+.result .big{font-family:var(--f-display);font-weight:800;font-size:28px;letter-spacing:-.02em;line-height:1.15}
+.result .work{font-size:13.5px;color:var(--muted)}
+.ok{color:var(--good);font-weight:700}
+.bad{color:var(--warn);font-weight:700}
+
+/* practice */
+.practice{display:grid;gap:10px}
+.practice-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.btn{font-weight:600;font-size:13.5px;padding:8px 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+details.pq{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+details.pq summary{list-style:none;cursor:pointer;padding:14px 18px;display:grid;grid-template-columns:28px 1fr;gap:4px 12px}
+details.pq summary::-webkit-details-marker{display:none}
+.qn{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:13px}
+.qt{font-weight:500}
+.reveal{grid-column:2;font-size:12.5px;font-weight:600;color:var(--accent)}
+details.pq[open] .reveal::before{content:"Hide answer"}
+details.pq:not([open]) .reveal::before{content:"Show answer"}
+.ans{padding:0 18px 16px 58px;display:grid;gap:6px}
+.ans p{margin:0}
+.ans .final{font-family:var(--f-display);font-weight:800;font-size:17px;color:var(--good)}
+.ans .w{font-size:14px;color:var(--muted)}
+
+/* gas cylinders */
+.swatch{display:inline-flex;flex-direction:column;width:22px;height:36px;border-radius:9px 9px 4px 4px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18),0 0 0 1px var(--line-strong);vertical-align:middle;flex:none}
+.swatch i{flex:1}
+.gascell{display:flex;align-items:center;gap:12px}
+.gascell b{font-family:var(--f-display);display:block}
+.gascell span{font-size:12.5px;color:var(--muted)}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:13px;font-weight:500;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+
+footer{padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;display:grid;gap:6px}
+footer p{margin:0}
+
+@media (max-width:760px){
+  .wrap{padding:24px 16px 40px;gap:36px}
+  .cols,.trio{grid-template-columns:1fr}
+  .card,.calc{padding:18px}
+  .ans{padding:0 18px 16px 18px}
+  .gases{background:none;border:0;box-shadow:none;overflow:visible}
+  .gases table,.gases tbody,.gases tr,.gases td{display:block;width:100%}
+  .gases thead{display:none}
+  .gases tbody{display:grid;gap:10px}
+  .gases tr{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+  .gases tbody tr:nth-child(even) td{background:none}
+  .gases td{border-top:0;padding:10px 16px}
+  .gases td:first-child{background:var(--band)!important;padding:12px 16px}
+  .gases td.pin{border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .gases td.pin::before{content:"Pin index";font-size:12px;font-weight:600;color:var(--accent);margin-right:6px}
+  .gases td.pin .sub2{display:inline;margin-right:8px}
+}
+@media print{
+  body{background:#fff}
+  .calc,.jump{display:none}
+  details.pq .ans{display:grid}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Site">
+  <div class="in">
+    <a class="site-brand" href="index.html"><span class="mark" aria-hidden="true">RT</span>RT Quick Reference</a>
+    <div class="site-links">
+      <a id="nav-abg" href="index.html#abg"><span class="lg">ABG Values</span><span class="sm">ABG</span></a>
+      <a id="nav-o2" href="index.html#o2"><span class="lg">O₂ Devices</span><span class="sm">O₂</span></a>
+      <a id="nav-gas" href="gas.html" aria-current="page"><span class="lg">O₂ Math &amp; Gases</span><span class="sm">O₂ Math</span></a>
+      <a id="nav-meds" href="meds.html#table"><span class="lg">Medications</span><span class="sm">Meds</span></a>
+      <a id="nav-mem" href="meds.html#mem"><span class="lg">Mnemonics</span><span class="sm">Mnemonics</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header>
+    <p class="eyebrow">RT quick reference</p>
+    <h1>O₂ Math &amp; Medical Gases</h1>
+    <p class="sub">The formulas you need for total flow and cylinder duration, with calculators to check your work and practice problems with worked answers. Then the medical gas cylinders: colors, uses and pin index.</p>
+    <nav class="jump" aria-label="On this page">
+      <a href="#total-flow">Total flow</a>
+      <a href="#flow-practice">Total flow practice</a>
+      <a href="#cylinder">Cylinder duration</a>
+      <a href="#cyl-practice">Cylinder practice</a>
+      <a href="#gases">Gas cylinders</a>
+    </nav>
+  </header>
+
+  <!-- ================= TOTAL FLOW ================= -->
+  <section id="total-flow" aria-labelledby="tf-h">
+    <div class="sec-head">
+      <h2 id="tf-h">Total Flow (Air-Entrainment Devices)</h2>
+      <p>Venturi masks · air-entrainment nebulizers</p>
+    </div>
+
+    <div class="cols">
+      <div class="card">
+        <h3>Step 1 · Find the air : O₂ ratio</h3>
+        <div class="formula">Air : O₂ = (100 − FiO₂) ÷ (FiO₂ − 21)<small>Use FiO₂ as a percent. The answer is the air parts for every 1 part O₂.</small></div>
+        <p class="muted">Example, 40%: (100 − 40) ÷ (40 − 21) = 60 ÷ 19 ≈ 3, so the ratio is <strong>3 : 1</strong>.</p>
+      </div>
+      <div class="card">
+        <h3>Step 2 · Multiply by the O₂ flow</h3>
+        <div class="formula">Total flow = O₂ flow × (air parts + O₂ parts)<small>Add the two sides of the ratio, then multiply by the flowmeter setting.</small></div>
+        <p class="muted">Example, 40% at 10 L/min: (3 + 1) × 10 = <strong>40 L/min</strong>.</p>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="tbox">
+        <table class="t">
+          <thead><tr><th>FiO₂</th><th>Air : O₂</th><th>Total parts</th></tr></thead>
+          <tbody>
+            <tr><td class="k">24%</td><td>25 : 1</td><td>26</td></tr>
+            <tr><td class="k">28%</td><td>10 : 1</td><td>11</td></tr>
+            <tr><td class="k">30%</td><td>8 : 1</td><td>9</td></tr>
+            <tr><td class="k">35%</td><td>5 : 1</td><td>6</td></tr>
+            <tr><td class="k">40%</td><td>3 : 1</td><td>4</td></tr>
+            <tr><td class="k">50%</td><td>1.7 : 1</td><td>2.7</td></tr>
+            <tr><td class="k">60%</td><td>1 : 1</td><td>2</td></tr>
+            <tr><td class="k">70%</td><td>0.6 : 1</td><td>1.6</td></tr>
+            <tr><td class="k">100%</td><td>0 : 1</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:grid;gap:14px">
+        <div class="callout">
+          <div class="callout-title">Is the total flow enough?</div>
+          Total flow must meet the patient’s inspiratory demand. Rule of thumb: <strong>total flow ≥ 3 × minute ventilation</strong> (some programs teach 4×). If it’s too low, the patient pulls in room air and the delivered FiO₂ drops.
+        </div>
+        <div class="callout">
+          <div class="callout-title">Not enough flow? Fixes</div>
+          Run two nebulizers in tandem, increase the O₂ flow, lower the FiO₂ (more air entrained = more total flow) if the patient can tolerate it, or switch to HFNC.
+        </div>
+        <div class="callout">
+          <div class="callout-title">Higher FiO₂ = less total flow</div>
+          As FiO₂ goes up, less air is entrained, so total flow falls. That’s why air-entrainment devices struggle to give high FiO₂ at high flow.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Working backward: FiO₂ of a mixed gas</h3>
+      <div class="formula">FiO₂ = [(O₂ flow × 1.0) + (air flow × 0.21)] ÷ total flow</div>
+      <p class="muted">Example: 10 L/min O₂ + 30 L/min air → (10 + 6.3) ÷ 40 = 0.41 ≈ <strong>40%</strong> (that’s the 3 : 1 ratio).</p>
+    </div>
+
+    <div class="calc" id="tfCalc">
+      <div class="calc-head">
+        <span class="ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"/></svg></span>
+        <h3>Total flow calculator</h3>
+      </div>
+      <div class="fields">
+        <label class="field">FiO₂ (%)
+          <input id="tfF" type="number" inputmode="decimal" min="22" max="100" step="1" value="40">
+        </label>
+        <label class="field">O₂ flowmeter (L/min)
+          <input id="tfO" type="number" inputmode="decimal" min="0" step="0.5" value="10">
+        </label>
+        <label class="field">Minute ventilation <small>(optional, L/min)</small>
+          <input id="tfV" type="number" inputmode="decimal" min="0" step="0.5" placeholder="e.g. 12">
+        </label>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="big" id="tfOut">—</div>
+        <div class="work" id="tfWork"></div>
+        <div class="work" id="tfNeed"></div>
+      </div>
+    </div>
+
+    <div class="practice" id="flow-practice">
+      <div class="practice-head">
+        <h3>Practice: total flow</h3>
+        <button class="btn" type="button" data-toggle="flow-practice">Show all answers</button>
+      </div>
+
+      <details class="pq"><summary><span class="qn">1</span><span class="qt">A patient is on a Venturi mask set to 28% with the flowmeter at 4 L/min. What is the total flow?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">28% → 10 : 1 → 10 + 1 = 11 parts</p><p class="w">11 × 4 L/min</p><p class="final">= 44 L/min</p></div></details>
+
+      <details class="pq"><summary><span class="qn">2</span><span class="qt">A Venturi mask is set to 40% at 10 L/min. What is the total flow?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">40% → 3 : 1 → 4 parts</p><p class="w">4 × 10 L/min</p><p class="final">= 40 L/min</p></div></details>
+
+      <details class="pq"><summary><span class="qn">3</span><span class="qt">An air-entrainment device is set to 35% with an O₂ flow of 8 L/min. What is the total flow?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">35% → 5 : 1 → 6 parts</p><p class="w">6 × 8 L/min</p><p class="final">= 48 L/min</p></div></details>
+
+      <details class="pq"><summary><span class="qn">4</span><span class="qt">Calculate the air : O₂ ratio for 45%, then the total flow at 10 L/min.</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">(100 − 45) ÷ (45 − 21) = 55 ÷ 24 ≈ 2.3 → 2.3 : 1</p><p class="w">2.3 + 1 = 3.3 parts × 10 L/min</p><p class="final">≈ 33 L/min</p></div></details>
+
+      <details class="pq"><summary><span class="qn">5</span><span class="qt">A patient with a minute ventilation of 12 L/min is on an air-entrainment nebulizer at 60% with the flowmeter at 15 L/min. What is the total flow, and is it adequate?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">60% → 1 : 1 → 2 parts × 15 L/min = 30 L/min</p><p class="w">Needed: 3 × 12 = 36 L/min</p><p class="final">30 L/min — not adequate</p><p class="w">Fix: run two nebulizers in tandem (≈ 60 L/min), lower the FiO₂ if allowed, or switch to HFNC.</p></div></details>
+
+      <details class="pq"><summary><span class="qn">6</span><span class="qt">Oxygen at 10 L/min and air at 10 L/min (two flowmeters) are mixed into one circuit. What FiO₂ does the patient receive?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">[(10 × 1.0) + (10 × 0.21)] ÷ 20 = (10 + 2.1) ÷ 20 = 12.1 ÷ 20</p><p class="final">= 0.605 ≈ 60%</p></div></details>
+
+      <details class="pq"><summary><span class="qn">7</span><span class="qt">A device delivers a total flow of 60 L/min using 15 L/min of O₂. What is the FiO₂?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">Air flow = 60 − 15 = 45 L/min</p><p class="w">[(15 × 1.0) + (45 × 0.21)] ÷ 60 = (15 + 9.45) ÷ 60 = 24.45 ÷ 60</p><p class="final">≈ 0.41 → about 40% (3 : 1)</p></div></details>
+
+      <details class="pq"><summary><span class="qn">8</span><span class="qt">A Venturi mask at 24% runs on 3 L/min. What is the total flow?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">24% → 25 : 1 → 26 parts</p><p class="w">26 × 3 L/min</p><p class="final">= 78 L/min</p></div></details>
+    </div>
+  </section>
+
+  <!-- ================= CYLINDER DURATION ================= -->
+  <section id="cylinder" aria-labelledby="cyl-h">
+    <div class="sec-head">
+      <h2 id="cyl-h">Cylinder Duration</h2>
+      <p>How long will this tank last?</p>
+    </div>
+
+    <div class="cols">
+      <div class="card">
+        <h3>The formula</h3>
+        <div class="formula">Duration (min) = (gauge pressure − safe residual) × cylinder factor ÷ flow<small>Pressure in psig · flow in L/min · divide minutes by 60 for hours</small></div>
+        <ol class="steps">
+          <li>Read the gauge (psig).</li>
+          <li>Subtract a safe residual <strong>only if the question gives one</strong> (often 200 or 500 psi).</li>
+          <li>Multiply by the cylinder factor for that size.</li>
+          <li>Divide by the flow in L/min.</li>
+        </ol>
+      </div>
+      <div style="display:grid;gap:14px">
+        <div class="tbox">
+          <table class="t">
+            <thead><tr><th>Cylinder</th><th>Factor (L/psi)</th><th>Full (~2,200 psi)</th></tr></thead>
+            <tbody>
+              <tr><td class="k">D</td><td><span class="chip">0.16</span></td><td>≈ 350 L</td></tr>
+              <tr><td class="k">E</td><td><span class="chip">0.28</span></td><td>≈ 620 L</td></tr>
+              <tr><td class="k">M</td><td><span class="chip">1.56</span></td><td>≈ 3,430 L</td></tr>
+              <tr><td class="k">G</td><td><span class="chip">2.41</span></td><td>≈ 5,300 L</td></tr>
+              <tr><td class="k">H / K</td><td><span class="chip">3.14</span></td><td>≈ 6,900 L</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <div class="callout-title">Where the factor comes from</div>
+          Factor = cubic feet × 28.3 ÷ 2,200 psi. Oxygen cylinders are full at about 2,200 psi, and pressure drops in a straight line as the gas is used.
+        </div>
+      </div>
+    </div>
+
+    <div class="calc" id="cylCalc">
+      <div class="calc-head">
+        <span class="ico" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M10 2h4"/></svg></span>
+        <h3>Cylinder duration calculator</h3>
+      </div>
+      <div class="fields">
+        <label class="field">Cylinder size
+          <select id="cS">
+            <option value="0.16">D (0.16)</option>
+            <option value="0.28" selected>E (0.28)</option>
+            <option value="1.56">M (1.56)</option>
+            <option value="2.41">G (2.41)</option>
+            <option value="3.14">H / K (3.14)</option>
+          </select>
+        </label>
+        <label class="field">Gauge pressure (psig)
+          <input id="cP" type="number" inputmode="decimal" min="0" step="50" value="2000">
+        </label>
+        <label class="field">Safe residual (psi)
+          <input id="cR" type="number" inputmode="decimal" min="0" step="50" value="0">
+        </label>
+        <label class="field">Flow (L/min)
+          <input id="cF" type="number" inputmode="decimal" min="0" step="0.5" value="4">
+        </label>
+      </div>
+      <div class="result" aria-live="polite">
+        <div class="big" id="cOut">—</div>
+        <div class="work" id="cWork"></div>
+      </div>
+    </div>
+
+    <div class="practice" id="cyl-practice">
+      <div class="practice-head">
+        <h3>Practice: cylinder duration</h3>
+        <button class="btn" type="button" data-toggle="cyl-practice">Show all answers</button>
+      </div>
+
+      <details class="pq"><summary><span class="qn">1</span><span class="qt">An E cylinder reads 1,800 psig. The patient is on a nasal cannula at 3 L/min. How long will it last?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">1,800 × 0.28 ÷ 3 = 504 ÷ 3</p><p class="final">= 168 min (2 hr 48 min)</p></div></details>
+
+      <details class="pq"><summary><span class="qn">2</span><span class="qt">A full H cylinder (2,200 psig) runs at 10 L/min. How long will it last?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">2,200 × 3.14 ÷ 10 = 6,908 ÷ 10</p><p class="final">≈ 691 min (about 11 hr 31 min)</p></div></details>
+
+      <details class="pq"><summary><span class="qn">3</span><span class="qt">A D cylinder reads 1,500 psig with a flow of 2 L/min. What is the duration?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">1,500 × 0.16 ÷ 2 = 240 ÷ 2</p><p class="final">= 120 min (2 hr)</p></div></details>
+
+      <details class="pq"><summary><span class="qn">4</span><span class="qt">An E cylinder reads 2,000 psig. The flow is 6 L/min, and your department changes cylinders at 500 psi. How long until it must be changed?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">(2,000 − 500) × 0.28 ÷ 6 = 1,500 × 0.28 ÷ 6 = 420 ÷ 6</p><p class="final">= 70 min (1 hr 10 min)</p></div></details>
+
+      <details class="pq"><summary><span class="qn">5</span><span class="qt">You need to transport a patient on 10 L/min for about 45 minutes. The E cylinder reads 1,200 psig. Is it enough?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">1,200 × 0.28 ÷ 10 = 33.6 min</p><p class="final">No — only about 34 minutes</p><p class="w">To last 45 min you’d need at least 45 × 10 ÷ 0.28 ≈ 1,607 psi. Grab a fuller cylinder or bring a spare.</p></div></details>
+
+      <details class="pq"><summary><span class="qn">6</span><span class="qt">An M cylinder reads 1,000 psig at 4 L/min. How long will it last?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">1,000 × 1.56 ÷ 4 = 1,560 ÷ 4</p><p class="final">= 390 min (6 hr 30 min)</p></div></details>
+
+      <details class="pq"><summary><span class="qn">7</span><span class="qt">A patient on a non-rebreather at 15 L/min is moved with a full E cylinder (2,200 psig). How long do you have?</span><span class="reveal"></span></summary>
+        <div class="ans"><p class="w">2,200 × 0.28 ÷ 15 = 616 ÷ 15</p><p class="final">≈ 41 min</p></div></details>
+    </div>
+  </section>
+
+  <!-- ================= GAS CYLINDERS ================= -->
+  <section id="gases" aria-labelledby="gas-h">
+    <div class="sec-head">
+      <h2 id="gas-h">Medical Gas Cylinders</h2>
+      <p>US color code · uses · pin index (PISS)</p>
+    </div>
+
+    <div class="tbox gases">
+      <table class="t">
+        <thead><tr><th>Gas &amp; color</th><th>Used for</th><th>Pin index</th></tr></thead>
+        <tbody>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#2F8F4E"></i></span><div><b>Oxygen</b><span>Green · international: white</span></div></div></td>
+            <td class="use">Treats and prevents hypoxemia; driving gas for nebulizers and ventilators. Not flammable, but supports combustion.</td><td class="pin"><span class="chip">2–5</span></td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#E8C547"></i></span><div><b>Medical air</b><span>Yellow · international: black &amp; white</span></div></div></td>
+            <td class="use">Ventilators and air/O₂ blenders; driving gas when you don’t want extra O₂ (CO₂ retainers, premature infants). 21% O₂.</td><td class="pin"><span class="chip">1–5</span></td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#7B5232"></i><i style="background:#2F8F4E"></i></span><div><b>Heliox (He/O₂)</b><span>Brown &amp; green</span></div></div></td>
+            <td class="use">Low-density gas that eases flow past upper-airway obstruction and severe asthma. On an O₂ flowmeter multiply by <strong>1.8</strong> for 80/20 or <strong>1.6</strong> for 70/30.</td><td class="pin"><span class="chip">2–4</span> <span class="sub2">He ≤ 80%</span><span class="chip">4–6</span> <span class="sub2">He &gt; 80%</span></td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#7B5232"></i></span><div><b>Helium</b><span>Brown</span></div></div></td>
+            <td class="use">Never given alone (no O₂). Always mixed with at least 20% O₂ as heliox.</td><td class="pin">—</td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#8D9298"></i></span><div><b>Carbon dioxide</b><span>Gray</span></div></div></td>
+            <td class="use">Calibrating blood gas analyzers and capnographs; lab and diagnostic testing. Not given to patients by itself.</td><td class="pin">—</td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#8D9298"></i><i style="background:#2F8F4E"></i></span><div><b>CO₂/O₂ (carbogen)</b><span>Gray &amp; green</span></div></div></td>
+            <td class="use">Diagnostic and research use (e.g. testing the CO₂ response); historically for hiccups and to stimulate breathing.</td><td class="pin"><span class="chip">2–6</span> <span class="sub2">CO₂ ≤ 7%</span><span class="chip">1–6</span> <span class="sub2">CO₂ &gt; 7%</span></td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#86BEE6"></i></span><div><b>Nitrous oxide</b><span>Light blue</span></div></div></td>
+            <td class="use">Anesthetic and analgesic (“laughing gas”). Supports combustion.</td><td class="pin"><span class="chip">3–5</span></td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#1E1E1E"></i></span><div><b>Nitrogen</b><span>Black</span></div></div></td>
+            <td class="use">Powers pneumatic tools and equipment; calibration gas mixtures. Never given to patients (inert; displaces O₂).</td><td class="pin"><span class="chip">1–4</span></td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#E07B2A"></i></span><div><b>Cyclopropane</b><span>Orange</span></div></div></td>
+            <td class="use">Flammable anesthetic gas (historical; still on exams).</td><td class="pin"><span class="chip">3–6</span></td></tr>
+          <tr><td><div class="gascell"><span class="swatch" aria-hidden="true"><i style="background:#C63D3D"></i></span><div><b>Ethylene</b><span>Red</span></div></div></td>
+            <td class="use">Flammable anesthetic gas (historical; still on exams).</td><td class="pin"><span class="chip">1–3</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="trio">
+      <div class="callout">
+        <div class="callout-title">PISS</div>
+        <strong>Pin Index Safety System</strong> — small cylinders (size E and smaller) with a yoke connector. Pins on the yoke match holes on the valve, so the wrong gas can’t be attached.
+      </div>
+      <div class="callout">
+        <div class="callout-title">ASSS</div>
+        <strong>American Standard Safety System</strong> — large cylinders (G, H/K) with threaded outlets of different sizes and thread types for each gas.
+      </div>
+      <div class="callout">
+        <div class="callout-title">DISS</div>
+        <strong>Diameter Index Safety System</strong> — low-pressure connections (under 200 psi): wall outlets, flowmeters, regulators to equipment.
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">Read the label, not just the color</div>
+      Color codes differ between countries and can fade or be painted over. Always confirm the gas by the label before connecting. Keep cylinders upright and secured, away from heat, and never use oil or grease on fittings.
+    </div>
+  </section>
+
+  <footer>
+    <p>For exam study. Ratios are the rounded values most textbooks and NBRC-style questions use. Follow your program’s references and your facility’s policy for safe residual pressure.</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var num = function (el) { var v = parseFloat(el.value); return isFinite(v) ? v : NaN; };
+  var fmt = function (n, d) { return (Math.round(n * Math.pow(10, d)) / Math.pow(10, d)).toLocaleString("en-US"); };
+
+  /* Standard rounded ratios used in textbooks; anything else is computed. */
+  var STD = { 24: 25, 28: 10, 30: 8, 35: 5, 40: 3, 50: 1.7, 60: 1, 70: 0.6, 100: 0 };
+
+  function totalFlow() {
+    var F = num($("tfF")), O = num($("tfO")), V = num($("tfV"));
+    var out = $("tfOut"), work = $("tfWork"), need = $("tfNeed");
+    need.textContent = "";
+    if (!(F > 21 && F <= 100)) { out.textContent = "—"; work.textContent = "Enter an FiO₂ between 22 and 100%."; return; }
+    if (!(O > 0)) { out.textContent = "—"; work.textContent = "Enter the O₂ flowmeter setting."; return; }
+    var std = STD.hasOwnProperty(Math.round(F)) && Math.round(F) === F;
+    var r = std ? STD[F] : Math.round((100 - F) / (F - 21) * 10) / 10;
+    var parts = Math.round((r + 1) * 10) / 10;
+    var total = parts * O;
+    out.textContent = fmt(total, 1) + " L/min";
+    work.textContent = (std ? F + "% → " : "(100 − " + F + ") ÷ (" + F + " − 21) ≈ ") + fmt(r, 1) + " : 1  →  " + fmt(parts, 1) + (parts === 1 ? " part × " : " parts × ") + fmt(O, 1) + " L/min";
+    if (V > 0) {
+      var req = 3 * V;
+      need.innerHTML = "Needs ≥ " + fmt(req, 1) + " L/min (3 × V̇E) → " +
+        (total >= req ? '<span class="ok">Adequate</span>' : '<span class="bad">Not enough flow</span>');
+    }
+  }
+  ["tfF", "tfO", "tfV"].forEach(function (id) { $(id).addEventListener("input", totalFlow); });
+  totalFlow();
+
+  function cylinder() {
+    var f = parseFloat($("cS").value), P = num($("cP")), R = num($("cR")) || 0, L = num($("cF"));
+    var out = $("cOut"), work = $("cWork");
+    if (!(P > 0) || !(L > 0)) { out.textContent = "—"; work.textContent = "Enter the gauge pressure and flow."; return; }
+    var usable = P - R;
+    if (usable <= 0) { out.textContent = "0 min"; work.textContent = "The gauge is already at or below the safe residual."; return; }
+    var min = usable * f / L;
+    var h = Math.floor(min / 60), m = Math.round(min - h * 60);
+    if (m === 60) { h += 1; m = 0; }
+    out.textContent = fmt(min, 1) + " min" + (min >= 60 ? "  (" + h + " hr " + m + " min)" : "");
+    work.textContent = (R ? "(" + fmt(P, 0) + " − " + fmt(R, 0) + ")" : fmt(P, 0)) + " × " + f + " ÷ " + fmt(L, 1) + " L/min";
+  }
+  ["cS", "cP", "cR", "cF"].forEach(function (id) { $(id).addEventListener("input", cylinder); });
+  cylinder();
+
+  /* Show / hide all answers in a practice set */
+  document.querySelectorAll("[data-toggle]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var items = document.querySelectorAll("#" + btn.dataset.toggle + " details.pq");
+      var open = btn.textContent.indexOf("Show") === 0;
+      items.forEach(function (d) { d.open = open; });
+      btn.textContent = open ? "Hide all answers" : "Show all answers";
+    });
+  });
+})();
+</script>
+</body>
+</html>

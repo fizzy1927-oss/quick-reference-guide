@@ -43,10 +43,13 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1
 .site-links a:hover{color:var(--ink)}
 .site-links a[aria-current]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
 .site-links a:focus-visible,.site-brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-@media (max-width:640px){
+.site-links .sm{display:none}
+@media (max-width:760px){
   .site-nav .in{padding:10px 16px}
   .site-links{width:100%;gap:2px}
   .site-links a{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:13.5px}
+  .site-links .lg{display:none}
+  .site-links .sm{display:inline}
 }
 @media (prefers-reduced-motion:reduce){.site-links a{transition:none}}
 @media print{.site-nav{display:none}}
@@ -72,6 +75,7 @@ section{display:flex;flex-direction:column;gap:16px}
 .card .hint{font-size:13.5px;color:var(--muted)}
 .callout{background:var(--accent-soft);border-radius:var(--r);padding:14px 18px;font-size:15px}
 .callout strong{color:var(--ink)}
+.callout a{color:var(--accent);font-weight:600;text-underline-offset:2px;white-space:nowrap}
 .callout-title{font-family:var(--f-display);font-weight:700;color:var(--ink);margin-bottom:4px}
 
 /* O2 device table */
@@ -124,10 +128,11 @@ footer p{margin:0}
   <div class="in">
     <a class="site-brand" href="index.html"><span class="mark" aria-hidden="true">RT</span>RT Quick Reference</a>
     <div class="site-links">
-      <a id="nav-abg" href="#abg">ABG</a>
-      <a id="nav-o2" href="#o2">O₂ Devices</a>
-      <a id="nav-meds" href="meds.html#table">Medications</a>
-      <a id="nav-mem" href="meds.html#mem">Mnemonics</a>
+      <a id="nav-abg" href="#abg"><span class="lg">ABG Values</span><span class="sm">ABG</span></a>
+      <a id="nav-o2" href="#o2"><span class="lg">O₂ Devices</span><span class="sm">O₂</span></a>
+      <a id="nav-gas" href="gas.html"><span class="lg">O₂ Math &amp; Gases</span><span class="sm">O₂ Math</span></a>
+      <a id="nav-meds" href="meds.html#table"><span class="lg">Medications</span><span class="sm">Meds</span></a>
+      <a id="nav-mem" href="meds.html#mem"><span class="lg">Mnemonics</span><span class="sm">Mnemonics</span></a>
     </div>
   </div>
 </nav>
@@ -136,7 +141,7 @@ footer p{margin:0}
   <header>
     <p class="eyebrow">RT quick reference</p>
     <h1>ABG Values &amp; Oxygen Delivery</h1>
-    <p class="sub">Normal adult values on room air at sea level, plus the five oxygen devices you need to know.</p>
+    <p class="sub">Normal adult values on room air at sea level, plus the six oxygen devices you need to know.</p>
   </header>
 
   <section id="abg" aria-labelledby="abg-h">
@@ -215,8 +220,8 @@ footer p{margin:0}
           </tr>
           <tr>
             <td class="dev">Partial rebreather</td>
-            <td data-label="Liter flow"><span><strong>6 – 11 L/min</strong><span class="sub2">Bag stays ⅓ – ½ full on inspiration</span></span></td>
-            <td data-label="FiO₂"><span><strong>40 – 70%</strong></span></td>
+            <td data-label="Liter flow"><span><strong>10 – 15 L/min</strong><span class="sub2">Keep the bag inflated</span></span></td>
+            <td data-label="FiO₂"><span><strong>35 – 60%</strong></span></td>
             <td data-label="Flow type"><span><span class="pill">Low</span></span></td>
             <td data-label="Humidification"><span>Not routine</span></td>
             <td data-label="Varies w/ RR / VT"><span><span class="yes">Yes</span> — varies</span></td>
@@ -237,6 +242,14 @@ footer p{margin:0}
             <td data-label="Humidification"><span>Not routine; aerosol collar if needed</span></td>
             <td data-label="Varies w/ RR / VT"><span><span class="no">No</span> — stays constant</span></td>
           </tr>
+          <tr>
+            <td class="dev">High-flow nasal cannula <span class="sub2">HFNC</span></td>
+            <td data-label="Liter flow"><span><strong>Up to 60 L/min</strong><span class="sub2">Adults; infants &amp; peds use lower, weight-based flows</span></span></td>
+            <td data-label="FiO₂"><span><strong>21 – 100%</strong><span class="sub2">Set on the air/O₂ blender</span></span></td>
+            <td data-label="Flow type"><span><span class="pill high">High</span></span></td>
+            <td data-label="Humidification"><span><strong>Yes — required.</strong> Heated humidifier (~37 °C, fully saturated)</span></td>
+            <td data-label="Varies w/ RR / VT"><span><span class="no">No</span> — stays constant<span class="sub2">As long as flow meets the pt’s demand</span></span></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -248,7 +261,7 @@ footer p{margin:0}
       </div>
       <div class="callout">
         <div class="callout-title">High flow</div>
-        Supplies the patient’s entire inspiratory demand at a set O₂ concentration, so FiO₂ stays the same no matter how they breathe. Best choice for COPD / CO₂ retainers needing precise FiO₂.
+        Supplies the patient’s entire inspiratory demand at a set O₂ concentration, so FiO₂ stays the same no matter how they breathe. Venturi: best for COPD / CO₂ retainers needing a precise, low FiO₂. HFNC: high FiO₂ plus a small PEEP effect and dead-space washout. <a href="gas.html#total-flow">How to compute total flow →</a>
       </div>
     </div>
   </section>

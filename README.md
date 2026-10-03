@@ -1,18 +1,82 @@
 # RT Quick Reference
 
-A sage-green study site for respiratory therapy students, built for quick lookups on a phone or laptop.
+A sage-green study site for respiratory therapy students preparing for the NBRC TMC / CSE exams. It's built for quick lookups on a phone or laptop: no logins, no installs, and it follows your device's light/dark setting.
 
-| Page | What's on it |
+Every page shares one navigation bar: **ABG Values · O₂ Devices · O₂ Math & Gases · Medications · Mnemonics**.
+
+---
+
+## What's on the site
+
+### 1. ABG Values — `index.html#abg`
+Normal adult arterial blood gas values (room air, sea level), each with what a high or low value means:
+
+| Value | Normal range |
 | --- | --- |
-| `index.html` | **ABG values** (pH, PaCO₂, HCO₃⁻, PaO₂, SaO₂, base excess, ROME) and **O₂ delivery devices** (nasal cannula, simple mask, partial rebreather, non-rebreather, Venturi): liter flow, FiO₂, low vs. high flow, humidification, and whether FiO₂ changes with the patient's RR/VT |
-| `meds.html` | **NBRC respiratory medication chart**: table, cards, flashcards, an NBRC-style practice quiz, and **memory aids** (mnemonics, drug-name endings, rules of thumb), with search and drug-class filters |
+| pH | 7.35 – 7.45 |
+| PaCO₂ | 35 – 45 mmHg |
+| HCO₃⁻ | 22 – 26 mEq/L |
+| PaO₂ | 80 – 100 mmHg |
+| SaO₂ | 95 – 100% |
+| Base excess | −2 to +2 mEq/L |
 
-Both pages share one navigation bar (ABG · O₂ Devices · Medications · Mnemonics), follow your phone's light/dark setting, and need no build step or installs.
+Plus the **ROME** rule (Respiratory Opposite, Metabolic Equal).
+
+### 2. O₂ Devices — `index.html#o2`
+Six oxygen delivery devices, each with liter flow, FiO₂ range, low vs. high flow, humidification, and whether FiO₂ changes with the patient's rate / tidal volume:
+
+| Device | Liter flow | FiO₂ | Flow |
+| --- | --- | --- | --- |
+| Nasal cannula | 1 – 6 L/min | 24 – 44% | Low |
+| Simple face mask | 5 – 10 L/min | 35 – 50% | Low |
+| Partial rebreather | 10 – 15 L/min (keep bag inflated) | 35 – 60% | Low |
+| Non-rebreather | 10 – 15 L/min | 60 – 80% | Low |
+| Venturi mask | 4 – 12 L/min | 24 – 60% | High |
+| High-flow nasal cannula (HFNC) | Up to 60 L/min | 21 – 100% | High |
+
+Includes a short explanation of why low-flow FiO₂ varies and high-flow FiO₂ doesn't. On a phone the table becomes one card per device.
+
+### 3. O₂ Math & Gases — `gas.html`
+- **Total flow (air-entrainment devices):** the air : O₂ ratio formula, the total flow formula, a ratio table (24% → 100%), the "total flow ≥ 3 × minute ventilation" rule, fixes for low flow, and the formula for the FiO₂ of a mixed gas.
+- **Total flow calculator:** enter FiO₂ and O₂ flow (and optionally minute ventilation) to get the ratio, total flow, and whether it's adequate.
+- **Total flow practice:** 8 problems with worked answers (tap to reveal, or show all).
+- **Cylinder duration:** the formula, step-by-step method, cylinder factors (D 0.16, E 0.28, M 1.56, G 2.41, H/K 3.14), and full-cylinder volumes.
+- **Cylinder duration calculator:** pick a cylinder size, enter gauge pressure, safe residual and flow.
+- **Cylinder duration practice:** 7 problems with worked answers.
+- **Medical gas cylinders:** US color code, what each gas is used for, and its pin index (PISS) for oxygen, medical air, heliox, helium, carbon dioxide, CO₂/O₂, nitrous oxide, nitrogen, cyclopropane and ethylene. Also PISS vs. ASSS vs. DISS and cylinder safety.
+
+### 4. Medications — `meds.html#table`
+The NBRC respiratory pharmacology chart: **46 drugs in 11 classes.** Each drug has brand names, category, strength, dosage, onset / peak / duration, mode of action, clinical effects and indications, adverse effects, contraindications, hazards, delivery device, and exam notes.
+
+- **Classes:** sympathomimetics (β agonists), parasympatholytics (anticholinergics), combinations, xanthines, biologics, mast cell stabilizer, leukotriene modifiers, anti-infectives, mucolytics, corticosteroids, and diluents / bland aerosols.
+- **Table view:** the full chart, with search, class filters, and "Hide answers" (tap a cell to reveal) for self-testing.
+- **Cards view:** one expandable card per drug.
+- **Flashcards:** study one field or everything, shuffle, mark cards known, and skip known cards (progress is saved on your device).
+- **Quiz:** 78 hand-written NBRC-style questions plus auto-generated drug class and brand-name questions; choose 10, 20, 30 or all, then review your misses.
+
+### 5. Mnemonics — `meds.html#mem`
+The **Memory aids** tab of the medication chart:
+- **The big picture:** sympathetic vs. parasympathetic, "1 heart, 2 lungs," cAMP vs. cGMP, and rescue vs. controller.
+- **Read the ending, know the class:** 8 drug-name endings (-terol, -tropium / -clidinium, -sone / -nide / -olone, -lukast, -phylline, -mab, -mycin, -cillin).
+- **50 class-by-class mnemonics and rules of thumb.** These include "can't see, can't pee," "Big Happy Dogs Chase After Squirrels" (the CF treatment order), the STEROIDS side-effect acrostic, Mean GNATS for aminoglycosides, and Anoro = "A-NO-roid."
+
+---
+
+## Files
+
+| File | What it is |
+| --- | --- |
+| `index.html` | Home page: ABG values and O₂ devices |
+| `gas.html` | O₂ math (total flow, cylinder duration), calculators, practice problems, medical gas cylinders |
+| `meds.html` | Medication chart: table, cards, flashcards, quiz, memory aids |
+| `README.md` | This file |
+
+There's no build step and no dependencies. Each page is a single HTML file.
 
 ## Put it online with GitHub Pages
 
-1. Create a new repository on GitHub (it can be public or private with Pages enabled on your plan).
-2. Click **Add file → Upload files** and drag in `index.html`, `meds.html`, and `README.md`, then **Commit changes**.
+1. Create a new repository on GitHub.
+2. Click **Add file → Upload files**, drag in all four files, then **Commit changes**. (When updating, upload the new versions to replace the old ones.)
 3. Go to **Settings → Pages**.
 4. Under **Build and deployment**, set **Source** to *Deploy from a branch*, pick `main` and `/ (root)`, then **Save**.
 5. After a minute or two the site is live at `https://<your-username>.github.io/<repo-name>/`.
@@ -21,10 +85,11 @@ Tip: on your phone, open the site and use **Add to Home Screen** so it opens lik
 
 ## Editing
 
-- **ABG / O₂ values:** edit the text directly in `index.html`.
-- **Medications:** in `meds.html`, the drug list is the `D = [ ... ]` array and the practice questions are the `QUIZ = [ ... ]` array inside the `<script>` near the bottom. Each entry's fields are explained in the comment above it.
+- **ABG values and O₂ devices:** edit the text directly in `index.html`.
+- **Total flow, cylinder duration, practice problems and gas cylinders:** edit the text directly in `gas.html`. Each practice problem is one `<details class="pq">` block.
+- **Medications:** in `meds.html`, the drug list is the `D = [ ... ]` array and the quiz questions are the `QUIZ = [ ... ]` array inside the `<script>` near the bottom. Each entry's fields are explained in the comment above it.
 - **Mnemonics:** also in `meds.html` — `MEM_BIG` (big-picture cards), `MEM_SUFFIX` (name endings), and `MEM` (cards for each drug class).
 
-Flashcard progress and filters are saved in your browser (per device).
+Flashcard progress, filters and your last-used tab are saved in your browser, per device.
 
-> For exam study. Ranges and doses vary slightly between textbooks and facilities — always follow your program's references and the current order / package insert in clinical practice.
+> For exam study. Ranges, doses and ratios vary slightly between textbooks and facilities. Always follow your program's references, your facility's policies, and the current order / package insert in clinical practice.
