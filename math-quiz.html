@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O₂ Math Quiz · RT Quick Reference</title>
+<meta name="description" content="Practice total flow and cylinder duration calculations: type your answer, get it graded, see the worked solution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F3F5F0; --surface:#FFFFFF; --ink:#1E2A22; --muted:#65725F; --line:#E0E6DA; --line-strong:#CBD5C4;
+  --accent:#4E6E52; --accent-ink:#FFFFFF; --accent-soft:#E4ECE1; --band:#EEF2EA; --shadow:0 1px 2px rgba(30,42,34,.05),0 4px 16px rgba(30,42,34,.05);
+  --c-beta:#4E729A; --c-anti:#7A62A0; --c-combo:#3F7D69; --c-xan:#9A6534; --c-bio:#9A5572; --c-masto:#5F7F3A; --c-ltm:#8A7432; --c-abx:#A4524A; --c-muco:#3F7F8A; --c-ster:#7E5E44; --c-dil:#66736C;
+  --good:#3C7A4E; --good-bg:#E4F1E6; --warn:#A4524A; --warn-bg:#F6E9E6;
+  --f-display:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:12px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;margin:0}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* ---------- shared site nav (same on every page) ---------- */
+.site-nav{background:var(--surface);border-bottom:1px solid var(--line)}
+.site-nav .in{max-width:1440px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px}
+.site-brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.site-brand .mark{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:12.5px;font-weight:800;letter-spacing:.02em}
+.site-links{display:flex;gap:4px;padding:4px;background:var(--accent-soft);border-radius:999px;max-width:100%;overflow-x:auto}
+.site-links a{padding:8px 16px;border-radius:999px;font-family:var(--f-display);font-weight:600;font-size:14.5px;color:var(--muted);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.site-links a:hover{color:var(--ink)}
+.site-links a[aria-current]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.site-links a:focus-visible,.site-brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.site-links .sm{display:none}
+@media (max-width:760px){
+  .site-nav .in{padding:10px 16px}
+  .site-links{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;border-radius:16px}
+  .site-links a{text-align:center;padding:8px 4px;font-size:13.5px;border-radius:12px}
+  .site-links .lg{display:none}
+  .site-links .sm{display:inline}
+}
+@media (prefers-reduced-motion:reduce){.site-links a{transition:none}}
+@media print{.site-nav{display:none}}
+
+
+.wrap{max-width:760px;margin:0 auto;padding:36px 24px 56px;display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h1,h2,h3{font-family:var(--f-display);letter-spacing:-.02em;margin:0;color:var(--ink)}
+h1{font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.1;text-wrap:balance}
+.sub{color:var(--muted);margin:10px 0 0;font-size:15px;max-width:60ch}
+
+.box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 28px;display:grid;gap:18px;box-shadow:var(--shadow)}
+.label{font-size:12.5px;font-weight:600;color:var(--muted);margin:0 0 8px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);cursor:pointer}
+.seg button:hover{border-color:var(--accent)}
+.seg button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.seg-note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.btn{font-weight:600;font-size:14px;padding:10px 18px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border-color:transparent;background:none;color:var(--muted);padding-inline:10px}
+.btn.ghost:hover{color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row.split{justify-content:space-between}
+
+.meter{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.progress{height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .25s}
+.topic{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.topic::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.topic.cyl::before{background:var(--c-xan)}
+.qtext{font-family:var(--f-display);font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.45;margin:0;text-wrap:pretty}
+
+.answer{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.inwrap{flex:1 1 220px;display:flex;align-items:center;border:1px solid var(--line-strong);border-radius:12px;background:var(--bg);padding-right:14px;min-width:0}
+.inwrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.inwrap input{flex:1;min-width:0;font:inherit;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink);background:none;border:0;padding:12px 14px;outline:none}
+.inwrap span{font-weight:600;color:var(--muted);white-space:nowrap}
+.inwrap.right{border-color:var(--good);background:var(--good-bg)}
+.inwrap.wrong{border-color:var(--warn);background:var(--warn-bg)}
+.tip{font-size:12.5px;color:var(--muted);margin:-8px 0 0}
+
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--band)}
+.opt b{display:inline-grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.right b{background:var(--good);color:var(--surface)}
+.opt.wrong{border-color:var(--warn);background:var(--warn-bg)}
+.opt.wrong b{background:var(--warn);color:var(--surface)}
+
+.hint{background:var(--accent-soft);border-radius:12px;padding:12px 16px;font-size:14px;line-height:1.6}
+.hint strong{font-family:var(--f-display)}
+.explain{background:var(--band);border-radius:12px;padding:14px 16px;display:grid;gap:4px}
+.explain p{margin:0}
+.explain .verdict{font-weight:700}
+.explain .verdict.ok{color:var(--good)}
+.explain .verdict.no{color:var(--warn)}
+.explain .w{color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums}
+.explain .final{font-family:var(--f-display);font-weight:800;font-size:17px}
+
+.score{font-family:var(--f-display);font-size:60px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--accent)}
+.review{display:grid;gap:12px}
+.review h2{font-size:18px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:grid;gap:4px}
+.item p{margin:0}
+.item .you{color:var(--warn)}
+.item .a{color:var(--good);font-weight:700}
+.item .w{color:var(--muted);font-size:13.5px}
+.formulas summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.formulas .hint{margin-top:10px}
+
+@media (max-width:760px){
+  .wrap{padding:24px 16px 40px}
+  .box{padding:20px}
+  .qtext{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){.progress i{transition:none}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Site">
+  <div class="in">
+    <a class="site-brand" href="index.html"><span class="mark" aria-hidden="true">RT</span>RT Quick Reference</a>
+    <div class="site-links">
+      <a id="nav-abg" href="index.html#abg"><span class="lg">ABG Values</span><span class="sm">ABG</span></a>
+      <a id="nav-o2" href="index.html#o2"><span class="lg">O₂ Devices</span><span class="sm">O₂ Devices</span></a>
+      <a id="nav-gas" href="gas.html"><span class="lg">O₂ Math &amp; Gases</span><span class="sm">O₂ Math</span></a>
+      <a id="nav-quiz" href="math-quiz.html" aria-current="page"><span class="lg">O₂ Math Quiz</span><span class="sm">Math Quiz</span></a>
+      <a id="nav-meds" href="meds.html#table"><span class="lg">Medications</span><span class="sm">Meds</span></a>
+      <a id="nav-mem" href="meds.html#mem"><span class="lg">Mnemonics</span><span class="sm">Mnemonics</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header>
+    <p class="eyebrow">RT quick reference</p>
+    <h1>O₂ Math Quiz</h1>
+    <p class="sub">Total flow and cylinder duration problems. Type your answer, check it, and see the worked solution. Need the formulas? They’re on the <a href="gas.html">O₂ Math &amp; Gases</a> page, or tap “Hint” on any question.</p>
+  </header>
+  <div id="app" aria-live="polite"></div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- helpers ---------- */
+  var app = document.getElementById("app");
+  var LET = ["A", "B", "C", "D"];
+  function fmt(n, d) { if (d === undefined) d = 1; var p = Math.pow(10, d); return (Math.round(n * p) / p).toLocaleString("en-US"); }
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function hm(min) { var h = Math.floor(min / 60), m = Math.round(min - h * 60); if (m === 60) { h++; m = 0; } return h + " hr " + m + " min"; }
+  function minText(min) { return fmt(min, 1) + " min" + (min >= 60 ? " (" + hm(min) + ")" : ""); }
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem("o2quiz:" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem("o2quiz:" + k, JSON.stringify(v)); } catch (e) {} }
+  };
+
+  var TOPIC = {
+    tf: { n: "Total flow", hint: "<strong>Air : O₂</strong> = (100 − FiO₂) ÷ (FiO₂ − 21)<br><strong>Total flow</strong> = O₂ flow × (air parts + O₂ parts)<br><strong>Mixed FiO₂</strong> = [(O₂ flow × 1.0) + (air flow × 0.21)] ÷ total flow<br><strong>Adequate</strong> if total flow ≥ 3 × minute ventilation<br>Ratios: 24% 25:1 · 28% 10:1 · 30% 8:1 · 35% 5:1 · 40% 3:1 · 50% 1.7:1 · 60% 1:1 · 70% 0.6:1" },
+    cyl: { n: "Cylinder duration", hint: "<strong>Duration (min)</strong> = (gauge psig − safe residual) × cylinder factor ÷ flow (L/min)<br>Factors: D 0.16 · E 0.28 · M 1.56 · G 2.41 · H/K 3.14<br>Minutes ÷ 60 = hours" }
+  };
+  var RATIO = { 24: 25, 28: 10, 30: 8, 35: 5, 40: 3, 50: 1.7, 60: 1, 70: 0.6 };
+  var CYL = { D: 0.16, E: 0.28, M: 1.56, G: 2.41, "H": 3.14 };
+  var art = function (S) { return /^[EMH]/.test(S) ? "An" : "A"; };
+  var uniq = function (a) { return a.filter(function (x, i) { return a.indexOf(x) === i; }); };
+  var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var tolPct = function (a) { return Math.max(0.5, Math.abs(a) * 0.01); };
+
+  /* ---------- the fixed practice set ----------
+     kind "num": a = answer, unit, tol (allowed error), final = answer text
+     kind "choice": opts = choices, a = the correct choice text
+     work = worked-solution lines */
+  var FIXED = [
+    { t: "tf", kind: "num", q: "A patient is on a Venturi mask set to 28% with the flowmeter at 4 L/min. What is the total flow?", a: 44, unit: "L/min",
+      work: ["28% → 10 : 1 → 10 + 1 = 11 parts", "11 × 4 L/min = 44 L/min"], final: "44 L/min" },
+    { t: "tf", kind: "num", q: "A Venturi mask is set to 40% at 10 L/min. What is the total flow?", a: 40, unit: "L/min",
+      work: ["40% → 3 : 1 → 4 parts", "4 × 10 L/min = 40 L/min"], final: "40 L/min" },
+    { t: "tf", kind: "num", q: "An air-entrainment device is set to 35% with an O₂ flow of 8 L/min. What is the total flow?", a: 48, unit: "L/min",
+      work: ["35% → 5 : 1 → 6 parts", "6 × 8 L/min = 48 L/min"], final: "48 L/min" },
+    { t: "tf", kind: "num", q: "An air-entrainment device is set to 45% at 10 L/min. Work out the air : O₂ ratio, then the total flow.", a: 33, unit: "L/min", tol: 1,
+      work: ["(100 − 45) ÷ (45 − 21) = 55 ÷ 24 ≈ 2.3 → 2.3 : 1", "2.3 + 1 = 3.3 parts × 10 L/min ≈ 33 L/min"], final: "≈ 33 L/min" },
+    { t: "tf", kind: "choice", q: "A patient with a minute ventilation of 12 L/min is on an air-entrainment nebulizer at 60% with the flowmeter at 15 L/min. What is the total flow, and is it adequate?",
+      opts: ["30 L/min — not adequate", "30 L/min — adequate", "60 L/min — adequate", "15 L/min — not adequate"], a: "30 L/min — not adequate",
+      work: ["60% → 1 : 1 → 2 parts × 15 L/min = 30 L/min", "Needed: 3 × 12 = 36 L/min, so 30 is not enough", "Fix: two nebulizers in tandem (≈ 60 L/min), a lower FiO₂ if allowed, or HFNC"], final: "30 L/min — not adequate" },
+    { t: "tf", kind: "num", q: "Oxygen at 10 L/min and air at 10 L/min (two flowmeters) are mixed into one circuit. What FiO₂ does the patient receive?", a: 60.5, unit: "%", tol: 1.5,
+      work: ["[(10 × 1.0) + (10 × 0.21)] ÷ 20", "= (10 + 2.1) ÷ 20 = 12.1 ÷ 20 = 0.605"], final: "≈ 60%" },
+    { t: "tf", kind: "num", q: "A device delivers a total flow of 60 L/min using 15 L/min of O₂. What is the FiO₂?", a: 40.75, unit: "%", tol: 1.25,
+      work: ["Air flow = 60 − 15 = 45 L/min", "[(15 × 1.0) + (45 × 0.21)] ÷ 60 = (15 + 9.45) ÷ 60 = 24.45 ÷ 60 ≈ 0.41"], final: "≈ 40% (3 : 1)" },
+    { t: "tf", kind: "num", q: "A Venturi mask at 24% runs on 3 L/min. What is the total flow?", a: 78, unit: "L/min",
+      work: ["24% → 25 : 1 → 26 parts", "26 × 3 L/min = 78 L/min"], final: "78 L/min" },
+
+    { t: "cyl", kind: "num", q: "An E cylinder reads 1,800 psig. The patient is on a nasal cannula at 3 L/min. How long will it last?", a: 168, unit: "min",
+      work: ["1,800 × 0.28 ÷ 3 = 504 ÷ 3"], final: "168 min (2 hr 48 min)" },
+    { t: "cyl", kind: "num", q: "A full H cylinder (2,200 psig) runs at 10 L/min. How long will it last?", a: 690.8, unit: "min",
+      work: ["2,200 × 3.14 ÷ 10 = 6,908 ÷ 10"], final: "≈ 691 min (11 hr 31 min)" },
+    { t: "cyl", kind: "num", q: "A D cylinder reads 1,500 psig with a flow of 2 L/min. What is the duration?", a: 120, unit: "min",
+      work: ["1,500 × 0.16 ÷ 2 = 240 ÷ 2"], final: "120 min (2 hr)" },
+    { t: "cyl", kind: "num", q: "An E cylinder reads 2,000 psig. The flow is 6 L/min, and your department changes cylinders at 500 psi. How long until it must be changed?", a: 70, unit: "min",
+      work: ["(2,000 − 500) × 0.28 ÷ 6", "= 1,500 × 0.28 ÷ 6 = 420 ÷ 6"], final: "70 min (1 hr 10 min)" },
+    { t: "cyl", kind: "choice", q: "You need to transport a patient on 10 L/min for about 45 minutes. The E cylinder reads 1,200 psig. Is it enough?",
+      opts: ["No — it lasts only about 34 min", "Yes — it lasts about 48 min", "Yes — it lasts about 7 hours", "No — it lasts only about 20 min"], a: "No — it lasts only about 34 min",
+      work: ["1,200 × 0.28 ÷ 10 = 33.6 min", "To last 45 min you’d need 45 × 10 ÷ 0.28 ≈ 1,607 psi", "Grab a fuller cylinder or bring a spare"], final: "No — only about 34 min" },
+    { t: "cyl", kind: "num", q: "An M cylinder reads 1,000 psig at 4 L/min. How long will it last?", a: 390, unit: "min",
+      work: ["1,000 × 1.56 ÷ 4 = 1,560 ÷ 4"], final: "390 min (6 hr 30 min)" },
+    { t: "cyl", kind: "num", q: "A patient on a non-rebreather at 15 L/min is moved with a full E cylinder (2,200 psig). How long do you have?", a: 41.07, unit: "min",
+      work: ["2,200 × 0.28 ÷ 15 = 616 ÷ 15"], final: "≈ 41 min" }
+  ];
+
+  /* ---------- random problem generators ---------- */
+  var GEN = {
+    tf: [
+      { w: 3, f: function () { // total flow from the ratio table
+        var F = pick([24, 28, 30, 35, 40, 50, 60, 70]), r = RATIO[F], parts = Math.round((r + 1) * 10) / 10;
+        var L = F <= 28 ? pick([2, 3, 4, 5, 6]) : F <= 40 ? pick([4, 6, 8, 10, 12]) : pick([8, 10, 12, 15]);
+        var dev = F <= 50 ? "Venturi mask" : "air-entrainment nebulizer";
+        var a = parts * L;
+        return { t: "tf", kind: "num", q: "A " + dev + " is set to " + F + "% with the flowmeter at " + L + " L/min. What is the total flow?", a: a, unit: "L/min",
+          work: [F + "% → " + fmt(r) + " : 1 → " + fmt(parts) + " parts", fmt(parts) + " × " + L + " L/min = " + fmt(a) + " L/min"], final: fmt(a) + " L/min" };
+      } },
+      { w: 1, f: function () { // compute a ratio
+        var F = pick([32, 33, 38, 45, 55, 65]), r = (100 - F) / (F - 21), a = Math.round(r * 10) / 10;
+        return { t: "tf", kind: "num", q: "What is the air : O₂ entrainment ratio for an FiO₂ of " + F + "%? (Give the air parts for every 1 part O₂.)", a: a, unit: ": 1", tol: 0.15,
+          work: ["(100 − " + F + ") ÷ (" + F + " − 21) = " + (100 - F) + " ÷ " + (F - 21) + " ≈ " + fmt(a)], final: fmt(a) + " : 1" };
+      } },
+      { w: 1, f: function () { // is the total flow adequate?
+        var F, L, V, r, total, need, tries = 0;
+        do { F = pick([35, 40, 50, 60]); r = RATIO[F]; L = pick([8, 10, 12, 15]); V = pick([6, 8, 9, 10, 12, 14, 15, 16]);
+             total = Math.round((r + 1) * 10) / 10 * L; need = 3 * V; tries++; } while (Math.abs(total - need) < 3 && tries < 50);
+        var ok = total >= need, wrong = r * L;
+        var right = fmt(total) + " L/min — " + (ok ? "adequate" : "not adequate");
+        var lab = function (n) { return fmt(n) + " L/min — " + (n >= need ? "adequate" : "not adequate"); };
+        var opts = uniq([right, fmt(total) + " L/min — " + (ok ? "not adequate" : "adequate"), lab(wrong), lab(L), lab(2 * total), lab(total / 2)]).slice(0, 4);
+        var work = [F + "% → " + fmt(r) + " : 1 → " + fmt(r + 1) + " parts × " + L + " L/min = " + fmt(total) + " L/min",
+                    "Needed: 3 × " + V + " = " + need + " L/min → " + (ok ? "enough" : "not enough")];
+        if (!ok) work.push("Fix: run two in tandem, lower the FiO₂ if allowed, or switch to HFNC");
+        return { t: "tf", kind: "choice", q: "A patient with a minute ventilation of " + V + " L/min is on an air-entrainment device at " + F + "% with the flowmeter at " + L + " L/min. What is the total flow, and is it adequate?",
+          opts: opts, a: right, work: work, final: right };
+      } },
+      { w: 1, f: function () { // FiO2 of a mixed gas
+        var O = pick([2, 4, 5, 6, 8, 10, 12, 15]), A = pick([5, 10, 15, 20, 30, 40, 45]), T = O + A;
+        var a = (O + A * 0.21) / T * 100;
+        return { t: "tf", kind: "num", q: "Oxygen at " + O + " L/min and air at " + A + " L/min are mixed together. What FiO₂ does the patient receive?", a: a, unit: "%", tol: 1,
+          work: ["[(" + O + " × 1.0) + (" + A + " × 0.21)] ÷ " + T, "= (" + O + " + " + fmt(A * 0.21, 2) + ") ÷ " + T + " = " + fmt(a / 100, 3)], final: "≈ " + fmt(a, 0) + "%" };
+      } }
+    ],
+    cyl: [
+      { w: 3, f: function () { // duration
+        var S = pick(["D", "E", "E", "M", "G", "H"]), f = CYL[S], P = 100 * (5 + Math.floor(Math.random() * 18)), L = pick([1, 2, 3, 4, 5, 6, 8, 10, 12, 15]);
+        var R = (Math.random() < 0.3 && P >= 1000) ? pick([200, 500]) : 0;
+        var a = (P - R) * f / L, name = S === "H" ? "H" : S;
+        var q = art(name) + " " + name + " cylinder reads " + fmt(P, 0) + " psig with a flow of " + L + " L/min." + (R ? " Your department changes cylinders at " + R + " psi." : "") + " How long " + (R ? "until it must be changed" : "will it last") + "?";
+        return { t: "cyl", kind: "num", q: q, a: a, unit: "min",
+          work: [(R ? "(" + fmt(P, 0) + " − " + R + ")" : fmt(P, 0)) + " × " + f + " ÷ " + L + " = " + fmt((P - R) * f, 1) + " ÷ " + L], final: minText(a) };
+      } },
+      { w: 1, f: function () { // enough for transport?
+        var S = pick(["D", "E"]), f = CYL[S], L = pick([2, 4, 6, 8, 10, 12, 15]), P, T, a, tries = 0;
+        do { P = 100 * (5 + Math.floor(Math.random() * 18)); T = pick([15, 20, 30, 40, 45, 60, 90]); a = P * f / L; tries++; } while (Math.abs(a - T) < 5 && tries < 50);
+        var ok = a >= T, err = P / (f * L);
+        var right = ok ? "Yes — it lasts about " + fmt(a, 0) + " min" : "No — it lasts only about " + fmt(a, 0) + " min";
+        var opts = [right,
+          ok ? "No — it lasts only about " + fmt(a, 0) + " min" : "Yes — it lasts about " + fmt(a, 0) + " min",
+          (err >= T ? "Yes — it lasts about " : "No — it lasts only about ") + fmt(err, 0) + " min",
+          (a / 2 >= T ? "Yes — it lasts about " : "No — it lasts only about ") + fmt(a / 2, 0) + " min",
+          (a * 2 >= T ? "Yes — it lasts about " : "No — it lasts only about ") + fmt(a * 2, 0) + " min"];
+        opts = uniq(opts).slice(0, 4);
+        var work = [fmt(P, 0) + " × " + f + " ÷ " + L + " = " + fmt(a, 1) + " min", (ok ? "That covers" : "That doesn’t cover") + " the " + T + "-minute trip"];
+        if (!ok) work.push("Minimum needed: " + T + " × " + L + " ÷ " + f + " ≈ " + fmt(T * L / f, 0) + " psi");
+        return { t: "cyl", kind: "choice", q: "You need to transport a patient on " + L + " L/min for about " + T + " minutes. The " + S + " cylinder reads " + fmt(P, 0) + " psig. Is it enough?",
+          opts: opts, a: right, work: work, final: right };
+      } },
+      { w: 1, f: function () { // minimum pressure needed
+        var S = pick(["D", "E"]), f = CYL[S], L = pick([2, 3, 4, 5, 6, 8, 10]), T, a, tries = 0;
+        do { T = pick([20, 30, 40, 45, 60, 90, 120]); a = T * L / f; tries++; } while ((a > 2200 || a < 150) && tries < 50);
+        return { t: "cyl", kind: "num", q: "A patient needs " + L + " L/min for a " + T + "-minute trip using " + art(S).toLowerCase() + " " + S + " cylinder. What is the minimum gauge pressure the cylinder must read?", a: a, unit: "psig", tol: Math.max(10, a * 0.01),
+          work: ["Rearrange: psi = duration × flow ÷ factor", T + " × " + L + " ÷ " + f + " = " + fmt(T * L, 0) + " ÷ " + f], final: "≈ " + fmt(a, 0) + " psig" };
+      } }
+    ]
+  };
+  function generate(topic) {
+    var gens = GEN[topic], total = gens.reduce(function (s, g) { return s + g.w; }, 0), x = Math.random() * total;
+    for (var i = 0; i < gens.length; i++) { x -= gens[i].w; if (x < 0) return gens[i].f(); }
+    return gens[0].f();
+  }
+  function questionSet(topic, mode, n) {
+    var topics = topic === "both" ? ["tf", "cyl"] : [topic];
+    if (mode === "set") return shuffle(FIXED.filter(function (q) { return topics.indexOf(q.t) >= 0; })).slice(0, n);
+    var out = [], seen = {}, guard = 0;
+    while (out.length < n && guard++ < 500) {
+      var t = topics.length === 2 ? topics[out.length % 2] : topics[0], q = generate(t);
+      if (!seen[q.q]) { seen[q.q] = 1; out.push(q); }
+    }
+    return shuffle(out);
+  }
+
+  /* ---------- reading a typed answer ---------- */
+  function parseAnswer(str, unit) {
+    var s = String(str).trim().toLowerCase().replace(/,/g, "");
+    if (!s) return NaN;
+    if (unit === "min") {
+      var c = s.match(/^(\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)$/);
+      if (c) return +c[1] * 60 + +c[2];
+      var h = s.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?|h)(?![a-z])/), m = s.match(/(\d+(?:\.\d+)?)\s*(?:minutes?|mins?|m)(?![a-z])/);
+      if (h) return +h[1] * 60 + (m ? +m[1] : 0);
+    }
+    if (unit === ": 1") s = s.replace(/:\s*1(\.0+)?$/, "");
+    var v = parseFloat((s.match(/-?\d*\.?\d+/) || [""])[0]);
+    if (unit === "%" && v > 0 && v <= 1) v *= 100;
+    return v;
+  }
+
+  /* ---------- state ---------- */
+  var S = { topic: store.get("topic", "both"), mode: store.get("mode", "set"), size: store.get("size", 10),
+            qs: [], i: 0, score: 0, misses: [], answered: false, hinted: false };
+
+  function maxFor(topic, mode) { return mode === "set" ? FIXED.filter(function (q) { return topic === "both" || q.t === topic; }).length : 30; }
+
+  /* ---------- setup screen ---------- */
+  function renderSetup() {
+    S.stage = "setup";
+    var max = maxFor(S.topic, S.mode);
+    var sizes = S.mode === "set" ? [5, 10, max].filter(function (n, i, a) { return n <= max && a.indexOf(n) === i; }) : [5, 10, 15, 20];
+    if (sizes.indexOf(S.size) < 0) S.size = S.mode === "set" ? max : 10;
+    var seg = function (key, items) {
+      return '<div class="seg" role="group">' + items.map(function (it) {
+        return '<button type="button" data-k="' + key + '" data-v="' + it[0] + '" aria-pressed="' + (String(S[key]) === String(it[0])) + '">' + it[1] + "</button>";
+      }).join("") + "</div>";
+    };
+    app.innerHTML =
+      '<div class="box">' +
+        "<div><p class=\"label\">Topic</p>" + seg("topic", [["both", "Both"], ["tf", "Total flow"], ["cyl", "Cylinder duration"]]) + "</div>" +
+        "<div><p class=\"label\">Questions</p>" + seg("mode", [["set", "Practice set"], ["random", "Random problems"]]) +
+          '<p class="seg-note">' + (S.mode === "set" ? "The " + max + " worked practice problems, in a random order." : "New numbers every time — unlimited practice.") + "</p></div>" +
+        "<div><p class=\"label\">How many</p>" + seg("size", sizes.map(function (n) { return [n, n === max && S.mode === "set" ? "All " + n : String(n)]; })) + "</div>" +
+        '<div class="row"><button class="btn primary" type="button" id="start">Start quiz</button></div>' +
+      "</div>" +
+      '<details class="formulas"><summary>Formula reminder</summary><div class="hint">' + TOPIC.tf.hint + "</div><div class=\"hint\">" + TOPIC.cyl.hint + "</div></details>";
+    app.querySelectorAll(".seg button").forEach(function (b) {
+      b.onclick = function () {
+        var k = b.dataset.k, v = b.dataset.v;
+        S[k] = k === "size" ? +v : v; store.set(k, S[k]); renderSetup();
+      };
+    });
+    document.getElementById("start").onclick = function () { start(questionSet(S.topic, S.mode, S.size)); };
+  }
+
+  function start(qs) {
+    S.qs = qs.map(function (q) { var c = Object.assign({}, q); delete c._opts; return c; }); S.i = 0; S.score = 0; S.misses = []; S.stage = "q";
+    renderQuestion();
+  }
+
+  /* ---------- question screen ---------- */
+  function renderQuestion() {
+    var x = S.qs[S.i];
+    S.answered = false; S.hinted = false;
+    if (x.kind === "choice" && !x._opts) x._opts = shuffle(x.opts);
+    app.innerHTML =
+      '<div class="meter"><span>Question ' + (S.i + 1) + " of " + S.qs.length + "</span><span>Score " + S.score + "</span></div>" +
+      '<div class="progress"><i style="width:' + (S.i / S.qs.length * 100) + '%"></i></div>' +
+      '<div class="box">' +
+        '<span class="topic ' + x.t + '">' + TOPIC[x.t].n + "</span>" +
+        '<p class="qtext">' + x.q + "</p>" +
+        (x.kind === "num"
+          ? '<form class="answer" id="af" autocomplete="off"><label class="inwrap" id="iw"><input id="ans" inputmode="decimal" aria-label="Your answer" placeholder="Your answer"><span>' + x.unit + '</span></label><button class="btn primary" type="submit" id="check">Check</button></form>' +
+            (x.unit === "min" ? '<p class="tip">Minutes, or hours and minutes like “2 hr 48 min”.</p>' : x.unit === "%" ? '<p class="tip">As a percent (60) or a decimal (0.60).</p>' : "")
+          : '<div class="opts">' + x._opts.map(function (o, j) { return '<button class="opt" type="button" data-j="' + j + '"><b>' + LET[j] + "</b><span>" + o + "</span></button>"; }).join("") + "</div>") +
+        '<div id="hintOut"></div>' +
+        '<div id="after"></div>' +
+        '<div class="row split" id="tools"><button class="btn ghost" type="button" id="hintBtn">Hint</button><button class="btn ghost" type="button" id="reveal">Show answer</button></div>' +
+      "</div>" +
+      '<div class="row"><button class="btn" type="button" id="quit">End quiz</button></div>';
+
+    document.getElementById("hintBtn").onclick = function () {
+      S.hinted = true;
+      document.getElementById("hintOut").innerHTML = '<div class="hint">' + TOPIC[x.t].hint + "</div>";
+      this.hidden = true;
+    };
+    document.getElementById("reveal").onclick = function () { finish(null); };
+    document.getElementById("quit").onclick = showResults;
+    if (x.kind === "num") {
+      var inp = document.getElementById("ans");
+      document.getElementById("af").onsubmit = function (e) {
+        e.preventDefault();
+        if (S.answered) return;
+        var v = parseAnswer(inp.value, x.unit);
+        if (!isFinite(v)) { inp.focus(); inp.setAttribute("aria-invalid", "true"); return; }
+        finish(v, inp.value);
+      };
+      inp.focus({ preventScroll: true });
+    } else {
+      app.querySelectorAll(".opt").forEach(function (b) { b.onclick = function () { finish(+b.dataset.j); }; });
+    }
+  }
+
+  function finish(v, raw) {
+    if (S.answered) return;
+    S.answered = true;
+    var x = S.qs[S.i], right = false, yours = "";
+    if (x.kind === "num") {
+      var tol = x.tol !== undefined ? x.tol : tolPct(x.a);
+      right = v !== null && Math.abs(v - x.a) <= tol;
+      yours = v === null ? "(revealed)" : esc(raw) + " " + x.unit;
+      var iw = document.getElementById("iw"), inp = document.getElementById("ans");
+      iw.classList.add(right ? "right" : "wrong"); inp.readOnly = true;
+      document.getElementById("check").hidden = true;
+    } else {
+      var chosen = v === null ? null : x._opts[v];
+      right = chosen === x.a;
+      yours = chosen === null ? "(revealed)" : chosen;
+      app.querySelectorAll(".opt").forEach(function (b) {
+        var o = x._opts[+b.dataset.j]; b.disabled = true;
+        if (o === x.a) b.classList.add("right"); else if (+b.dataset.j === v) b.classList.add("wrong");
+      });
+    }
+    if (right) S.score++; else S.misses.push({ q: x, yours: yours });
+    document.getElementById("tools").hidden = true;
+    var last = S.i === S.qs.length - 1;
+    document.getElementById("after").innerHTML =
+      '<div class="explain">' +
+        '<p class="verdict ' + (right ? "ok" : "no") + '">' + (right ? "Correct." : v === null ? "Here’s how to solve it." : "Not quite.") + "</p>" +
+        x.work.map(function (w) { return '<p class="w">' + w + "</p>"; }).join("") +
+        '<p class="final">' + x.final + "</p>" +
+      "</div>" +
+      '<div class="row" style="margin-top:14px"><button class="btn primary" type="button" id="next">' + (last ? "See results" : "Next question →") + "</button></div>";
+    var next = document.getElementById("next");
+    next.onclick = function () { if (last) showResults(); else { S.i++; renderQuestion(); } };
+    next.focus({ preventScroll: true });
+  }
+
+  /* ---------- results ---------- */
+  function showResults() {
+    S.stage = "results";
+    var done = S.answered ? S.i + 1 : S.i;
+    var pct = done ? Math.round(S.score / done * 100) : 0;
+    var msg = pct >= 90 ? "Exam-ready on these." : pct >= 75 ? "Solid. Review the misses below." : pct >= 60 ? "Getting there. Redo the misses." : "Review the formulas, then try again.";
+    app.innerHTML =
+      '<div class="box">' +
+        '<span class="topic">Results</span>' +
+        '<div class="score">' + S.score + "/" + done + "</div>" +
+        '<p class="qtext">' + pct + "% · " + msg + "</p>" +
+        '<div class="row"><button class="btn primary" type="button" id="again">New quiz</button>' +
+          (S.misses.length ? '<button class="btn" type="button" id="retry">Retry the ' + S.misses.length + " missed</button>" : "") + "</div>" +
+      "</div>" +
+      (S.misses.length ? '<div class="review"><h2>Review what you missed</h2>' + S.misses.map(function (m) {
+        return '<div class="item"><p><strong>' + m.q.q + '</strong></p><p class="you">You answered: ' + m.yours + '</p><p class="a">Answer: ' + m.q.final + "</p>" +
+          m.q.work.map(function (w) { return '<p class="w">' + w + "</p>"; }).join("") + "</div>";
+      }).join("") + "</div>" : "");
+    document.getElementById("again").onclick = renderSetup;
+    var r = document.getElementById("retry");
+    if (r) r.onclick = function () { start(shuffle(S.misses.map(function (m) { return m.q; }))); };
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- keyboard: 1–4 / A–D pick a choice ---------- */
+  document.addEventListener("keydown", function (e) {
+    if (S.stage !== "q" || S.answered || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.target.closest && e.target.closest("input")) return;
+    var x = S.qs[S.i]; if (x.kind !== "choice") return;
+    var k = e.key.toLowerCase(), j = "abcd".indexOf(k) >= 0 ? "abcd".indexOf(k) : "1234".indexOf(k);
+    if (j >= 0 && j < x._opts.length) finish(j);
+  });
+
+  /* exposed for testing only */
+  window.__o2quiz = { FIXED: FIXED, GEN: GEN, generate: generate, parseAnswer: parseAnswer, CYL: CYL, RATIO: RATIO };
+
+  renderSetup();
+})();
+</script>
+</body>
+</html>
