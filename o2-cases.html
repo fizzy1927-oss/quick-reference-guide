@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O₂ Device Cases · RT Quick Reference</title>
+<meta name="description" content="Case-study quiz on choosing, troubleshooting and escalating oxygen delivery devices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F3F5F0; --surface:#FFFFFF; --ink:#1E2A22; --muted:#65725F; --line:#E0E6DA; --line-strong:#CBD5C4;
+  --accent:#4E6E52; --accent-ink:#FFFFFF; --accent-soft:#E4ECE1; --band:#EEF2EA; --shadow:0 1px 2px rgba(30,42,34,.05),0 4px 16px rgba(30,42,34,.05);
+  --c-beta:#4E729A; --c-anti:#7A62A0; --c-combo:#3F7D69; --c-xan:#9A6534; --c-bio:#9A5572; --c-masto:#5F7F3A; --c-ltm:#8A7432; --c-abx:#A4524A; --c-muco:#3F7F8A; --c-ster:#7E5E44; --c-dil:#66736C;
+  --good:#3C7A4E; --good-bg:#E4F1E6; --warn:#A4524A; --warn-bg:#F6E9E6;
+  --f-display:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:12px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141A16; --surface:#1B231D; --ink:#E2E9DF; --muted:#9BA897; --line:#29342B; --line-strong:#374438;
+  --accent:#A3C2A2; --accent-ink:#141A16; --accent-soft:#243126; --band:#1F2821; --shadow:0 1px 2px rgba(0,0,0,.3);
+  --c-beta:#8FB0D6; --c-anti:#B6A2D6; --c-combo:#86C2AC; --c-xan:#D6A67A; --c-bio:#D69AB4; --c-masto:#A8C689; --c-ltm:#D1BD7E; --c-abx:#DE978F; --c-muco:#86BFC8; --c-ster:#C9A58A; --c-dil:#A6B3AC;
+  --good:#8FCB9E; --good-bg:#1E3324; --warn:#E3A097; --warn-bg:#3A2420; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;margin:0}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* ---------- shared site nav (same on every page) ---------- */
+.site-nav{background:var(--surface);border-bottom:1px solid var(--line)}
+.site-nav .in{max-width:1440px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 24px}
+.site-brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.site-brand .mark{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:12.5px;font-weight:800;letter-spacing:.02em}
+.site-links{display:flex;gap:4px;padding:4px;background:var(--accent-soft);border-radius:999px;max-width:100%;overflow-x:auto}
+.site-links a{padding:8px 16px;border-radius:999px;font-family:var(--f-display);font-weight:600;font-size:14.5px;color:var(--muted);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.site-links a:hover{color:var(--ink)}
+.site-links a[aria-current]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.site-links a:focus-visible,.site-brand:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.site-links .sm{display:none}
+@media (max-width:760px){
+  .site-nav .in{padding:10px 16px}
+  .site-links{width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;border-radius:16px}
+  .site-links a{text-align:center;padding:8px 2px;font-size:13px;border-radius:12px}
+  .site-links .lg{display:none}
+  .site-links .sm{display:inline}
+}
+@media (prefers-reduced-motion:reduce){.site-links a{transition:none}}
+@media print{.site-nav{display:none}}
+
+
+.wrap{max-width:760px;margin:0 auto;padding:36px 24px 56px;display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+h1,h2,h3{font-family:var(--f-display);letter-spacing:-.02em;margin:0;color:var(--ink)}
+h1{font-weight:700;font-size:clamp(28px,4vw,40px);line-height:1.1;text-wrap:balance}
+.sub{color:var(--muted);margin:10px 0 0;font-size:15px;max-width:60ch}
+
+:root{--k-pick:var(--accent);--k-trouble:var(--c-xan);--k-next:var(--c-abx);--k-concept:var(--c-beta)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 28px;display:grid;gap:18px;box-shadow:var(--shadow)}
+.label{font-size:12.5px;font-weight:600;color:var(--muted);margin:0 0 8px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.seg button:hover{border-color:var(--accent)}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.seg .dot{width:8px;height:8px;border-radius:50%;background:var(--k)}
+.seg .n{font-weight:500;color:var(--muted);font-size:12.5px}
+.seg.size button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.seg-note{font-size:13px;color:var(--muted);margin:8px 0 0}
+.btn{font-weight:600;font-size:14px;padding:10px 18px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+.meter{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.progress{height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .25s}
+.cat{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.cat::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--k)}
+
+.case{display:grid;gap:12px;padding:16px 18px;border-radius:12px;background:var(--band);box-shadow:inset 3px 0 0 var(--k)}
+.case p{margin:0;font-size:16px;line-height:1.55}
+.case .tag{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.vitals{display:flex;flex-wrap:wrap;gap:6px}
+.vitals span{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;padding:4px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--line)}
+.qtext{font-family:var(--f-display);font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.4;margin:0;text-wrap:pretty}
+
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:13px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.opt:hover:not(:disabled){border-color:var(--accent);background:var(--band)}
+.opt b{display:inline-grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-bg)}
+.opt.right b{background:var(--good);color:var(--surface)}
+.opt.wrong{border-color:var(--warn);background:var(--warn-bg)}
+.opt.wrong b{background:var(--warn);color:var(--surface)}
+.explain{background:var(--band);border-radius:12px;padding:14px 16px;margin:0;line-height:1.6}
+.explain strong.ok{color:var(--good)}
+.explain strong.no{color:var(--warn)}
+.ref{font-size:13px;color:var(--muted);margin:0}
+
+.score{font-family:var(--f-display);font-size:60px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--accent)}
+.bycat{display:grid;gap:6px}
+.bycat div{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:6px 0;border-top:1px solid var(--line)}
+.bycat div:first-child{border-top:0}
+.bycat span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
+.review{display:grid;gap:12px}
+.review h2{font-size:18px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;display:grid;gap:6px;box-shadow:inset 3px 0 0 var(--k)}
+.item p{margin:0}
+.item .you{color:var(--warn)}
+.item .a{color:var(--good);font-weight:700}
+.item .w{color:var(--muted);font-size:14px}
+.cheat summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.cheat .tbl{margin-top:10px;overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.cheat table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:480px}
+.cheat th{background:var(--accent);color:var(--accent-ink);text-align:left;padding:9px 12px;font-size:12.5px}
+.cheat td{padding:8px 12px;border-top:1px solid var(--line)}
+.cheat td:first-child{font-weight:700}
+
+@media (max-width:760px){
+  .wrap{padding:24px 16px 40px}
+  .box{padding:20px}
+  .qtext{font-size:18px}
+  .case p{font-size:15.5px}
+}
+@media (prefers-reduced-motion:reduce){.progress i{transition:none}}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Site">
+  <div class="in">
+    <a class="site-brand" href="index.html"><span class="mark" aria-hidden="true">RT</span>RT Quick Reference</a>
+    <div class="site-links">
+      <a id="nav-abg" href="index.html#abg"><span class="lg">ABG Values</span><span class="sm">ABG</span></a>
+      <a id="nav-o2" href="index.html#o2"><span class="lg">O₂ Devices</span><span class="sm">O₂ Devices</span></a>
+      <a id="nav-cases" href="o2-cases.html" aria-current="page"><span class="lg">O₂ Device Cases</span><span class="sm">O₂ Cases</span></a>
+      <a id="nav-gas" href="gas.html"><span class="lg">O₂ Math &amp; Gases</span><span class="sm">O₂ Math</span></a>
+      <a id="nav-quiz" href="math-quiz.html"><span class="lg">O₂ Math Quiz</span><span class="sm">Math Quiz</span></a>
+      <a id="nav-meds" href="meds.html#table"><span class="lg">Medications</span><span class="sm">Meds</span></a>
+      <a id="nav-mem" href="meds.html#mem"><span class="lg">Mnemonics</span><span class="sm">Mnemonics</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header>
+    <p class="eyebrow">RT quick reference</p>
+    <h1>O₂ Device Cases</h1>
+    <p class="sub">Case studies on choosing the right oxygen device, troubleshooting it at the bedside, and knowing when an O₂ device isn’t enough. Every answer explains why. Device ranges are on the <a href="index.html#o2">O₂ Devices</a> chart.</p>
+  </header>
+  <div id="app" aria-live="polite"></div>
+</main>
+
+<script>
+/* O₂ Device Cases — scenario questions.
+   Each case: c = category (pick | trouble | next | concept), s = scenario,
+   v = vitals / findings shown as chips, q = question, a = correct answer,
+   o = three wrong answers, x = explanation shown after answering. */
+var CASES = [
+/* ---------- PICK THE DEVICE ---------- */
+{c:"pick",
+ s:"A 68-year-old man with severe COPD comes to the ED with an exacerbation. He's a known CO₂ retainer and is alert but short of breath.",
+ v:["SpO₂ 85% on room air","RR 26","ABG on room air: pH 7.34 · PaCO₂ 58 · PaO₂ 50"],
+ q:"Which oxygen device is the best initial choice?",
+ a:"Venturi mask at 24–28%",
+ o:["Non-rebreather at 15 L/min","Simple mask at 8 L/min","High-flow nasal cannula at 50 L/min, FiO₂ 1.0"],
+ x:"A CO₂ retainer needs a precise, low FiO₂ that stays the same no matter how they breathe — that's the Venturi. Aim for an SpO₂ of 88–92%. High FiO₂ (non-rebreather, HFNC at 100%) can worsen hypercapnia, and a simple mask's FiO₂ is neither low nor predictable."},
+
+{c:"pick",
+ s:"A 45-year-old woman is on post-op day 1 after a knee replacement. She's comfortable, talking in full sentences, and wants to eat breakfast. Breath sounds are diminished at the bases.",
+ v:["SpO₂ 90% on room air","RR 16","HR 88"],
+ q:"Which device is most appropriate?",
+ a:"Nasal cannula at 2 L/min, titrated to her SpO₂ target",
+ o:["Non-rebreather at 12 L/min","Venturi mask at 50%","Partial rebreather at 10 L/min"],
+ x:"Mild hypoxemia in a stable, comfortable patient needs only a low FiO₂. A nasal cannula lets her eat and talk, and you can titrate it from 1 to 6 L/min. Pair it with incentive spirometry for the basilar atelectasis. The masks give far more O₂ than she needs."},
+
+{c:"pick",
+ s:"A 30-year-old is brought in from a house fire. He has a headache and is confused. The pulse oximeter reads normal.",
+ v:["SpO₂ 99% (pulse oximeter)","RR 24","HR 118"],
+ q:"What is the most appropriate oxygen therapy?",
+ a:"Non-rebreather at 10–15 L/min (the highest FiO₂ available), regardless of the SpO₂",
+ o:["Nasal cannula at 2 L/min, since the SpO₂ is normal","Venturi mask at 28%","No oxygen until the SpO₂ drops"],
+ x:"A pulse oximeter can’t tell carboxyhemoglobin from oxyhemoglobin, so the SpO₂ is falsely normal in carbon monoxide poisoning. Give the highest FiO₂ possible and get a co-oximetry ABG (COHb level). 100% O₂ shortens the COHb half-life from about 4–6 hours on room air to about 60–90 minutes. Consider hyperbaric O₂ for severe cases."},
+
+{c:"pick",
+ s:"A patient has a very irregular breathing pattern — her rate swings between 12 and 30 breaths/min. The physician wants her FiO₂ held steady at about 35%.",
+ v:["SpO₂ 90% on 3 L NC","RR 12–30, irregular"],
+ q:"Which device will deliver the most consistent FiO₂?",
+ a:"Venturi mask at 35%",
+ o:["Nasal cannula at 4 L/min","Simple mask at 6 L/min","Partial rebreather at 10 L/min"],
+ x:"A Venturi is a high-flow device: it supplies the patient’s whole inspiratory demand at a fixed concentration, so the FiO₂ doesn’t change with rate or tidal volume. The cannula and both masks are low-flow devices, so their FiO₂ rises and falls as her breathing changes."},
+
+{c:"pick",
+ s:"A 58-year-old with pneumonia is working hard to breathe despite a non-rebreather at 15 L/min. He's alert, protecting his airway and not retaining CO₂.",
+ v:["SpO₂ 86% on NRB 15 L/min","RR 34, accessory muscle use","ABG: pH 7.44 · PaCO₂ 34 · PaO₂ 52"],
+ q:"Which device is the best next choice?",
+ a:"High-flow nasal cannula at 50–60 L/min with FiO₂ 1.0, then titrate",
+ o:["Venturi mask at 50%","Nasal cannula at 6 L/min","Simple mask at 10 L/min"],
+ x:"His inspiratory flow demand is outrunning the non-rebreather, so he’s pulling in room air. HFNC meets that demand with up to 60 L/min at up to 100% O₂. It adds a small PEEP effect and washes out dead space, and the heated humidity is comfortable. Watch him closely, and escalate (e.g., intubation) if he doesn’t improve. The other choices deliver less O₂ than he’s already getting."},
+
+{c:"pick",
+ s:"A patient with facial trauma has both nostrils packed for epistaxis. She needs moderate supplemental oxygen, about 40%. Precise FiO₂ isn’t required.",
+ v:["SpO₂ 89% on room air","RR 20"],
+ q:"Which device is most appropriate?",
+ a:"Simple mask at 6–8 L/min",
+ o:["Nasal cannula at 5 L/min","High-flow nasal cannula","Nasal cannula with a bubble humidifier"],
+ x:"With the nose packed, any nasal device is out. A simple mask at 6–8 L/min gives roughly 40–50% and needs nothing in the nose. Remember the minimum of 5 L/min on a simple mask to flush out CO₂."},
+
+{c:"pick",
+ s:"A patient on a simple mask at 6 L/min keeps pulling it off. He says it makes him feel smothered, and he wants to eat lunch.",
+ v:["SpO₂ 96% on simple mask 6 L/min","RR 18","Alert, no CO₂ retention"],
+ q:"What is the best change?",
+ a:"Switch to a nasal cannula at about 4–5 L/min and titrate to his SpO₂ target",
+ o:["Switch to a non-rebreather","Tighten the mask strap so it stays on","Switch to a partial rebreather"],
+ x:"His O₂ needs are modest (SpO₂ 96% on 6 L by mask), so a nasal cannula can meet them. It’s more comfortable and lets him eat and talk. A device the patient keeps removing delivers 0% extra O₂. The other masks have the same smothering problem and give more O₂ than he needs."},
+
+{c:"pick",
+ s:"A 22-year-old has a small spontaneous pneumothorax (under 2 cm). He's stable and will be admitted for observation instead of a chest tube.",
+ v:["SpO₂ 97% on room air","RR 18","No lung disease history"],
+ q:"Which oxygen therapy helps the pneumothorax resolve faster?",
+ a:"High-concentration O₂, such as a non-rebreather at 10–15 L/min",
+ o:["Nasal cannula at 1 L/min","No oxygen, since his SpO₂ is normal","Venturi mask at 24%"],
+ x:"Breathing high-concentration O₂ washes nitrogen out of the blood. That widens the gradient for absorbing the air in the pleural space, so the pneumothorax can resolve up to about 4× faster. Low FiO₂ does little to speed it up. This is the classic teaching and a common exam answer, though newer guidelines note the evidence for it is limited. Use caution in patients with COPD."},
+
+{c:"pick",
+ s:"An 8-month-old with RSV bronchiolitis has worsening retractions and nasal flaring on a low-flow nasal cannula.",
+ v:["SpO₂ 88% on NC 1 L/min","RR 64","Subcostal retractions"],
+ q:"What is the most appropriate escalation?",
+ a:"Heated high-flow nasal cannula at a weight-based flow (about 1–2 L/kg/min)",
+ o:["Increase the nasal cannula to 6 L/min","Non-rebreather at 15 L/min","Venturi mask at 35%"],
+ x:"HFNC is a common step up in bronchiolitis. The heated, humidified high flow reduces work of breathing and improves oxygenation, and infants tolerate it well. A regular cannula at 6 L/min is far above the usual infant range (about 2 L/min or less) and unhumidified. Adult masks fit and work poorly on infants."},
+
+{c:"pick",
+ s:"A patient needs a moderate-to-high FiO₂. She isn't a CO₂ retainer. A simple mask at 10 L/min isn't quite enough.",
+ v:["SpO₂ 89% on simple mask 10 L/min","RR 22","Needs about 55% O₂"],
+ q:"Which device is the most reasonable step up?",
+ a:"Partial rebreather at 10–15 L/min, keeping the bag inflated",
+ o:["Nasal cannula at 6 L/min","Venturi mask at 28%","Simple mask at 4 L/min"],
+ x:"A partial rebreather delivers about 35–60% by adding a reservoir bag that holds O₂. Run enough flow to keep the bag from collapsing. The other choices give the same or less O₂, and a simple mask below 5 L/min also lets CO₂ build up."},
+
+/* ---------- TROUBLESHOOT ---------- */
+{c:"trouble",
+ s:"A patient is on a non-rebreather at 10 L/min. The reservoir bag collapses completely every time she inhales.",
+ v:["SpO₂ 90%","RR 28"],
+ q:"What should you do?",
+ a:"Increase the flow (up to 15 L/min) until the bag stays inflated during inspiration",
+ o:["Lower the flow so the bag doesn’t overfill","Remove the reservoir bag","Switch to a partial rebreather at the same flow"],
+ x:"If the bag collapses, the patient is breathing in more than the flow refills, so she’s pulling in room air and the FiO₂ drops. Turn up the flow until the bag stays at least partly inflated. It should never fully deflate."},
+
+{c:"trouble",
+ s:"During rounds you find a patient on a simple mask with the flowmeter set to 3 L/min.",
+ v:["SpO₂ 94%","RR 18"],
+ q:"What is the problem?",
+ a:"Below 5 L/min, exhaled CO₂ isn’t flushed from the mask and can be rebreathed",
+ o:["Nothing — 3 L/min is in range for a simple mask","The FiO₂ will be dangerously high","A simple mask needs a humidifier at any flow"],
+ x:"A simple mask needs at least 5 L/min to wash exhaled CO₂ out of the mask. Raise the flow to 5–10 L/min. If the patient only needs a low FiO₂, switch to a nasal cannula."},
+
+{c:"trouble",
+ s:"A patient on a nasal cannula at 5 L/min complains that her nose is dry and sore, and she's had a small nosebleed.",
+ v:["SpO₂ 95% on NC 5 L/min","RR 18"],
+ q:"What should you do?",
+ a:"Add a bubble humidifier",
+ o:["Switch her to a non-rebreather","Turn the cannula down to 1 L/min","Nothing — this is expected"],
+ x:"Dry gas above about 4 L/min dries and irritates the nasal mucosa. A bubble humidifier fixes it without changing her O₂ delivery. Turning her down to 1 L/min would drop her SpO₂, and a non-rebreather is far more O₂ than she needs."},
+
+{c:"trouble",
+ s:"A patient is on a Venturi mask at 28% with the flowmeter at 4 L/min. Her SpO₂ is low, and the physician orders a higher FiO₂.",
+ v:["SpO₂ 86% on Venturi 28%","RR 22"],
+ q:"How do you raise the FiO₂?",
+ a:"Change to the jet adapter for a higher FiO₂ (e.g., 35%) and set the flow listed on it",
+ o:["Turn the flowmeter up to 10 L/min and leave the adapter","Add a reservoir bag to the mask","Cover part of the entrainment ports with tape"],
+ x:"A Venturi’s FiO₂ is set by the jet/entrainment port size. Turning up the flowmeter mostly raises total flow, not FiO₂. Blocking the ports does raise FiO₂, but unpredictably, and it cuts total flow. Change the adapter instead."},
+
+{c:"trouble",
+ s:"You walk in to find the bed sheet bunched over the entrainment ports of a patient’s Venturi mask.",
+ v:["Venturi set to 35%"],
+ q:"What happens to the delivered gas?",
+ a:"FiO₂ rises and total flow falls",
+ o:["FiO₂ falls and total flow rises","FiO₂ and total flow both rise","Nothing changes"],
+ x:"Blocking the ports means less room air gets pulled in. With less air mixed in, the FiO₂ goes up, and with less gas overall, the total flow goes down. The patient may then not be getting enough flow. Clear the ports."},
+
+{c:"trouble",
+ s:"A patient is on an aerosol mask driven by an air-entrainment nebulizer at 40%. When she breathes in, the mist completely disappears from the mask’s exhalation ports.",
+ v:["SpO₂ 89%","RR 30"],
+ q:"What does this tell you?",
+ a:"Total flow isn’t meeting her inspiratory demand, so room air is being pulled in",
+ o:["The nebulizer is working correctly","The FiO₂ is higher than set","The humidity is too high"],
+ x:"The mist should stay visible at the exhalation ports throughout inspiration. If it disappears, the patient is outbreathing the device, which dilutes the FiO₂. Fix it by increasing the flow, running two nebulizers in tandem, or lowering the FiO₂ if allowed to get more total flow. Or switch to HFNC."},
+
+{c:"trouble",
+ s:"A patient is on high-flow nasal cannula at 40 L/min. You're checking the setup before you leave the room.",
+ v:["HFNC 40 L/min · FiO₂ 0.50"],
+ q:"Which piece of equipment must be part of an HFNC setup?",
+ a:"A heated humidifier that delivers gas near body temperature and fully saturated",
+ o:["A room-temperature bubble humidifier","Nothing — nasal devices don’t need humidity","A heat-and-moisture exchanger (HME)"],
+ x:"Flows this high would dry out and irritate the airway within minutes. HFNC requires heated humidification, delivering gas at about 37 °C and fully saturated. That is also why patients tolerate it well. A bubble humidifier can’t keep up at these flows."},
+
+{c:"trouble",
+ s:"A patient on a nasal cannula at 3 L/min breathes mostly through his mouth. He asks if he's still getting oxygen.",
+ v:["SpO₂ 95% on NC 3 L/min","RR 16"],
+ q:"What is the best response?",
+ a:"Yes — O₂ fills the nasopharynx and is drawn in even when he breathes through his mouth",
+ o:["No — he must be switched to a mask","Only if the flow is raised to 6 L/min","Only if a humidifier is added"],
+ x:"The cannula fills the nasopharynx with O₂, and mouth breathing pulls air through it, so he still gets oxygen. His SpO₂ of 95% confirms it. Switch to a mask only if his saturation actually falls."},
+
+{c:"trouble",
+ s:"A student asks why a non-rebreather has a flap on only one side port (or a spring-loaded valve), instead of sealing both sides completely.",
+ v:["Non-rebreather mask"],
+ q:"What is that one open side for?",
+ a:"Safety — the patient can still breathe room air if the O₂ supply fails",
+ o:["To raise the FiO₂ above 90%","To let the bag refill faster","To keep the mask from fogging"],
+ x:"If the O₂ supply is disconnected or runs out with both ports sealed, the patient could suffocate. Leaving one port open keeps a path to room air. That is one reason a real-world non-rebreather delivers about 60–80%, not 100%."},
+
+/* ---------- NEXT STEP / ESCALATION ---------- */
+{c:"next",
+ s:"A post-op patient on a morphine PCA is on a nasal cannula at 2 L/min. The nurse calls because he's hard to wake.",
+ v:["SpO₂ 93% on NC 2 L/min","RR 7","Arousable only to a sternal rub"],
+ q:"What is the priority?",
+ a:"Stimulate him, stop the opioid, support ventilation and get naloxone ordered — the problem is hypoventilation, not oxygenation",
+ o:["Increase the nasal cannula to 6 L/min","Switch to a non-rebreather at 15 L/min","Switch to a Venturi mask at 40%"],
+ x:"An RR of 7 with sedation is opioid-induced hypoventilation, and his CO₂ is climbing. Supplemental O₂ can keep the SpO₂ looking okay while he becomes acidotic, so more O₂ only masks the problem. Rouse him, hold the PCA, support ventilation (e.g., bag-valve-mask if needed), notify the provider about naloxone, and get an ABG."},
+
+{c:"next",
+ s:"A COPD patient on a nasal cannula at 2 L/min has become drowsy but can still be roused.",
+ v:["SpO₂ 90% on NC 2 L/min","RR 28","ABG: pH 7.24 · PaCO₂ 78 · PaO₂ 62"],
+ q:"What is the most appropriate next step?",
+ a:"Start noninvasive ventilation (BiPAP)",
+ o:["Increase the nasal cannula to 6 L/min","Switch to a non-rebreather","Switch to a Venturi mask at 35%"],
+ x:"This is acute-on-chronic hypercapnic respiratory failure: the pH is 7.24 and the PaCO₂ is 78. The issue is ventilation, and O₂ devices can’t remove CO₂. BiPAP supports his breathing and is first-line for a COPD exacerbation with respiratory acidosis. More O₂ could make the hypercapnia worse."},
+
+{c:"next",
+ s:"A 72-year-old with acute heart failure is sitting bolt upright, coughing pink frothy sputum, with crackles throughout both lungs. She's alert.",
+ v:["SpO₂ 85% on NRB 15 L/min","RR 32","BP 178/96"],
+ q:"What is the best respiratory support?",
+ a:"Noninvasive positive pressure (CPAP or BiPAP)",
+ o:["Nasal cannula at 6 L/min","Venturi mask at 40%","Simple mask at 10 L/min"],
+ x:"In cardiogenic pulmonary edema, positive pressure opens flooded alveoli and lowers preload and afterload, which improves oxygenation and work of breathing quickly. She’s already failing a non-rebreather, and every other choice gives her less."},
+
+{c:"next",
+ s:"A patient was started on a non-rebreather for hypoxemia 6 hours ago. He's much better now.",
+ v:["SpO₂ 100% on NRB 15 L/min","RR 16","ABG: PaO₂ 210"],
+ q:"What should you do next?",
+ a:"Wean to a lower-FiO₂ device and titrate to his SpO₂ target",
+ o:["Leave him on the non-rebreather to be safe","Raise the flow to keep the bag fuller","Switch to HFNC at FiO₂ 1.0"],
+ x:"A PaO₂ of 210 is far more than he needs. Prolonged high FiO₂ (above about 50% for 24–48 hours) risks oxygen toxicity and absorption atelectasis. Step down, for example to a nasal cannula or simple mask, and titrate to the ordered SpO₂ range."},
+
+{c:"next",
+ s:"A COPD patient on a Venturi mask at 28% has been getting sleepier over the past hour.",
+ v:["SpO₂ 97% on Venturi 28%","RR 14","PaCO₂ rose from 55 to 68"],
+ q:"What is the most appropriate change?",
+ a:"Lower the Venturi to 24% targeting an SpO₂ of 88–92%, then recheck the ABG",
+ o:["Increase the Venturi to 40%","Switch to a non-rebreather","Leave the settings — SpO₂ 97% is ideal"],
+ x:"An SpO₂ of 97% is above the 88–92% target for a CO₂ retainer, and his rising PaCO₂ and drowsiness point to O₂-induced hypercapnia. Lower the FiO₂ carefully rather than stopping O₂ altogether. Recheck the ABG, and be ready for BiPAP if the pH keeps falling."},
+
+/* ---------- CONCEPTS ---------- */
+{c:"concept",
+ s:"A physician asks you for the approximate FiO₂ of a patient on a nasal cannula at 3 L/min.",
+ v:["Nasal cannula 3 L/min"],
+ q:"What is the best estimate?",
+ a:"About 32%",
+ o:["About 24%","About 28%","About 40%"],
+ x:"Estimate about 4% per liter on top of room air (21%): 1 L ≈ 24%, 2 L ≈ 28%, 3 L ≈ 32%, 4 L ≈ 36%, 5 L ≈ 40%, 6 L ≈ 44%. It’s only an estimate, because cannula FiO₂ changes with the patient’s breathing pattern."},
+
+{c:"concept",
+ s:"Two patients are each on a nasal cannula at 4 L/min. Patient A is breathing slowly and shallowly. Patient B is tachypneic with large breaths.",
+ v:["Patient A: RR 12, VT 400 mL","Patient B: RR 32, VT 600 mL"],
+ q:"Who is receiving the higher FiO₂?",
+ a:"Patient A",
+ o:["Patient B","They receive the same FiO₂","It can’t be estimated with a cannula"],
+ x:"A cannula is low flow, so the patient makes up the rest of each breath with room air. Patient B moves far more air per minute, so more room air dilutes the O₂ and his FiO₂ is lower. Patient A’s small, slow breaths are mostly O₂ from the nasopharynx."},
+
+{c:"concept",
+ s:"A student is comparing a partial rebreather and a non-rebreather at the bedside. Both have a reservoir bag and run at 10–15 L/min.",
+ v:["Partial rebreather: 35–60%","Non-rebreather: 60–80%"],
+ q:"What lets the non-rebreather deliver the higher FiO₂?",
+ a:"One-way valves that keep exhaled gas out of the bag and block room air at the side ports",
+ o:["A larger reservoir bag","A higher flow rate","It has no reservoir bag"],
+ x:"The non-rebreather has a one-way valve between the mask and bag, so exhaled gas can’t enter the bag. It also has flaps on the side ports that limit room air on inspiration. The partial rebreather has no valves, so the first part of each exhalation (mostly O₂-rich dead-space gas) mixes into the bag."},
+
+{c:"concept",
+ s:"You need to explain to a new grad which devices are high flow.",
+ v:["Choose the high-flow pair"],
+ q:"Which two devices on the list are high-flow devices?",
+ a:"Venturi mask and high-flow nasal cannula",
+ o:["Non-rebreather and partial rebreather","Simple mask and Venturi mask","Nasal cannula and non-rebreather"],
+ x:"High flow means the device meets the patient’s entire inspiratory flow demand, so the FiO₂ stays constant. The Venturi does it by entraining air, and HFNC does it with up to 60 L/min of blended gas. The reservoir masks deliver a high FiO₂, but they are still low-flow devices."}
+];
+
+var CASE_CATS = {
+  pick:    {n:"Pick the device", s:"Match the patient to the best device"},
+  trouble: {n:"Troubleshoot", s:"Something isn’t right at the bedside"},
+  next:    {n:"Next step", s:"When to step up, step down, or switch"},
+  concept: {n:"Concepts", s:"How the devices work"}
+};
+
+</script>
+<script>
+(function () {
+  "use strict";
+  var app = document.getElementById("app");
+  var LET = ["A", "B", "C", "D"];
+  var ORDER = ["pick", "trouble", "next", "concept"];
+  function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem("o2cases:" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem("o2cases:" + k, JSON.stringify(v)); } catch (e) {} }
+  };
+  var K = function (c) { return "var(--k-" + c + ")"; };
+  CASES.forEach(function (x, i) { x.id = i + 1; });
+
+  var S = { cat: store.get("cat", "all"), size: store.get("size", 10), qs: [], i: 0, score: 0, misses: [], answered: false, stage: "setup", tally: {} };
+  var pool = function () { return CASES.filter(function (x) { return S.cat === "all" || x.c === S.cat; }); };
+
+  var CHEAT = '<details class="cheat"><summary>Device cheat sheet</summary><div class="tbl"><table>' +
+    "<thead><tr><th>Device</th><th>Flow</th><th>FiO₂</th><th>Type</th></tr></thead><tbody>" +
+    "<tr><td>Nasal cannula</td><td>1–6 L/min</td><td>24–44%</td><td>Low</td></tr>" +
+    "<tr><td>Simple mask</td><td>5–10 L/min</td><td>35–50%</td><td>Low</td></tr>" +
+    "<tr><td>Partial rebreather</td><td>10–15 L/min</td><td>35–60%</td><td>Low</td></tr>" +
+    "<tr><td>Non-rebreather</td><td>10–15 L/min</td><td>60–80%</td><td>Low</td></tr>" +
+    "<tr><td>Venturi mask</td><td>4–12 L/min</td><td>24–60%</td><td>High</td></tr>" +
+    "<tr><td>HFNC</td><td>Up to 60 L/min</td><td>21–100%</td><td>High</td></tr>" +
+    "</tbody></table></div></details>";
+
+  /* ---------- setup ---------- */
+  function renderSetup() {
+    S.stage = "setup";
+    var max = pool().length;
+    var sizes = [5, 10, 20].filter(function (n) { return n < max; }).concat([max]);
+    if (sizes.indexOf(S.size) < 0) S.size = sizes.indexOf(10) >= 0 ? 10 : max;
+    var cats = [["all", "All cases", CASES.length, "var(--accent)"]].concat(ORDER.map(function (c) {
+      return [c, CASE_CATS[c].n, CASES.filter(function (x) { return x.c === c; }).length, K(c)];
+    }));
+    app.innerHTML =
+      '<div class="box">' +
+        '<div><p class="label">Case type</p><div class="seg" role="group">' + cats.map(function (c) {
+          return '<button type="button" data-cat="' + c[0] + '" aria-pressed="' + (S.cat === c[0]) + '" style="--k:' + c[3] + '"><span class="dot"></span>' + c[1] + ' <span class="n">' + c[2] + "</span></button>";
+        }).join("") + "</div>" +
+        '<p class="seg-note">' + (S.cat === "all" ? "A mix of every case type." : CASE_CATS[S.cat].s + ".") + "</p></div>" +
+        '<div><p class="label">How many</p><div class="seg size" role="group">' + sizes.map(function (n) {
+          return '<button type="button" data-size="' + n + '" aria-pressed="' + (S.size === n) + '">' + (n === max ? "All " + n : n) + "</button>";
+        }).join("") + "</div></div>" +
+        '<div class="row"><button class="btn primary" type="button" id="start">Start cases</button></div>' +
+      "</div>" + CHEAT;
+    app.querySelectorAll("[data-cat]").forEach(function (b) { b.onclick = function () { S.cat = b.dataset.cat; store.set("cat", S.cat); renderSetup(); }; });
+    app.querySelectorAll("[data-size]").forEach(function (b) { b.onclick = function () { S.size = +b.dataset.size; store.set("size", S.size); renderSetup(); }; });
+    document.getElementById("start").onclick = function () { start(shuffle(pool()).slice(0, S.size)); };
+  }
+
+  function start(qs) {
+    S.qs = qs.map(function (x) { return { x: x, opts: shuffle([x.a].concat(x.o)) }; });
+    S.i = 0; S.score = 0; S.misses = []; S.tally = {}; S.stage = "q";
+    renderQuestion();
+  }
+
+  /* ---------- a case ---------- */
+  function renderQuestion() {
+    var it = S.qs[S.i], x = it.x;
+    S.answered = false;
+    app.innerHTML =
+      '<div class="meter"><span>Case ' + (S.i + 1) + " of " + S.qs.length + "</span><span>Score " + S.score + "</span></div>" +
+      '<div class="progress"><i style="width:' + (S.i / S.qs.length * 100) + '%"></i></div>' +
+      '<div class="box" style="--k:' + K(x.c) + '">' +
+        '<span class="cat">' + CASE_CATS[x.c].n + "</span>" +
+        '<div class="case"><span class="tag">The patient</span><p>' + x.s + "</p>" +
+          (x.v && x.v.length ? '<div class="vitals">' + x.v.map(function (v) { return "<span>" + v + "</span>"; }).join("") + "</div>" : "") +
+        "</div>" +
+        '<p class="qtext">' + x.q + "</p>" +
+        '<div class="opts">' + it.opts.map(function (o, j) { return '<button class="opt" type="button" data-j="' + j + '"><b>' + LET[j] + "</b><span>" + o + "</span></button>"; }).join("") + "</div>" +
+        '<div id="after"></div>' +
+      "</div>" +
+      '<div class="row"><button class="btn" type="button" id="quit">End quiz</button></div>' + CHEAT;
+    app.querySelectorAll(".opt").forEach(function (b) { b.onclick = function () { answer(+b.dataset.j); }; });
+    document.getElementById("quit").onclick = showResults;
+  }
+
+  function answer(j) {
+    if (S.answered) return;
+    S.answered = true;
+    var it = S.qs[S.i], x = it.x, chosen = it.opts[j], right = chosen === x.a;
+    var t = S.tally[x.c] || (S.tally[x.c] = [0, 0]); t[1]++;
+    if (right) { S.score++; t[0]++; } else S.misses.push({ x: x, chosen: chosen });
+    app.querySelectorAll(".opt").forEach(function (b) {
+      var o = it.opts[+b.dataset.j]; b.disabled = true;
+      if (o === x.a) b.classList.add("right"); else if (+b.dataset.j === j) b.classList.add("wrong");
+    });
+    var last = S.i === S.qs.length - 1;
+    document.getElementById("after").innerHTML =
+      '<p class="explain"><strong class="' + (right ? "ok" : "no") + '">' + (right ? "Correct." : "Not quite.") + "</strong> " + x.x + "</p>" +
+      '<div class="row" style="margin-top:14px"><button class="btn primary" type="button" id="next">' + (last ? "See results" : "Next case →") + "</button></div>";
+    var next = document.getElementById("next");
+    next.onclick = function () { if (last) showResults(); else { S.i++; renderQuestion(); window.scrollTo(0, 0); } };
+    next.focus({ preventScroll: true });
+  }
+
+  /* ---------- results ---------- */
+  function showResults() {
+    S.stage = "results";
+    var done = S.answered ? S.i + 1 : S.i;
+    var pct = done ? Math.round(S.score / done * 100) : 0;
+    var msg = pct >= 90 ? "You’d make a great RT on any floor." : pct >= 75 ? "Solid clinical judgment. Review the misses below." : pct >= 60 ? "Getting there. Read through the explanations." : "Review the device chart, then try again.";
+    var cats = ORDER.filter(function (c) { return S.tally[c]; });
+    app.innerHTML =
+      '<div class="box">' +
+        '<span class="cat" style="--k:var(--accent)">Results</span>' +
+        '<div class="score">' + S.score + "/" + done + "</div>" +
+        '<p class="qtext">' + pct + "% · " + msg + "</p>" +
+        (cats.length > 1 ? '<div class="bycat">' + cats.map(function (c) { return "<div><span>" + CASE_CATS[c].n + "</span><span>" + S.tally[c][0] + " / " + S.tally[c][1] + "</span></div>"; }).join("") + "</div>" : "") +
+        '<div class="row"><button class="btn primary" type="button" id="again">New set of cases</button>' +
+          (S.misses.length ? '<button class="btn" type="button" id="retry">Retry the ' + S.misses.length + " missed</button>" : "") + "</div>" +
+      "</div>" +
+      (S.misses.length ? '<div class="review"><h2>Review what you missed</h2>' + S.misses.map(function (m) {
+        return '<div class="item" style="--k:' + K(m.x.c) + '"><p class="w">' + m.x.s + "</p><p><strong>" + m.x.q + '</strong></p><p class="you">You chose: ' + m.chosen + '</p><p class="a">Answer: ' + m.x.a + '</p><p class="w">' + m.x.x + "</p></div>";
+      }).join("") + "</div>" : "");
+    document.getElementById("again").onclick = renderSetup;
+    var r = document.getElementById("retry");
+    if (r) r.onclick = function () { start(shuffle(S.misses.map(function (m) { return m.x; }))); };
+    window.scrollTo(0, 0);
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (S.stage !== "q" || S.answered || e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key.toLowerCase(), j = "abcd".indexOf(k) >= 0 ? "abcd".indexOf(k) : "1234".indexOf(k);
+    if (j >= 0 && j < S.qs[S.i].opts.length) answer(j);
+  });
+
+  renderSetup();
+})();
+</script>
+</body>
+</html>

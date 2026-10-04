@@ -46,8 +46,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1
 .site-links .sm{display:none}
 @media (max-width:760px){
   .site-nav .in{padding:10px 16px}
-  .site-links{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;border-radius:16px}
-  .site-links a{text-align:center;padding:8px 4px;font-size:13.5px;border-radius:12px}
+  .site-links{width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;border-radius:16px}
+  .site-links a{text-align:center;padding:8px 2px;font-size:13px;border-radius:12px}
   .site-links .lg{display:none}
   .site-links .sm{display:inline}
 }
@@ -93,6 +93,12 @@ td .sub2{display:block;font-size:13px;color:var(--muted)}
 .no{font-weight:700;color:var(--good)}
 .flow-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 
+.quizlink{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--accent);color:var(--accent-ink);border-radius:var(--r);padding:16px 20px;text-decoration:none;box-shadow:var(--shadow)}
+.quizlink b{display:block;font-family:var(--f-display);font-size:16px}
+.quizlink span span{display:block;font-size:14px;opacity:.9}
+.quizlink .go{font-size:22px;font-weight:700;flex:none}
+.quizlink:hover{filter:brightness(1.06)}
+
 footer{padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
 footer p{margin:0}
 
@@ -130,6 +136,7 @@ footer p{margin:0}
     <div class="site-links">
       <a id="nav-abg" href="#abg"><span class="lg">ABG Values</span><span class="sm">ABG</span></a>
       <a id="nav-o2" href="#o2"><span class="lg">O₂ Devices</span><span class="sm">O₂ Devices</span></a>
+      <a id="nav-cases" href="o2-cases.html"><span class="lg">O₂ Device Cases</span><span class="sm">O₂ Cases</span></a>
       <a id="nav-gas" href="gas.html"><span class="lg">O₂ Math &amp; Gases</span><span class="sm">O₂ Math</span></a>
       <a id="nav-quiz" href="math-quiz.html"><span class="lg">O₂ Math Quiz</span><span class="sm">Math Quiz</span></a>
       <a id="nav-meds" href="meds.html#table"><span class="lg">Medications</span><span class="sm">Meds</span></a>
@@ -265,6 +272,10 @@ footer p{margin:0}
         Supplies the patient’s entire inspiratory demand at a set O₂ concentration, so FiO₂ stays the same no matter how they breathe. Venturi: best for COPD / CO₂ retainers needing a precise, low FiO₂. HFNC: high FiO₂ plus a small PEEP effect and dead-space washout. <a href="gas.html#total-flow">How to compute total flow →</a>
       </div>
     </div>
+    <a class="quizlink" href="o2-cases.html">
+      <span><b>Test yourself with case studies</b><span>Pick the right device, troubleshoot it at the bedside, and know when to escalate.</span></span>
+      <span class="go" aria-hidden="true">→</span>
+    </a>
   </section>
 
   <footer><p>Ranges vary slightly between textbooks and facilities — follow your program’s and facility’s references.</p></footer>
