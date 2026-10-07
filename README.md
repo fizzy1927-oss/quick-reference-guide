@@ -7,7 +7,7 @@ A sage-green study site for respiratory therapy students preparing for the NBRC 
 It opens on a **landing page** that explains what's here and helps you pick where to start. After that, every page shares the same simple navigation bar:
 
 - **Look up** menu: ABG values · O₂ devices · O₂ math & gas cylinders · Medications · Mnemonics
-- **Practice** menu: O₂ device cases · O₂ math quiz · Medication quiz · Med flashcards
+- **Practice** menu: O₂ device cases · Med cases · O₂ math quiz · Medication quiz · Med flashcards
 - **Search:** search the whole site from any page. Press `/` on a keyboard, or tap the magnifying glass.
 
 ---
@@ -17,7 +17,7 @@ It opens on a **landing page** that explains what's here and helps you pick wher
 ### Home — `index.html`
 The landing page, made so the site isn't overwhelming the first time:
 - **A big search box.** Type a drug, device, gas, formula, lab value, symptom or mnemonic (e.g. "albuterol", "Venturi", "E cylinder", "thrush", "can't see"), and it jumps you to the right spot. Drug results open the med chart already filtered to that drug. "Try:" buttons show example searches.
-- **Two paths:** **Look something up** (the 5 reference pages) and **Practice** (the 4 quizzes / flashcards), each with a one-line description.
+- **Two paths:** **Look something up** (the 5 reference pages) and **Practice** (the 5 quizzes / flashcards), each with a one-line description.
 - **"New here? Start like this":** a 3-step study path. Learn the normals, then apply them in the device cases, then drill the meds one class at a time.
 
 ### 1. ABG Values — `abg-o2.html#abg`
@@ -59,6 +59,19 @@ A case-study quiz on oxygen devices. Each case gives you a patient (history, SpO
 - **Quiz options:** filter by case type, choose 5, 10, 20 or all, and open the built-in device cheat sheet.
 - **Results:** a score broken down by case type, with a review of your misses and a "Retry the missed" button.
 
+### 3b. Med Cases — `med-cases.html`
+A clinical-scenario quiz on respiratory medications, in the same format as the O₂ Device Cases. Every answer explains why, and links straight to that drug in the med chart.
+
+- **153 application-based cases in 4 types:**
+  - **Pick the drug (31):** acute asthma, croup and post-extubation stridor, COPD maintenance, choosing a biologic, CF, apnea of prematurity, PCP prophylaxis, cromolyn before an allergen, end-of-life secretions, and more.
+  - **Side effects & safety (44):** tachycardia and tremor during treatment, thrush, theophylline toxicity and interactions, anticholinergic effects (glaucoma, urinary retention), anaphylaxis with biologics, duplicate-drug orders, LABA without an ICS, beta blockers in asthma, MAO inhibitors and epinephrine, colistin and gentamicin hazards, and more.
+  - **Dosing & delivery (47):** dose calculations, catching wrong orders (doses, units, frequency), inhaler technique (MDI, spacer, Diskus, Ellipta, HandiHaler, Respimat, QVAR), priming, ventilator delivery, the CF treatment order, mixing rules, diluents and storage.
+  - **Next step (31):** judging response (peak flow, FEV₁, the silent chest), rescue-inhaler overuse, steroid tapers, when a treatment is needed early, and more.
+- **Where they came from:** application-based questions from the course's respiratory pharmacology study set (de-duplicated, with a few corrected), the textbook's review questions, and cases written to fill in the drugs those didn't cover.
+- **Roman-numeral questions** (I, II, III…) show the statements in a list, with the choices kept in their original order.
+- **Quiz options:** filter by case type, choose 5, 10, 20 or all, and open the built-in drug-class cheat sheet.
+- **Results:** a score by case type, a review of your misses with chart links, and a "Retry the missed" button.
+
 ### 4. O₂ Math & Gases — `gas.html`
 - **Total flow (air-entrainment devices):** the air : O₂ ratio formula, the total flow formula, a ratio table (24% → 100%), the "total flow ≥ 3 × minute ventilation" rule, fixes for low flow, and the formula for the FiO₂ of a mixed gas.
 - **Total flow calculator:** enter FiO₂ and O₂ flow (and optionally minute ventilation) to get the ratio, total flow, and whether it's adequate.
@@ -90,7 +103,7 @@ The NBRC respiratory pharmacology chart: **46 drugs in 11 classes.** Each drug h
 - **Table view:** the full chart, with search, class filters, and "Hide answers" (tap a cell to reveal) for self-testing.
 - **Cards view:** one expandable card per drug.
 - **Flashcards:** study one field or everything, shuffle, mark cards known, and skip known cards (progress is saved on your device).
-- **Quiz:** 78 hand-written NBRC-style questions plus auto-generated drug class and brand-name questions; choose 10, 20, 30 or all, then review your misses.
+- **Quiz:** 83 hand-written NBRC-style questions (including textbook review questions on SABAs vs. LABAs, DPIs, DuoNeb/Combivent and ipratropium vs. atropine) plus auto-generated drug class and brand-name questions; choose 10, 20, 30 or all, then review your misses.
 
 ### 7. Mnemonics — `meds.html#mem`
 The **Memory aids** tab of the medication chart:
@@ -108,6 +121,7 @@ The **Memory aids** tab of the medication chart:
 | `abg-o2.html` | ABG values and O₂ devices |
 | `gas.html` | O₂ math (total flow, cylinder duration) with calculators, and medical gas cylinders |
 | `o2-cases.html` | O₂ Device Cases: case-study quiz on choosing and troubleshooting O₂ devices |
+| `med-cases.html` | Med Cases: clinical-scenario quiz on respiratory medications |
 | `math-quiz.html` | O₂ Math Quiz: graded total flow and cylinder duration problems |
 | `meds.html` | Medication chart: table, cards, flashcards, quiz, memory aids |
 | `apple-touch-icon.png` | The lung icon people see when they add the site to their phone's home screen |
@@ -120,7 +134,7 @@ Old links and bookmarks to `index.html#abg` or `index.html#o2` still work: they 
 ## Put it online with GitHub Pages
 
 1. Create a new repository on GitHub.
-2. Click **Add file → Upload files**, drag in all eight files, then **Commit changes**. (When updating, upload the new versions to replace the old ones.)
+2. Click **Add file → Upload files**, drag in all nine files, then **Commit changes**. (When updating, upload the new versions to replace the old ones.)
 3. Go to **Settings → Pages**.
 4. Under **Build and deployment**, set **Source** to *Deploy from a branch*, pick `main` and `/ (root)`, then **Save**.
 5. After a minute or two the site is live at `https://<your-username>.github.io/<repo-name>/`.
@@ -132,6 +146,7 @@ Tip: on your phone, open the site and use **Add to Home Screen**. It saves as **
 - **ABG values and O₂ devices:** edit the text directly in `abg-o2.html`.
 - **Total flow, cylinder duration and gas cylinders:** edit the text directly in `gas.html`.
 - **Device cases:** in `o2-cases.html`, the cases are the `CASES = [ ... ]` array near the bottom. The comment above it explains each field, and you can add your own case by copying one.
+- **Med cases:** in `med-cases.html`, the cases are the `CASES = [ ... ]` array near the bottom (same format as the O₂ cases, plus `d`, the drug names to link to in the chart).
 - **Math quiz problems:** in `math-quiz.html`, the practice set is the `FIXED = [ ... ]` array (the comment above it explains each field). The random problem generators are in `GEN`.
 - **Medications:** in `meds.html`, the drug list is the `D = [ ... ]` array and the quiz questions are the `QUIZ = [ ... ]` array inside the `<script>` near the bottom. Each entry's fields are explained in the comment above it.
 - **Mnemonics:** also in `meds.html` — `MEM_BIG` (big-picture cards), `MEM_SUFFIX` (name endings), and `MEM` (cards for each drug class).
