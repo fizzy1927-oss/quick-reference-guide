@@ -125,6 +125,9 @@ The **Memory aids** tab of the medication chart:
 | `math-quiz.html` | O₂ Math Quiz: graded total flow and cylinder duration problems |
 | `meds.html` | Medication chart: table, cards, flashcards, quiz, memory aids |
 | `apple-touch-icon.png` | The lung icon people see when they add the site to their phone's home screen |
+| `sw.js` | The offline helper (service worker): saves the pages so the site works without internet |
+| `manifest.webmanifest` | App info for phones: the name, icon and colors used by "Add to Home Screen" |
+| `icon-192.png`, `icon-512.png` | App icons used by the manifest (Android and desktop) |
 | `README.md` | This file |
 
 There's no build step and no dependencies. Each page is a single HTML file.
@@ -134,12 +137,22 @@ Old links and bookmarks to `index.html#abg` or `index.html#o2` still work: they 
 ## Put it online with GitHub Pages
 
 1. Create a new repository on GitHub.
-2. Click **Add file → Upload files**, drag in all nine files, then **Commit changes**. (When updating, upload the new versions to replace the old ones.)
+2. Click **Add file → Upload files**, drag in all thirteen files, then **Commit changes**. (When updating, upload the new versions to replace the old ones.)
 3. Go to **Settings → Pages**.
 4. Under **Build and deployment**, set **Source** to *Deploy from a branch*, pick `main` and `/ (root)`, then **Save**.
 5. After a minute or two the site is live at `https://<your-username>.github.io/<repo-name>/`.
 
 Tip: on your phone, open the site and use **Add to Home Screen**. It saves as **Pocket Pulmo** with the lung icon and opens like an app.
+
+## Offline use
+
+Pocket Pulmo works without internet after it's been opened once online.
+
+- **How:** on the first visit, the browser installs `sw.js` in the background, and it saves a copy of every page. Online, pages always load fresh from GitHub, so updates show up right away, and the saved copy is refreshed. Offline, or if the connection takes more than about 4 seconds, the saved copy is used. Search, quizzes, calculators and flashcards all keep working.
+- **Updates:** just upload new files as usual. `sw.js` is rebuilt with every update, so old saved copies are cleared automatically.
+- **iPhone tip:** use **Add to Home Screen**. Home-screen apps keep their offline copy most reliably, and Safari may clear saved data for sites that haven't been opened in a while.
+- **Fonts:** saved after the first online visit. If they weren't saved yet, the site uses the phone's built-in fonts.
+- Offline mode only works on the live (https) site, not when a page is opened as a file on your computer.
 
 ## Editing
 
