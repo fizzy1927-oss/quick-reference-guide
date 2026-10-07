@@ -1,4 +1,6 @@
-# RT Quick Reference
+# Pocket Pulmo
+
+*For quick lookups or long study sessions.*
 
 A sage-green study site for respiratory therapy students preparing for the NBRC TMC / CSE exams. It's built for quick lookups on a phone or laptop: no logins, no installs, and it follows your device's light/dark setting.
 
@@ -108,6 +110,7 @@ The **Memory aids** tab of the medication chart:
 | `o2-cases.html` | O₂ Device Cases: case-study quiz on choosing and troubleshooting O₂ devices |
 | `math-quiz.html` | O₂ Math Quiz: graded total flow and cylinder duration problems |
 | `meds.html` | Medication chart: table, cards, flashcards, quiz, memory aids |
+| `apple-touch-icon.png` | The lung icon people see when they add the site to their phone's home screen |
 | `README.md` | This file |
 
 There's no build step and no dependencies. Each page is a single HTML file.
@@ -117,12 +120,12 @@ Old links and bookmarks to `index.html#abg` or `index.html#o2` still work: they 
 ## Put it online with GitHub Pages
 
 1. Create a new repository on GitHub.
-2. Click **Add file → Upload files**, drag in all seven files, then **Commit changes**. (When updating, upload the new versions to replace the old ones.)
+2. Click **Add file → Upload files**, drag in all eight files, then **Commit changes**. (When updating, upload the new versions to replace the old ones.)
 3. Go to **Settings → Pages**.
 4. Under **Build and deployment**, set **Source** to *Deploy from a branch*, pick `main` and `/ (root)`, then **Save**.
 5. After a minute or two the site is live at `https://<your-username>.github.io/<repo-name>/`.
 
-Tip: on your phone, open the site and use **Add to Home Screen** so it opens like an app.
+Tip: on your phone, open the site and use **Add to Home Screen**. It saves as **Pocket Pulmo** with the lung icon and opens like an app.
 
 ## Editing
 
