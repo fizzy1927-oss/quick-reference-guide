@@ -3,7 +3,7 @@
      offline, or if the network takes longer than a few seconds, the saved copy is used.
    - Fonts and icons: served from the saved copy, refreshed in the background.
    The version below changes every time the site is rebuilt, which clears out old saved copies. */
-var VERSION = "e0d08c10c673";
+var VERSION = "7dbf2a1b02f2";
 var CACHE = "pocket-pulmo-" + VERSION;
 var FONTS = "pocket-pulmo-fonts";
 var PAGES = ["./", "index.html", "abg-o2.html", "abg-practice.html", "gas.html", "o2-cases.html", "med-cases.html", "math-quiz.html", "meds.html", "review.html", "manifest.webmanifest", "apple-touch-icon.png", "icon-192.png", "icon-512.png"];

@@ -6,7 +6,7 @@ A sage-green study site for respiratory therapy students preparing for the NBRC 
 
 It opens on a **landing page** that explains what's here and helps you pick where to start. After that, every page shares the same simple navigation bar:
 
-- **Look up** menu: ABG values · Medications · O₂ devices · O₂ math & gas cylinders · Mnemonics · ABG interpreter
+- **Look up** menu: ABG values · Medications · O₂ devices · O₂ math & gas cylinders · Mnemonics
 - **Practice** menu: O₂ device cases · Med cases · O₂ math quiz · ABG practice · Medication quiz · Med flashcards · Review my mistakes
 - **Search:** search the whole site from any page. Press `/` on a keyboard, or tap the magnifying glass.
 
@@ -18,7 +18,7 @@ It opens on a **landing page** that explains what's here and helps you pick wher
 The landing page, made so the site isn't overwhelming the first time:
 - **Badges under the tagline:** **Works offline** (it changes to "saved on this device ✓" once your phone has saved the site) and **Add to Home Screen** (tap it for iPhone and Android steps, plus a one-tap Install button on Android/Chrome).
 - **A big search box.** Type a drug, device, gas, formula, lab value, symptom or mnemonic (e.g. "albuterol", "Venturi", "E cylinder", "thrush", "can't see"), and it jumps you to the right spot. Drug results open the med chart already filtered to that drug. "Try:" buttons show example searches.
-- **Two paths:** **Look something up** (the 6 reference tools) and **Practice** (the 7 quizzes, flashcards and your mistakes deck), each with a one-line description. The **Review my mistakes** card shows a red count when you have questions waiting.
+- **Two paths:** **Look something up** (the 5 reference pages) and **Practice** (the 7 quizzes, flashcards and your mistakes deck), each with a one-line description. The **Review my mistakes** card shows a red count when you have questions waiting.
 - **Quick numbers:** a tabbed card (ABG · O₂ devices · O₂ math · Meds) with the most-looked-up values: ABG normals and ROME, every device's flow and FiO₂, entrainment ratios and cylinder factors, and key med doses (albuterol, ipratropium, DuoNeb, the 20-beat rule, theophylline level, caffeine loading, racemic epi, PFT reversibility). It remembers the last tab you opened, and each tab links to its full chart.
 - **Case of the day:** one patient case from the O₂ and med case sets, the same for everyone on a given day. It works through all of them in a shuffled order before any case repeats. Answer it right on the home page to see the explanation. It remembers today's answer, keeps a streak for days in a row, and links to more cases like it.
 
@@ -34,23 +34,19 @@ Normal adult arterial blood gas values (room air, sea level), each with what a h
 | SaO₂ | 95 – 100% |
 | Base excess | −2 to +2 mEq/L |
 
-Plus the **ROME** rule (Respiratory Opposite, Metabolic Equal), and a link to the ABG interpreter.
+Plus the **ROME** rule (Respiratory Opposite, Metabolic Equal), and a link to ABG practice.
 
-### 1b. ABG Interpreter & Practice — `abg-practice.html`
-Two tabs: **Interpreter** (`#interpreter`) and **Practice** (`#practice`).
+### 1b. ABG Practice — `abg-practice.html`
+Unlimited random blood gases to interpret.
 
-- **Interpreter:** type a pH, PaCO₂ and HCO₃⁻ (PaO₂ is optional) and the answer updates as you type. It shows:
-  - the full label (e.g. "Partially compensated respiratory acidosis with mild hypoxemia");
+- **Options:** all patterns, respiratory only, or metabolic only; acid–base only or with PaO₂; and 5, 10 or 20 gases.
+- **Patterns:** normal; uncompensated, partially compensated and fully compensated respiratory or metabolic acidosis or alkalosis; and combined (mixed) acidosis or alkalosis. Every generated gas follows Henderson–Hasselbalch, so the numbers are realistic.
+- **Oxygenation (when PaO₂ is on):** 80–100 normal, 60–79 mild, 40–59 moderate, below 40 severe hypoxemia.
+- **Every answer explains itself:**
   - a **tic-tac-toe grid** that puts each value in its Acid / Normal / Base column;
   - numbered steps (pH → PaCO₂ → HCO₃⁻ → primary problem → compensation → oxygenation);
   - common causes.
-- **What it recognizes:** normal; uncompensated, partially compensated and fully compensated respiratory or metabolic acidosis or alkalosis; combined (mixed) acidosis or alkalosis. It also flags values that don't fit a pattern, and gives a gentle Henderson–Hasselbalch typo check when the three numbers don't agree.
-- **Oxygenation:** PaO₂ 80–100 normal, 60–79 mild, 40–59 moderate, below 40 severe hypoxemia, and above 100 hyperoxemia.
-- **"Try:" examples:** COPD, DKA, anxiety, vomiting and opioid overdose. There's also a "How to read an ABG" refresher.
-- **Practice:** unlimited random gases.
-  - Choose all patterns, respiratory only, or metabolic only; acid–base only or with PaO₂; and 5, 10 or 20 gases.
-  - Every generated gas follows Henderson–Hasselbalch, so the numbers are realistic.
-  - Every answer shows the grid, the steps and the causes. The results screen has a "Retry the missed" button.
+- **Also on the page:** a "How to read an ABG" refresher and a "Retry the missed" button.
 
 ### 1c. Review My Mistakes — `review.html`
 Every question you miss anywhere on the site goes into one personal deck. That includes O₂ device cases, med cases, the medication quiz, the O₂ math quiz, ABG practice and the case of the day.
@@ -147,7 +143,7 @@ The **Memory aids** tab of the medication chart:
 | --- | --- |
 | `index.html` | Landing page: site search, Look up / Practice paths, quick numbers, case of the day |
 | `abg-o2.html` | ABG values and O₂ devices |
-| `abg-practice.html` | ABG interpreter and unlimited ABG practice |
+| `abg-practice.html` | ABG practice: unlimited random gases to interpret |
 | `review.html` | Review my mistakes: every missed question from every quiz |
 | `gas.html` | O₂ math (total flow, cylinder duration) with calculators, and medical gas cylinders |
 | `o2-cases.html` | O₂ Device Cases: case-study quiz on choosing and troubleshooting O₂ devices |
@@ -194,7 +190,7 @@ Pocket Pulmo works without internet after it's been opened once online.
 - **Medications:** in `meds.html`, the drug list is the `D = [ ... ]` array and the quiz questions are the `QUIZ = [ ... ]` array inside the `<script>` near the bottom. Each entry's fields are explained in the comment above it.
 - **Mnemonics:** also in `meds.html` — `MEM_BIG` (big-picture cards), `MEM_SUFFIX` (name endings), and `MEM` (cards for each drug class).
 
-- **ABG interpreter:** the logic is the `window.ABG` script in `abg-practice.html` (normal ranges in `N`, practice patterns in `PATTERNS`).
+- **ABG practice:** the logic is the `window.ABG` script in `abg-practice.html` (normal ranges in `N`, practice patterns in `PATTERNS`).
 - **Site search:** each page has its own copy of the search list (`window.RTQ_INDEX`). If you add a drug, case or mnemonic by hand, it shows up on its page right away, but it won't appear in search until that list is rebuilt.
 
 Flashcard progress, your mistakes deck, filters, quiz settings and your last-used tab are saved in your browser, per device.
