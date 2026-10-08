@@ -6,7 +6,7 @@ A sage-green study site for respiratory therapy students preparing for the NBRC 
 
 It opens on a **landing page** that explains what's here and helps you pick where to start. After that, every page shares the same simple navigation bar:
 
-- **Look up** menu: ABG values · Medications · O₂ devices · O₂ math & gas cylinders · Mnemonics
+- **Look up** menu: ABG values · Medications · O₂ devices · Formulas · Gas cylinders · Mnemonics
 - **Practice** menu: O₂ device cases · Med cases · O₂ math quiz · ABG practice · Medication quiz · Med flashcards · Review my mistakes
 - **Search:** search the whole site from any page. Press `/` on a keyboard, or tap the magnifying glass.
 
@@ -19,7 +19,7 @@ The landing page, made so the site isn't overwhelming the first time:
 - **Badges under the tagline:** **Works offline** (it changes to "saved on this device ✓" once your phone has saved the site) and **Add to Home Screen** (tap it for iPhone and Android steps, plus a one-tap Install button on Android/Chrome).
 - **A big search box.** Type a drug, device, gas, formula, lab value, symptom or mnemonic (e.g. "albuterol", "Venturi", "E cylinder", "thrush", "can't see"), and it jumps you to the right spot. Drug results open the med chart already filtered to that drug. "Try:" buttons show example searches.
 - **Two paths:** **Look something up** (the 5 reference pages) and **Practice** (the 7 quizzes, flashcards and your mistakes deck), each with a one-line description. The **Review my mistakes** card shows a red count when you have questions waiting.
-- **Quick numbers:** a tabbed card (ABG · O₂ devices · O₂ math · Meds) with the most-looked-up values: ABG normals and ROME, every device's flow and FiO₂, entrainment ratios and cylinder factors, and key med doses (albuterol, ipratropium, DuoNeb, the 20-beat rule, theophylline level, caffeine loading, racemic epi, PFT reversibility). It remembers the last tab you opened, and each tab links to its full chart.
+- **Quick numbers:** a tabbed card (ABG · O₂ devices · Formulas · Meds) with the most-looked-up values: ABG normals, ROME and the 60/90 rule, every device's flow and FiO₂, entrainment ratios, cylinder factors and CaO₂, and key med doses (albuterol, ipratropium, DuoNeb, the 20-beat rule, theophylline level, caffeine loading, racemic epi, PFT reversibility). It remembers the last tab you opened, and each tab links to its full chart.
 - **Case of the day:** one patient case from the O₂ and med case sets, the same for everyone on a given day. It works through all of them in a shuffled order before any case repeats. Answer it right on the home page to see the explanation. It remembers today's answer, keeps a streak for days in a row, and links to more cases like it.
 
 ### 1. ABG Values — `abg-o2.html#abg`
@@ -35,6 +35,15 @@ Normal adult arterial blood gas values (room air, sea level), each with what a h
 | Base excess | −2 to +2 mEq/L |
 
 Plus the **ROME** rule (Respiratory Opposite, Metabolic Equal), and a link to ABG practice.
+
+**Oxyhemoglobin dissociation curve** (`abg-o2.html#curve`):
+- **The curve itself:** a real S-shaped curve drawn from the Severinghaus equation.
+- **Shifts:** dashed left- and right-shift curves that you can show or hide.
+- **Steep vs. flat:** the steep part (below a PaO₂ of 60) is shaded.
+- **Key points:** P50 27 → 50%, venous 40 → 75%, 60 → 90% and 100 → 97–98%.
+- **Slider:** slide along the curve, or tap or hover on it, to read the SaO₂ at any PaO₂.
+- **The 60 / 90 rule:** PaO₂ 60 ≈ SaO₂ 90%, explained.
+- **What shifts the curve:** right-shift causes ("CADET, face Right": CO₂, Acid, 2,3-DPG, Exercise, Temperature) and left-shift causes (alkalosis, cold, CO, methemoglobin, fetal Hb).
 
 ### 1b. ABG Practice — `abg-practice.html`
 Unlimited random blood gases to interpret.
@@ -95,12 +104,28 @@ A clinical-scenario quiz on respiratory medications, in the same format as the O
 - **Quiz options:** filter by case type, choose 5, 10, 20 or all, and open the built-in drug-class cheat sheet.
 - **Results:** a score by case type, a review of your misses with chart links, and a "Retry the missed" button.
 
-### 4. O₂ Math & Gases — `gas.html`
-- **Total flow (air-entrainment devices):** the air : O₂ ratio formula, the total flow formula, a ratio table (24% → 100%), the "total flow ≥ 3 × minute ventilation" rule, fixes for low flow, and the formula for the FiO₂ of a mixed gas.
-- **Total flow calculator:** enter FiO₂ and O₂ flow (and optionally minute ventilation) to get the ratio, total flow, and whether it's adequate.
-- **Cylinder duration:** the formula, step-by-step method, cylinder factors (D 0.16, E 0.28, M 1.56, G 2.41, H/K 3.14), and full-cylinder volumes.
-- **Cylinder duration calculator:** pick a cylinder size, enter gauge pressure, safe residual and flow.
-- **Medical gas cylinders:** US color code, what each gas is used for, and its pin index (PISS) for oxygen, medical air, heliox, helium, carbon dioxide, CO₂/O₂, nitrous oxide, nitrogen, cyclopropane and ethylene. Also PISS vs. ASSS vs. DISS and cylinder safety.
+### 4. Formulas — `formulas.html`
+Every formula on the site in one place, each with a worked example:
+- **Total flow (air-entrainment devices):**
+  - formulas for the air : O₂ ratio and total flow, plus a ratio table (24% → 100%);
+  - the "total flow ≥ 3 × minute ventilation" rule and fixes for low flow;
+  - the FiO₂ of a mixed gas;
+  - a **calculator** (FiO₂ + O₂ flow, optional minute ventilation).
+- **Cylinder duration:**
+  - the formula, the step-by-step method, cylinder factors (D 0.16, E 0.28, M 1.56, G 2.41, H/K 3.14) and full-cylinder volumes;
+  - a **calculator**.
+- **Oxygen content:**
+  - **CaO₂ = (Hb × 1.34 × SaO₂) + (PaO₂ × 0.003)**, normal 16–20 mL/dL;
+  - the **arterial–venous O₂ difference**, C(a–v)O₂ = CaO₂ − CvO₂, normal ≈ 5 mL/dL;
+  - a **calculator** (Hb, SaO₂, PaO₂, plus optional SvO₂ / PvO₂).
+- **Quick estimates:** nasal cannula FiO₂ (21% + 4% per L), the 60 / 90 rule, heliox flow correction (×1.8 / ×1.6).
+- **Drug math:** percent solution → mg/mL (% × 10, 1:1000 = 1 mg/mL), dose → volume, weight-based dosing.
+
+Old links to `gas.html#total-flow` and `gas.html#cylinder` forward here automatically.
+
+### 4b. Gas Cylinders — `gas.html`
+- **Medical gas cylinders:** the US color code, what each gas is used for, and its pin index (PISS). Covers oxygen, medical air, heliox, helium, carbon dioxide, CO₂/O₂, nitrous oxide, nitrogen, cyclopropane and ethylene.
+- **Also:** PISS vs. ASSS vs. DISS, and cylinder safety.
 
 ### 5. O₂ Math Quiz — `math-quiz.html`
 A separate quiz for the calculations. You type your answer (or pick one for yes/no-style questions), check it, and see the worked solution.
@@ -145,7 +170,8 @@ The **Memory aids** tab of the medication chart:
 | `abg-o2.html` | ABG values and O₂ devices |
 | `abg-practice.html` | ABG practice: unlimited random gases to interpret |
 | `review.html` | Review my mistakes: every missed question from every quiz |
-| `gas.html` | O₂ math (total flow, cylinder duration) with calculators, and medical gas cylinders |
+| `formulas.html` | Every formula: total flow, cylinder duration, O₂ content, quick estimates, drug math (with calculators) |
+| `gas.html` | Medical gas cylinders: colors, uses, pin index |
 | `o2-cases.html` | O₂ Device Cases: case-study quiz on choosing and troubleshooting O₂ devices |
 | `med-cases.html` | Med Cases: clinical-scenario quiz on respiratory medications |
 | `math-quiz.html` | O₂ Math Quiz: graded total flow and cylinder duration problems |
@@ -183,7 +209,7 @@ Pocket Pulmo works without internet after it's been opened once online.
 ## Editing
 
 - **ABG values and O₂ devices:** edit the text directly in `abg-o2.html`.
-- **Total flow, cylinder duration and gas cylinders:** edit the text directly in `gas.html`.
+- **Formulas:** edit the text directly in `formulas.html`. **Gas cylinders:** edit `gas.html`.
 - **Device cases:** in `o2-cases.html`, the cases are the `CASES = [ ... ]` array near the bottom. The comment above it explains each field, and you can add your own case by copying one.
 - **Med cases:** in `med-cases.html`, the cases are the `CASES = [ ... ]` array near the bottom (same format as the O₂ cases, plus `d`, the drug names to link to in the chart).
 - **Math quiz problems:** in `math-quiz.html`, the practice set is the `FIXED = [ ... ]` array (the comment above it explains each field). The random problem generators are in `GEN`.
