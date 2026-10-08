@@ -6,7 +6,7 @@ A sage-green study site for respiratory therapy students preparing for the NBRC 
 
 It opens on a **landing page** that explains what's here and helps you pick where to start. After that, every page shares the same simple navigation bar:
 
-- **Look up** menu: ABG values · O₂ devices · O₂ math & gas cylinders · Medications · Mnemonics
+- **Look up** menu: ABG values · Medications · O₂ devices · O₂ math & gas cylinders · Mnemonics
 - **Practice** menu: O₂ device cases · Med cases · O₂ math quiz · Medication quiz · Med flashcards
 - **Search:** search the whole site from any page. Press `/` on a keyboard, or tap the magnifying glass.
 
@@ -16,9 +16,11 @@ It opens on a **landing page** that explains what's here and helps you pick wher
 
 ### Home — `index.html`
 The landing page, made so the site isn't overwhelming the first time:
+- **Badges under the tagline:** **Works offline** (it changes to "saved on this device ✓" once your phone has saved the site), **Add to Home Screen** (tap it for iPhone and Android steps, plus a one-tap Install button on Android/Chrome), and **Free**, no sign-up or ads.
 - **A big search box.** Type a drug, device, gas, formula, lab value, symptom or mnemonic (e.g. "albuterol", "Venturi", "E cylinder", "thrush", "can't see"), and it jumps you to the right spot. Drug results open the med chart already filtered to that drug. "Try:" buttons show example searches.
 - **Two paths:** **Look something up** (the 5 reference pages) and **Practice** (the 5 quizzes / flashcards), each with a one-line description.
-- **"New here? Start like this":** a 3-step study path. Learn the normals, then apply them in the device cases, then drill the meds one class at a time.
+- **Quick numbers:** a tabbed card (ABG · O₂ devices · O₂ math · Meds) with the most-looked-up values: ABG normals and ROME, every device's flow and FiO₂, entrainment ratios and cylinder factors, and key med doses (albuterol, ipratropium, DuoNeb, the 20-beat rule, theophylline level, caffeine loading, racemic epi, PFT reversibility). It remembers the last tab you opened, and each tab links to its full chart.
+- **Case of the day:** one patient case from the O₂ and med case sets, the same for everyone on a given day. It works through all of them in a shuffled order before any case repeats. Answer it right on the home page to see the explanation. It remembers today's answer, keeps a streak for days in a row, and links to more cases like it.
 
 ### 1. ABG Values — `abg-o2.html#abg`
 Normal adult arterial blood gas values (room air, sea level), each with what a high or low value means:
@@ -51,22 +53,22 @@ Includes a short explanation of why low-flow FiO₂ varies and high-flow FiO₂ 
 ### 3. O₂ Device Cases — `o2-cases.html`
 A case-study quiz on oxygen devices. Each case gives you a patient (history, SpO₂, vitals, sometimes an ABG) and asks what you'd do. Every answer explains why it's right and why the other choices aren't.
 
-- **28 cases in 4 types:**
-  - **Pick the device (10):** e.g., the COPD CO₂ retainer, carbon monoxide poisoning, pneumonia failing a non-rebreather, an infant with bronchiolitis, nasal packing, a claustrophobic patient.
-  - **Troubleshoot (9):** e.g., a collapsing reservoir bag, a simple mask below 5 L/min, a dry nose on a cannula, raising a Venturi's FiO₂, blocked entrainment ports, the aerosol mist disappearing, HFNC humidity, mouth breathing, the non-rebreather's safety port.
-  - **Next step (5):** opioid hypoventilation, hypercapnic failure needing BiPAP, CHF pulmonary edema needing CPAP/BiPAP, weaning off a non-rebreather, O₂-induced hypercapnia.
-  - **Concepts (4):** estimating cannula FiO₂, how breathing pattern changes low-flow FiO₂, partial rebreather vs. non-rebreather, which devices are high flow.
+- **40 cases in 4 types:**
+  - **Pick the device (12):** e.g., the COPD CO₂ retainer already at target, cluster headache, carbon monoxide poisoning, pneumonia failing a non-rebreather, an infant with bronchiolitis, nasal packing, a claustrophobic patient.
+  - **Troubleshoot (15):** e.g., a cannula hooked to the air flowmeter, a whistling humidifier, a Venturi set below its flow, HFNC prong size, a bad pulse-ox signal, a low cylinder before transport, a collapsing reservoir bag, a simple mask below 5 L/min, a dry nose on a cannula, raising a Venturi's FiO₂, blocked entrainment ports, the aerosol mist disappearing, HFNC humidity, mouth breathing, the non-rebreather's safety port.
+  - **Next step (8):** HFNC failure, weaning FiO₂ in a preemie, stepping up a Venturi, opioid hypoventilation, hypercapnic failure needing BiPAP, CHF pulmonary edema needing CPAP/BiPAP, weaning off a non-rebreather, O₂-induced hypercapnia.
+  - **Concepts (5):** why a cannula above 6 L/min barely helps, estimating cannula FiO₂, how breathing pattern changes low-flow FiO₂, partial rebreather vs. non-rebreather, which devices are high flow.
 - **Quiz options:** filter by case type, choose 5, 10, 20 or all, and open the built-in device cheat sheet.
 - **Results:** a score broken down by case type, with a review of your misses and a "Retry the missed" button.
 
 ### 3b. Med Cases — `med-cases.html`
 A clinical-scenario quiz on respiratory medications, in the same format as the O₂ Device Cases. Every answer explains why, and links straight to that drug in the med chart.
 
-- **153 application-based cases in 4 types:**
-  - **Pick the drug (31):** acute asthma, croup and post-extubation stridor, COPD maintenance, choosing a biologic, CF, apnea of prematurity, PCP prophylaxis, cromolyn before an allergen, end-of-life secretions, and more.
-  - **Side effects & safety (44):** tachycardia and tremor during treatment, thrush, theophylline toxicity and interactions, anticholinergic effects (glaucoma, urinary retention), anaphylaxis with biologics, duplicate-drug orders, LABA without an ICS, beta blockers in asthma, MAO inhibitors and epinephrine, colistin and gentamicin hazards, and more.
-  - **Dosing & delivery (47):** dose calculations, catching wrong orders (doses, units, frequency), inhaler technique (MDI, spacer, Diskus, Ellipta, HandiHaler, Respimat, QVAR), priming, ventilator delivery, the CF treatment order, mixing rules, diluents and storage.
-  - **Next step (31):** judging response (peak flow, FEV₁, the silent chest), rescue-inhaler overuse, steroid tapers, when a treatment is needed early, and more.
+- **167 application-based cases in 4 types:**
+  - **Pick the drug (32):** add-on tiotropium for asthma, acute asthma, croup and post-extubation stridor, COPD maintenance, choosing a biologic, CF, apnea of prematurity, PCP prophylaxis, cromolyn before an allergen, end-of-life secretions, and more.
+  - **Side effects & safety (47):** tobramycin ototoxicity, steroid-induced hyperglycemia, extra montelukast before exercise, tachycardia and tremor during treatment, thrush, theophylline toxicity and interactions, anticholinergic effects (glaucoma, urinary retention), anaphylaxis with biologics, duplicate-drug orders, LABA without an ICS, beta blockers in asthma, MAO inhibitors and epinephrine, colistin and gentamicin hazards, and more.
+  - **Dosing & delivery (55):** dose calculations (caffeine loading dose, racemic epi and acetylcysteine mg, continuous albuterol volume), catching wrong orders (doses, units, frequency), inhaler technique (MDI, spacer, Diskus, Ellipta, HandiHaler, Respimat, QVAR), priming, ventilator delivery, the CF treatment order, mixing rules, diluents and storage.
+  - **Next step (33):** ICS and pneumonia risk in COPD, single-inhaler triple therapy, judging response (peak flow, FEV₁, the silent chest), rescue-inhaler overuse, steroid tapers, when a treatment is needed early, and more.
 - **Where they came from:** application-based questions from the course's respiratory pharmacology study set (de-duplicated, with a few corrected), the textbook's review questions, and cases written to fill in the drugs those didn't cover.
 - **Roman-numeral questions** (I, II, III…) show the statements in a list, with the choices kept in their original order.
 - **Quiz options:** filter by case type, choose 5, 10, 20 or all, and open the built-in drug-class cheat sheet.
@@ -93,6 +95,7 @@ A separate quiz for the calculations. You type your answer (or pick one for yes/
   - whether a cylinder will last a transport
   - the minimum gauge pressure needed
 - **Choose 5–20 questions.** A **Hint** button shows the formulas, and **Show answer** gives you the solution if you're stuck.
+- **Calculator:** tap the **Calculator** button (bottom right) for a pop-up calculator with + − × ÷, parentheses and %. **Use in answer** puts the result straight into your answer box. On a phone it opens as a compact panel and scrolls the question into view above it. The Med Cases page has the same calculator for the dose-calculation cases.
 - **Flexible answers:** cylinder answers accept minutes or hours and minutes (“2 hr 48 min”, “2:48”). FiO₂ accepts a percent or a decimal. Small rounding differences are counted as correct.
 - **Results:** a score at the end, a review of everything you missed with the worked solutions, and a “Retry the missed” button.
 
