@@ -16,7 +16,7 @@ It opens on a **landing page** that explains what's here and helps you pick wher
 
 ### Home — `index.html`
 The landing page, made so the site isn't overwhelming the first time:
-- **Badges under the tagline:** **Works offline** (it changes to "saved on this device ✓" once your phone has saved the site), **Add to Home Screen** (tap it for iPhone and Android steps, plus a one-tap Install button on Android/Chrome), and **Free**, no sign-up or ads.
+- **Badges under the tagline:** **Works offline** (it changes to "saved on this device ✓" once your phone has saved the site) and **Add to Home Screen** (tap it for iPhone and Android steps, plus a one-tap Install button on Android/Chrome).
 - **A big search box.** Type a drug, device, gas, formula, lab value, symptom or mnemonic (e.g. "albuterol", "Venturi", "E cylinder", "thrush", "can't see"), and it jumps you to the right spot. Drug results open the med chart already filtered to that drug. "Try:" buttons show example searches.
 - **Two paths:** **Look something up** (the 5 reference pages) and **Practice** (the 5 quizzes / flashcards), each with a one-line description.
 - **Quick numbers:** a tabbed card (ABG · O₂ devices · O₂ math · Meds) with the most-looked-up values: ABG normals and ROME, every device's flow and FiO₂, entrainment ratios and cylinder factors, and key med doses (albuterol, ipratropium, DuoNeb, the 20-beat rule, theophylline level, caffeine loading, racemic epi, PFT reversibility). It remembers the last tab you opened, and each tab links to its full chart.
