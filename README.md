@@ -60,16 +60,16 @@ Every question you miss anywhere on the site goes into one personal deck. That i
 ### 2. O₂ Devices — `abg-o2.html#o2`
 Six oxygen delivery devices, each with liter flow, FiO₂ range, low vs. high flow, humidification, and whether FiO₂ changes with the patient's rate / tidal volume:
 
-| Device | Liter flow | FiO₂ | Flow |
-| --- | --- | --- | --- |
-| Nasal cannula | 1 – 6 L/min | 24 – 44% | Low |
-| Simple face mask | 5 – 10 L/min | 35 – 50% | Low |
-| Partial rebreather | 10 – 15 L/min (keep bag inflated) | 35 – 60% | Low |
-| Non-rebreather | 10 – 15 L/min | 60 – 80% | Low |
-| Venturi mask | 4 – 12 L/min | 24 – 60% | High |
-| High-flow nasal cannula (HFNC) | Up to 60 L/min | 21 – 100% | High |
+| Device | Liter flow | FiO₂ | Flow | Humidification | FiO₂ changes with RR / VT? |
+| --- | --- | --- | --- | --- | --- |
+| Nasal cannula | 1 – 6 L/min | 24 – 45% | Low | Yes, at 4 L/min and above (bubble humidifier) | Yes |
+| Simple face mask | 5 – 10 L/min | 40 – 60% | Low | No | Yes |
+| Partial rebreather | 10 – 15 L/min (keep bag inflated) | 40 – 60% | High | No | Yes |
+| Non-rebreather | 10 – 15 L/min | 70 – 100% | High | No | Yes |
+| Venturi mask | 2 – 12 L/min | 24 – 50% | High | No | No |
+| High-flow nasal cannula (HFNC) | Up to 60 L/min | 21 – 100% | High | Yes, heated (required) | No |
 
-Includes a short explanation of why low-flow FiO₂ varies and high-flow FiO₂ doesn't, and a link to the O₂ Device Cases quiz. On a phone the table becomes one card per device.
+Values follow the program's Oxygen Delivery Devices worksheet (RSP-119); HFNC was added. Includes a short explanation of which devices are low vs. high flow and why FiO₂ changes with breathing on some of them, and a link to the O₂ Device Cases quiz. On a phone the table becomes one card per device.
 
 ### 3. O₂ Device Cases — `o2-cases.html`
 A case-study quiz on oxygen devices. Each case gives you a patient (history, SpO₂, vitals, sometimes an ABG) and asks what you'd do. Every answer explains why it's right and why the other choices aren't.
