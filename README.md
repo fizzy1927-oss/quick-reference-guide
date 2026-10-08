@@ -20,6 +20,7 @@ The landing page, made so the site isn't overwhelming the first time:
 - **A big search box.** Type a drug, device, gas, formula, lab value, symptom or mnemonic (e.g. "albuterol", "Venturi", "E cylinder", "thrush", "can't see"), and it jumps you to the right spot. Drug results open the med chart already filtered to that drug. "Try:" buttons show example searches.
 - **Two paths:** **Look something up** (the 5 reference pages) and **Practice** (the 7 quizzes, flashcards and your mistakes deck), each with a one-line description. The **Review my mistakes** card shows a red count when you have questions waiting.
 - **Quick numbers:** a tabbed card (ABG · O₂ devices · Formulas · Meds) with the most-looked-up values: ABG normals, ROME and the 60/90 rule, every device's flow and FiO₂, entrainment ratios, cylinder factors and CaO₂, and key med doses (albuterol, ipratropium, DuoNeb, the 20-beat rule, theophylline level, caffeine loading, racemic epi, PFT reversibility). It remembers the last tab you opened, and each tab links to its full chart.
+- **What's new:** a small pill at the top of the home page with the latest headline. Tap it to see the list of updates. A red dot shows until a visitor has opened it, and the footer has a "What's new" link too.
 - **Case of the day:** one patient case from the O₂ and med case sets, the same for everyone on a given day. It works through all of them in a shuffled order before any case repeats. Answer it right on the home page to see the explanation. It remembers today's answer, keeps a streak for days in a row, and links to more cases like it.
 
 ### 1. ABG Values — `abg-o2.html#abg`
@@ -217,6 +218,10 @@ Pocket Pulmo works without internet after it's been opened once online.
 - **Mnemonics:** also in `meds.html` — `MEM_BIG` (big-picture cards), `MEM_SUFFIX` (name endings), and `MEM` (cards for each drug class).
 
 - **ABG practice:** the logic is the `window.ABG` script in `abg-practice.html` (normal ranges in `N`, practice patterns in `PATTERNS`).
+- **What's new list:** in `index.html`, search for `WHAT'S NEW`.
+  - Copy the `<section class="upd" ...>` block, put it at the top of the list, and edit the date, the bullets and `data-head` (the one-line headline shown on the pill).
+  - Give the new block a new `data-id` (e.g. `2026-10-15`) so the red "new" dot shows again for returning visitors.
+  - Labels: `<span class="k new">New</span>`, `<span class="k fix">Updated</span>`, or plain `<span class="k">Moved</span>`.
 - **Site search:** each page has its own copy of the search list (`window.RTQ_INDEX`). If you add a drug, case or mnemonic by hand, it shows up on its page right away, but it won't appear in search until that list is rebuilt.
 
 Flashcard progress, your mistakes deck, filters, quiz settings and your last-used tab are saved in your browser, per device.
