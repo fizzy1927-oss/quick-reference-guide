@@ -7,7 +7,7 @@ A sage-green study site for respiratory therapy students preparing for the NBRC 
 It opens on a **landing page** that explains what's here and helps you pick where to start. After that, every page shares the same simple navigation bar:
 
 - **Look up** menu: ABG values · Medications · O₂ devices · Formulas · Gas cylinders · Mnemonics
-- **Practice** menu: O₂ device cases · Med cases · O₂ math quiz · ABG practice · Medication quiz · Med flashcards · Review my mistakes
+- **Practice** menu: O₂ device cases · Med cases · O₂ math quiz · ABG practice · Vent practice lab · Medication quiz · Med flashcards · Review my mistakes
 - **Search:** search the whole site from any page. Press `/` on a keyboard, or tap the magnifying glass.
 
 ---
@@ -57,6 +57,27 @@ Unlimited random blood gases to interpret.
   - numbered steps (pH → PaCO₂ → HCO₃⁻ → primary problem → compensation → oxygenation);
   - common causes.
 - **Also on the page:** a "How to read an ABG" refresher and a "Retry the missed" button.
+
+### 1d. Vent Practice Lab — `vent.html`
+A bedside ventilator simulator, restyled in the Pocket Pulmo look (light and dark).
+- **30 patients in 7 groups**, each with a history, goals and IBW-based tidal volume range:
+  - **Normal lungs:** post-op, opioid overdose, traumatic brain injury.
+  - **Obstructive:** status asthmaticus, intubated COPD.
+  - **Stiff lungs:** ARDS, severe viral ARDS, mild ARDS (pancreatitis), flail chest/contusion, lobar pneumonia, aspiration, morbid obesity, pulmonary fibrosis, pregnancy with flu ARDS, bronchopleural fistula, a 9-year-old with pneumonia.
+  - **Shock & special situations:** post-cardiac arrest, hemorrhagic shock, massive PE, DKA, smoke inhalation.
+  - **Nerve & muscle:** Guillain-Barré, C3 spinal cord injury.
+  - **Weaning:** an SBT that passes and one that fails.
+  - **Noninvasive (mask):** COPD on BiPAP, CHF on CPAP, myasthenic crisis, obesity hypoventilation, ALS.
+- **Each new patient teaches something specific:** match the pre-intubation minute ventilation in DKA, set Vt by IBW and raise PEEP in obesity, wean FiO₂ after cardiac arrest, avoid high PEEP in shock and PE, and target a PaCO₂ of 30–32 in pregnancy.
+- **To add or edit patients:** in `vent.html`, search for `More Vent Practice Lab patients`. The comment there explains each setting, and you can copy a patient to make a new one.
+- **Patient monitor:** live ECG, pleth and capnography with HR, SpO₂, arterial BP, EtCO₂, RR and temperature.
+- **Ventilator:**
+  - modes: VC-AC, PC-AC, SIMV, CPAP/PS, noninvasive CPAP and BiPAP S/T;
+  - live pressure, flow and volume waveforms and measured values (PIP, Pplat, Vte, Ve, I:E, Cstat, driving pressure, auto-PEEP);
+  - adjustable settings and alarm limits;
+  - inspiratory and expiratory holds.
+- **Troubleshoot (DOPE):** pick a problem or get a hidden one. Problems include disconnect, secretions, a bitten or kinked tube, bronchospasm, right mainstem intubation, tension pneumothorax, cuff leak, circuit water, unplanned extubation, flow starvation, O₂ supply failure and NIV mask problems. Assess, intervene, and get a teaching point at the end.
+- **Also:** a circuit change (put the steps in order while the patient is bagged), ABG draws with interpretation, and an event log.
 
 ### 1c. Review My Mistakes — `review.html`
 Every question you miss anywhere on the site goes into one personal deck. That includes O₂ device cases, med cases, the medication quiz, the O₂ math quiz, ABG practice and the case of the day.
@@ -173,6 +194,7 @@ The **Memory aids** tab of the medication chart:
 | `index.html` | Landing page: site search, Look up / Practice paths, quick numbers, case of the day |
 | `abg-o2.html` | ABG values and O₂ devices |
 | `abg-practice.html` | ABG practice: unlimited random gases to interpret |
+| `vent.html` | Vent practice lab: ventilator simulator |
 | `review.html` | Review my mistakes: every missed question from every quiz |
 | `formulas.html` | Every formula: total flow, cylinder duration, O₂ content, quick estimates, drug math (with calculators) |
 | `gas.html` | Medical gas cylinders: colors, uses, pin index |
