@@ -84,23 +84,26 @@ Values follow the program's Oxygen Delivery Devices worksheet (RSP-119); HFNC wa
 ### 3. O₂ Device Cases — `o2-cases.html`
 A case-study quiz on oxygen devices. Each case gives you a patient (history, SpO₂, vitals, sometimes an ABG) and asks what you'd do. Every answer explains why it's right and why the other choices aren't.
 
-- **40 cases in 4 types:**
+- **51 cases in 5 types:**
   - **Pick the device (12):** e.g., the COPD CO₂ retainer already at target, cluster headache, carbon monoxide poisoning, pneumonia failing a non-rebreather, an infant with bronchiolitis, nasal packing, a claustrophobic patient.
   - **Troubleshoot (15):** e.g., a cannula hooked to the air flowmeter, a whistling humidifier, a Venturi set below its flow, HFNC prong size, a bad pulse-ox signal, a low cylinder before transport, a collapsing reservoir bag, a simple mask below 5 L/min, a dry nose on a cannula, raising a Venturi's FiO₂, blocked entrainment ports, the aerosol mist disappearing, HFNC humidity, mouth breathing, the non-rebreather's safety port.
   - **Next step (8):** HFNC failure, weaning FiO₂ in a preemie, stepping up a Venturi, opioid hypoventilation, hypercapnic failure needing BiPAP, CHF pulmonary edema needing CPAP/BiPAP, weaning off a non-rebreather, O₂-induced hypercapnia.
   - **Concepts (5):** why a cannula above 6 L/min barely helps, estimating cannula FiO₂, how breathing pattern changes low-flow FiO₂, partial rebreather vs. non-rebreather, which devices are high flow.
+- **Multi-part cases (11):** each one unfolds in 2–3 steps. Answer part 1, then an update tells you what happened ("the bag still collapses", "the tank is at 400 psig"), and you decide what to do next. They cover troubleshooting, escalation (Venturi → NRB → HFNC, BiPAP) and O₂ math at the bedside.
+- **Calculator:** a pop-up calculator for the math cases.
 - **Quiz options:** filter by case type, choose 5, 10, 20 or all, and open the built-in device cheat sheet.
 - **Results:** a score broken down by case type, with a review of your misses and a "Retry the missed" button.
 
 ### 3b. Med Cases — `med-cases.html`
 A clinical-scenario quiz on respiratory medications, in the same format as the O₂ Device Cases. Every answer explains why, and links straight to that drug in the med chart.
 
-- **167 application-based cases in 4 types:**
+- **178 application-based cases in 5 types:**
   - **Pick the drug (32):** add-on tiotropium for asthma, acute asthma, croup and post-extubation stridor, COPD maintenance, choosing a biologic, CF, apnea of prematurity, PCP prophylaxis, cromolyn before an allergen, end-of-life secretions, and more.
   - **Side effects & safety (47):** tobramycin ototoxicity, steroid-induced hyperglycemia, extra montelukast before exercise, tachycardia and tremor during treatment, thrush, theophylline toxicity and interactions, anticholinergic effects (glaucoma, urinary retention), anaphylaxis with biologics, duplicate-drug orders, LABA without an ICS, beta blockers in asthma, MAO inhibitors and epinephrine, colistin and gentamicin hazards, and more.
   - **Dosing & delivery (55):** dose calculations (caffeine loading dose, racemic epi and acetylcysteine mg, continuous albuterol volume), catching wrong orders (doses, units, frequency), inhaler technique (MDI, spacer, Diskus, Ellipta, HandiHaler, Respimat, QVAR), priming, ventilator delivery, the CF treatment order, mixing rules, diluents and storage.
   - **Next step (33):** ICS and pneumonia risk in COPD, single-inhaler triple therapy, judging response (peak flow, FEV₁, the silent chest), rescue-inhaler overuse, steroid tapers, when a treatment is needed early, and more.
 - **Where they came from:** application-based questions from the course's respiratory pharmacology study set (de-duplicated, with a few corrected), the textbook's review questions, and cases written to fill in the drugs those didn't cover.
+- **Multi-part cases (11):** clinical scenarios that unfold in 2–3 steps. Examples: tachycardia halfway through an albuterol treatment, then the drug swap; bronchospasm from acetylcysteine; rebound stridor after racemic epi; theophylline toxicity and the drug interaction behind it; caffeine citrate dose math.
 - **Roman-numeral questions** (I, II, III…) show the statements in a list, with the choices kept in their original order.
 - **Quiz options:** filter by case type, choose 5, 10, 20 or all, and open the built-in drug-class cheat sheet.
 - **Results:** a score by case type, a review of your misses with chart links, and a "Retry the missed" button.
@@ -211,6 +214,7 @@ Pocket Pulmo works without internet after it's been opened once online.
 
 - **ABG values and O₂ devices:** edit the text directly in `abg-o2.html`.
 - **Formulas:** edit the text directly in `formulas.html`. **Gas cylinders:** edit `gas.html`.
+- **Multi-part cases:** they come after the single cases in `CASES` (look for `MULTI-PART CASES`). Each has `parts`: the first part has `q`, `a`, `o`, `x`; later parts also have `u` (the update) and `v` (new findings).
 - **Device cases:** in `o2-cases.html`, the cases are the `CASES = [ ... ]` array near the bottom. The comment above it explains each field, and you can add your own case by copying one.
 - **Med cases:** in `med-cases.html`, the cases are the `CASES = [ ... ]` array near the bottom (same format as the O₂ cases, plus `d`, the drug names to link to in the chart).
 - **Math quiz problems:** in `math-quiz.html`, the practice set is the `FIXED = [ ... ]` array (the comment above it explains each field). The random problem generators are in `GEN`.
